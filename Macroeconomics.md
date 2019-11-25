@@ -72,19 +72,18 @@
    L =\sum_{t=0}^{+\infty}\sum_{S^t}\{\beta^tU(C_t^i(S^t))\pi(S^t) + \mu^ip_t^0(S^t)(e_t^i(S^t)-C_t^i(S^t))\}
    $$
    The First Order Conditions are:
-$$
+   $$
    \beta^tU'(C_t^i(S^t))\pi(S^t) = \mu^i p_t^0(S^t)
-$$
+   $$
    This is true for any individual. Hence if we take person i First Order Conditions and divided with person j’s equation, we will get:
-$$
+   $$
    \frac{U'(C_t^i(S^t))}{U'(C_t^i(S^t))} = \frac{\mu^i}{\mu^j}
-$$
+   $$
    This is true for any time and any state. which means the ratio of the consumption between any two people is a constant for any time and any state history. Hence we could define the total endowment as $Y_t(S^t)$, and assume consumer i’s consumption is:
-$$
+   $$
    C_t^i(S^t) = \tilde\mu^i\sum_{i\in I}e_t^i(S^t) = \tilde\mu^iY_t(S^t)
-$$
+   $$
    where $\sum_i\tilde\mu^i = 1$.
-
 2. Solve for the price:
 
    Re-write First Order Conditions as: $\beta^tU'(\tilde\mu^iY_t(S^t))\pi(S^t) = \mu^i p_t^0(S^t)$, divided by time zero First Order Conditions, we will get:
@@ -115,7 +114,9 @@ $$
 
 ### Sequential Market Equilibrium
 
-**Assumption: (Sequential Market)**
+#### Setup
+
+Assumption: (Sequential Market)**
 
 - There are $I$ numbers of consumers in total
 - The state of the economy is denoted as $S_t$, and the history is denoted as $S^t = \{S_\tau\}_{\tau=0}^t$ 
@@ -153,7 +154,8 @@ $$
 
 1. Solve the Consumer’s problem with Lagrange method:
    $$
-   L =\sum_{t=0}^{+\infty}\sum_{S^t}\{\beta^tU(C_t^i(S^t))\pi(S^t) + \mu_t^i(S^t) [e_t^i(S^t)+a_{t}^i(S^{t-1},S_t) - C_t^i(S^t) -\sum_{S'}\tilde q_t(S^t,S') a_{t+1}^i(S^t,S')]\}
+   L =\sum_{t=0}^{+\infty}\sum_{S^t}\{\beta^tU(C_t^i(S^t))\pi(S^t) + \mu_t^i(S^t) [e_t^i(S^t)+a_{t}^i(S^{t-1},S_t) - C_t^i(S^t)\\
+   -\sum_{S'}\tilde q_t(S^t,S') a_{t+1}^i(S^t,S')]\}
    $$
    The First Order Conditions are:
    $$
@@ -180,8 +182,8 @@ Proof:
 
 First We proof that the solution of the Sequential Market Equilibrium is the solution of the Arrow-Debreu Equilibrium, by adding up all the discounted sequential budget constraints:
 $$
-lim_{T\to+\infty}\sum_{t=0}^{T} \sum_{S'} (\prod_{j=0}^{t-1}\tilde q_j(S^j,S^{j+1})) C_t^i(S^t) + lim_{T\to+\infty}\sum_{S'}(\prod_{j=0}^{T-1} \tilde q_t(S^j,S^{j+1})) \tilde q_T(S^T,S') a_{T+1}^i(S^T,S') = \\
-lim_{T\to+\infty}\sum_{t=0}^{T-1} \sum_{S'}  (\prod_{j=0}^{t-1}\tilde q_j(S^j,S^{j+1})) e_t^i(S^t)
+lim_{T\to+\infty}\sum_{t=0}^{T} \sum_{S'} (\prod_{j=0}^{t-1}\tilde q_j(S^j,S^{j+1})) C_t^i(S^t) + lim_{T\to+\infty}\sum_{S'}(\prod_{j=0}^{T-1} \tilde q_t(S^j,S^{j+1})) \tilde q_T(S^T,S') a_{T+1}^i(S^T,S')\\
+ = lim_{T\to+\infty}\sum_{t=0}^{T-1} \sum_{S'}  (\prod_{j=0}^{t-1}\tilde q_j(S^j,S^{j+1})) e_t^i(S^t)
 $$
 Since we have the No Ponzi Condition, we have $lim_{T\to+\infty}\sum_{S'}(\prod_{j=0}^{T-1} \tilde q_t(S^j,S^{j+1})) \tilde q_T(S^T,S') a_{T+1}^i(S^T,S') = 0$, and we can define $P^0_t(S^t) = \prod_{j=0}^{t-1}\tilde q_j(S^j,S^{j+1})$, and the lifetime budget constraint becomes:
 $$
@@ -189,7 +191,7 @@ $$
 $$
 Since we have exactly the same budget constraint, and all the other equations are also the same, we will get the exact same solution, i.e. the solution to the Sequential Market Equilibrium is the solution to the Arrow Deberu Equilibrium.
 
-However, we have already shown that the Arrow Deberu Equilibrium have an unique solution. Since we know that the Sequential Market Equilibrium has a solution, the solution has to be the same. $\blacksquare$
+However, we have already shown that the Arrow Deberu Equilibrium have an unique solution. Since we know that the Sequential Market Equilibrium has a solution, the solution has to be the same. $\square $
 
 
 
@@ -244,13 +246,19 @@ $$
 
 ### Welfare Theorem
 
+#### Pareto Efficiency
+
+
+
 #### Duality
 
 **Theorem: (Duality between ADE and Social Planner’s Problem)** We can solve the Arrow-Debreu Equilibrium by solving the social planer’s problem.
 
 Proof:
 
-Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t))\phi_t(S^t)/\lambda_i$. When we set $T_i = 0$, the solution to Social Planner’s problem and the Arrow Debreu Equilibrium is the same. $\blacksquare$
+Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t))\phi_t(S^t)/\lambda_i$. When we set $T_i = 0$, the solution to Social Planner’s problem and the Arrow Debreu Equilibrium is the same. $\square $
+
+
 
 ### Asset Pricing and Lucas Tree
 
@@ -261,7 +269,7 @@ Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t
 - Basic Arrow-Debreu Equilibrium Setup
 - Complete market, with one asset to be priced, which is also called Lucas Tree
 
-**Definition: (Arrow-Deberu Equilibrium)** The Arrow-Deberu Equilibrium is defined as a set of price $\{\tilde p^0_t, P_t\}$ of consumption, a set of individual decisions $\{C^i_t(S^t)\}$, such that:
+**Definition: (Arrow-Deberu Equilibrium)** The Arrow-Deberu Equilibrium is defined as a set of price $\{\tilde q_t, P_t\}$ of consumption, a set of individual decisions $\{C^i_t(S^t), b_{t}^i(S^t)\}$, such that:
 
 1. Given the set of price, the individual decision variables solves the following consumer’s problem:
    $$
@@ -269,21 +277,92 @@ Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t
    $$
    subject to the budget constraint:
    $$
-   \sum_{t=0}^{+\infty}\sum_{S^t}\tilde p_t^0(S^t)(C_t^i(S^t)+P_t(S^t)b_{t+1}^i(S^t)) \leq \sum_{t=0}^{+\infty}\sum_{S^t}\tilde p_t^0(S^t)e_t^i(S^t)
+   \sum_{t=0}^{+\infty}\sum_{S^t}\tilde p_t^0(S^t)(C_t^i(S^t)+P_t(S^t)b_{t+1}^i(S^t))\\\leq \sum_{t=0}^{+\infty}\sum_{S^t}\tilde p_t^0(S^t)(e_t^i(S^t)+(P_t(S^t)+d_t(S^t))b_{t}^i(S^{t-1}))
    $$
 
 2. Markets clears, or the feasible condition holds which means:
    $$
    \sum_{i\in I}C_t^i(S^t) = \sum_{i\in I}e_t^i(S^t) \space for \space each \space t \space and \space S^t
    $$
+   And asset market clears, i.e.
+$$
+   \sum_{i\in I}b_{t+1}^i(S^t) = B
+$$
 
-#### Solution
+**Solution: (Asset Pricing)**
 
-**Solution: (Tractable Method)**
+Solving this problem will give us the same First Order Conditions for the contingent claims. However, it will also give us the following Asset Pricing Equation:
+$$
+P_t(S^t) = \sum_{S'}\beta \frac{U'(C_{t+1}(S^t,S'))}{U'(C_{t}(S^t))}\pi(S'|S^t)(P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1})) \\ 
+P_t(S^t) = \sum_{S'} \frac {\tilde p_{t+1}^0(S^{t+1})}{\tilde p_t^0(S^t)}(P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1})
+$$
+which can also be rewrite as:
+$$
+P_t(S^t) = \sum_{\tau =t+1}^{+\infty} E_t[ \beta^{\tau-t}\frac{U'(C_{\tau}(S^\tau))}{U'(C_{t}(S^t))}d_\tau(S^\tau)]+lim_{T\to+\infty}E_t[\beta^T\frac{U'(C_{T+1}(S^T,S'))}{U'(C_{T}(S^T))}P_{T+1}(S^{T+1})]
+$$
+Because of no arbitrage condition, we have $lim_{T\to+\infty}E_t[\beta^T\frac{U'(C_{t+1}(S^t,S'))}{U'(C_{t}(S^t))}P_{T+1}(S^{T+1})] = 0$.
 
 #### Sequential Asset Pricing
 
-### Consumption Asset Pricing Model
+**Assumption: (Sequential Market)**
+
+- Basic Sequential Market
+- Complete market, with one asset to be priced, which is also called Lucas Tree
+
+**Definition: (Sequential Market Equilibrium)** The Sequential Market Equilibrium is defined as a set of price $\{\tilde p^0_t, P_t\}$ of consumption, a set of individual decisions $\{C^i_t(S^t), a_t^i(S^t),  b_t^i(S^t)\}$, such that:
+
+1. Given the set of price, the individual decision variables solves the following consumer’s problem:
+   $$
+   max \sum_{t=0}^{+\infty}\sum_{S^t}\beta^tU(C_t^i(S^t))\pi(S^t)
+   $$
+   subject to the budget constraint:
+   $$
+   C_t^i(S^t)+P_t(S^t)b_{t+1}^i(S^t) +\sum_{S'}\tilde q_t(S^t,S') a_{t+1}^i(S^t,S') \\
+   \leq e_t^i(S^t)+a_{t}^i(S^{t-1},S_t)+(P_t(S^t)+d_t(S^t))b_{t}^i(S^{t-1})
+   $$
+   And the No-Ponzi Condition: $a_{t+1}^i(S^{t+1}) \geq -\bar A$.
+
+2. Markets clears, or the feasible condition holds which means:
+   $$
+   \sum_{i\in I}C_t^i(S^t) = \sum_{i\in I}e_t^i(S^t) \space for \space each \space t \space and \space S^t
+   $$
+   And asset market clears, i.e.
+   $$
+   \sum_{i\in I}b_{t+1}^i(S^t) = B
+   $$
+
+**Solution: (Asset Pricing)**
+
+Solving this problem will give us the same Asset Pricing Equation, which can be rewrite as:
+$$
+P_t(S^t) = \sum_{S'} \tilde q_t(S^t,S')(P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1})\\
+P_t(S^t) = \sum_{\tau =t+1}^{+\infty}E_t[\beta^{\tau-t}\frac{U'(C_{\tau}(S^\tau))}{U'(C_{t}(S^t))}d_\tau(S^\tau)] + lim_{T\to+\infty}E_t[\beta^T\frac{U'(C_{T+1}(S^T,S'))}{U'(C_{T}(S^T))}P_{T+1}(S^{T+1})]
+$$
+Because of no arbitrage condition, we have $lim_{T\to+\infty}E_t[\beta^T\frac{U'(C_{t+1}(S^t,S'))}{U'(C_{t}(S^t))}P_{T+1}(S^{T+1})] = 0$.
+
+### Consumption Asset Pricing Model (CAPM)
+
+#### Definition
+
+#### CAPM
+
+**Definition: (Returns)** Define the return of the asset to be $R_{t}(S^t,S_{t+1}) = (P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1}))/P_t(S^t)$.
+
+**Definition: (Pricing Kernel)** Define the Pricing Kernel to be $M_{t}(S^{t+1}) = \beta\frac{U'(C_{t+1}(S^t,S'))}{U'(C_{t}(S^t))}$.
+
+**Definition: (Risk Free Interest Rate)** Define the Risk Free Interest Rate to be $\bar R_{t} = 1/E_t[M_{t}(S^{t+1})]$.
+
+**Theorem: (CAPM)** The expected return of an asset can be decomposed as:
+$$
+E_t[R_{t}(S^{t+1})] -\bar R_{t} = -\bar R_{t}cov(M_{t}(S^{t+1}),R_{t}(S^{t+1}) )
+$$
+Proof:
+
+From the asset pricing equation, we get $E_t[M_{t}(S^{t+1}) R_t(S^{t+1})] =1$, which can be rewrite as
+$$
+cov(M_{t}(S^{t+1}),R_{t}(S^{t+1}) ) + E_t[M_{t}(S^{t+1})] E_t[R_{t}(S^{t+1})] = 1 
+$$
+Divide both side with risk free rate, and then we get the formula. $\square$
 
 ### Asset Pricing with Endogenous Growth
 
@@ -329,7 +408,7 @@ Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t
    $$
    q' = H(q) = q
    $$
-   Note: Since we are solving the Steady State Equilibrium, the bond price does not change, the consumer in the model would just use $q' = q$ to forecast the bond price in next period. 
+   Since we are solving the Steady State Equilibrium, the bond price does not change, the consumer in the model would just use $q' = q$ to forecast the bond price in next period. 
 2. Markets clears, which means:
    $$
    C = \sum_a\sum_yc\mu(a,y),\space A = \sum_a\sum_ya\mu(a,y)=0
@@ -499,6 +578,7 @@ Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t
 **Solution: (Quantitative Method)**
 
 1. Pick the initial value of $\{a_z^0, b_z^0\}$
+
 2. For value  $\{a_z^j, b_z^j\}$, plug into the perceived law of motion $ln K_{t+1} = a_z^0+b_z^0logK_t$, and solve for the following problem:
    $$
    V(k_t^i, n_t^i, z_t, K_t ) = max\{U(c_t^i)+\beta\sum_{n_{t+1}^i}\sum_{z_{t+1}} V(k_{t+1}^i, n_{t+1}^i, z_{t+1}, K_t ) \pi(n_{t+1}^i,z_{t+1}|n_t^i, z_t)\}
@@ -510,9 +590,13 @@ Define Total Tax of consumer i as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S^t
    $$
    ln K_{t+1} = a_z^j+b_z^jlogK_t
    $$
-   Note: This is equivalent to solve the consumer’s problem.
+   This is equivalent to solve the consumer’s problem.
+   
    Solving this recursive problem, and combine the solution to the firm’s First Order Conditions will give back policy functions $k_{t+1}^i = g(k_t^i, n_t^i, z_t, K_t )$
+   
 3. Starting from a set of initial points $\{ k_0^i, n_0^i, z_0, K_0 \}$, use the individual decision rules, simulate a panel of technology shock and labor endowment, and use that to generate a panel of individual capital stocks $\{k_{t+1}^i\}_{t=0}^T$, and use the panel to generate $K_t = \frac{1}{I}\sum_i k_t^i$
+
 4. Run a regression of $lnK_{t+1} = a_z'+b_z'lnK_t+e_t$, and get $\{a_z^j, b_z^j\}$
+
 5. Set $a_z^{j+1} = a_z' $, and $b_z^{j+1} = b_z' $, and iterate from step 2, until $||(a_z^j,b_z^j) - (a_z^{j+1},b_z^{j+1})|| < \epsilon$
 

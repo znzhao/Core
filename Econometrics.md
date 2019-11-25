@@ -1,7 +1,5 @@
 # Econometrics
 
-
-
 ## Content
 
 [TOC]
