@@ -1,5 +1,5 @@
 # Core
-Here are the lecture notes for the core courses of economics departement at the University of Texas at Austin. Please use typora to view them.
+Here are the lecture notes for the core courses of economics department at the University of Texas at Austin. Please use Typora to view them.
 
 Link:
 

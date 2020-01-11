@@ -1,1 +1,8 @@
 theme: jekyll-theme-slate
+site_name: Core Lecture Note
+
+pages:
+  - Home: "index.md"
+  - Microeconomics: "Microeconomics.html"
+  - Macroeconomics: "Macroeconomics.html"
+  - Econometrics: "Econometrics.html"
