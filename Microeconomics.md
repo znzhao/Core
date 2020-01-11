@@ -1,4 +1,4 @@
-# MICRO ECONOMICS
+# MICROECONOMICS
 
 ## Preference Theory
 
@@ -10,7 +10,7 @@
 
 **Definition: (Reflexivity)** A relationship is reflexive if $xRx\in R$.
 
-**Definition: (Transitivity)** A relationship is transitive if $xRyRz in R$ implies $xRz\in R$.
+**Definition: (Transitivity)** A relationship is transitive if $xRyRz \in R$ implies $xRz\in R$.
 
 **Definition: (Completeness)** A relationship is complete if either $xRy\in R$ or $yRx\in R$.
 
@@ -76,7 +76,7 @@ Define a subset of real number: $T = \{t\in (0,1)|ty+(1-t)z \in \succsim(x)\}$. 
 
 **Axiom: (A4 - Strict Monotonicity)** For any $x$ and $y$, if $y\geq x$ then  $y\succsim x$, and if if $y\gg x$ then  $y\succ x$.
 
-**Lemma: (Local Non-Satiation and Strictly Monotonicity)** If a preference is strictly monotonic then it is locally non-satiated.
+**Claim: (Local Non-Satiation and Strictly Monotonicity)** If a preference is strictly monotonic then it is locally non-satiated.
 
 **Axiom: (A5’ - Convexity)** If $y\succsim x$, then $ty+(1-t)x\succsim x$ for any $t\in [0,1]$. 
 
@@ -104,6 +104,12 @@ Let $e = [1,1,...,1]$ be a vector in $\R^n$. For any $x\in X$, define $U(x)$ so 
 Now we will show that $U(x)$ represents the preference, i.e. $x\succsim y$ if and only if $U(x)\geq U(y)$. We have $U(x)e\sim x\succsim y\sim U(y)e$, and the statement is true as a result of strictly monotonicity.
 
 The last step is to show $U(x)$ is continuous. It suffices to show that $U^{-1}(a,b)$ is an open set. $U^{-1}(a,b) = \{x\in X|a<U(x)<b\} = \{x\in X|ae \prec U(x)e \prec be\}  =  \{x\in X|ae \prec x \prec be\} = \succ(ae) \cap \prec(be)$. By continuity, we have both sets are opens, then the intersection of them is also open. $\square$
+
+**Definition: (Marginal Utility)** The marginal utility is defined as $MU_i = \partial U/\partial x_i$.
+
+**Definition: (Marginal Rate of Substitution)** The Marginal Rate of Substitution is defined as $MRS_{ij} = MU_i/MU_j$.
+
+**Definition: (Elasticity of Substitution)** The Elasticity of Substitution is defined as $\sigma_{ij} =\frac{dln(x_i/x_j)}{dln(U_j/U_i)}$.
 
 #### Properties
 
@@ -176,10 +182,6 @@ $$
 \lambda (I-px) = 0\\
 \mu_i x_i = 0
 $$
-**Definition: (Marginal Utility)** The marginal utility is defined as $MU_i = \partial U/\partial x_i$.
-
-**Definition: (Marginal Rate of Substitution)** The Marginal Rate of Substitution is defined as $MRS_{ij} = MU_i/MU_j$.
-
 **Theorem: (Kuhn-Tucker Theorem)** Suppose $U$ is strictly quasi-concave and differentiable, $(p,I)\gg 0$, then if $(x^*,\lambda^*)\gg 0 $ solve the first order conditions, then $(x^*,\lambda^*)$ solve the consumer’s problem.
 
 Proof:
@@ -189,6 +191,10 @@ First notice one fact: when $x^1 \neq x$, $\nabla U(x)\neq 0$, and $U(x^1)>U(x)$
 Now prove the statement. Suppose not, the there is another solution $(x^1,\lambda^1)$ such that $U(x^1)>U(x^*)$. By the fact above, we have $\nabla U(x^*)(x^1-x^*)>0$, and $px^1\leq I$. Notice that since $(x^*,\lambda^*)$ solve the Kuhn-Tucker conditions, we have $\nabla U(x^*) = \lambda^*p$. By assumption, $\lambda^*p\gg 0$, so $\nabla U(x^*)\gg 0$. So $\nabla U(x^*)(x^1-x^*) =\lambda^*p(x^1-x^*) >0$ implies that $px^1>px^* = I$, which is a contradiction to the fact that $x^1$ is feasible. $\square$
 
 **Definition: (Marshallian Demand)** The solution the the utility maximizing problem is called the Marshallian Demand, denoted by $x^*(p,I)$.
+
+**Definition: (Elasticity)** The Price Elasticity of the demand is defined as $\epsilon_i = \partial lnx^*(p,I)/\partial lnp_i$.
+
+
 
 #### Indirect Utility Function
 
@@ -557,13 +563,7 @@ Proof:
 
 **Definition: (Risk Premium)** Define Risk Premium as $r(F,U) = \mu_F-CE(F,U)$.
 
-**Definition: (Probability Premium)** 
-
-
-
-
-
-
+**Definition: (Probability Premium)** The Probability Premium $p$ is defined as the probability higher than 0.5 such that $U(x) = (\frac{1}{2} +p)U(x+\epsilon)+(\frac{1}{2} - p)U(x-\epsilon)$.
 
 **Theorem: (Risk Aversion)** Suppose a preference has the expected utility property, the following are equivalent:
 
@@ -656,7 +656,9 @@ If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing f
 
 Proof:
 
-
+1. Suppose we have $S$ states in total. We know $h_s = (\pi_s,\pi_s,...,\pi_s)\succ g_s = (\rho_s,\rho_s,...,\rho_s)$. By state independence, we have $(h-t,\pi_s)\succ (h-t,\rho_s)$ for any $h$ and any $t$. Suppose it’s not true, i.e. $(h-t,\pi_s)\precsim (h-t,\rho_s)$, by state independence we can write $h_s\sim(h_s-t,\pi_s)\precsim (h_s-t,\rho_s)\precsim...\precsim(g_s-t,\pi_s)\precsim (g_s-t,\rho_s)\sim g_s$, since it works for all state $t$. Contradiction. Hence we have $\pi_s\succ \rho_s$ at each state. 
+2. Now want to show that suppose $h\succ g$ and $\pi\succ \rho$ at each state, then $(h-s,\pi)\succ (g-s,\rho)$. By state independence,  $(h-s,\pi)\succ (h-s,\rho)$ implies $(g-s,\pi)\succ (g-s,\rho)$. We only need to show $(h-s,\pi)\succ (g-s,\rho)$, but this is because of the fact that $\pi\succ \rho$ at each state.
+3. Now start with $(\pi_1,\pi_1,...,\pi_1)\succ(\rho_1,\rho_1,...,\rho_1)$. By step 2 we have $(\pi_1,\pi_2,...,\pi_1)\succ(\rho_1,\rho_2,...,\rho_1)$. Then repeat using step 2 we will have $(\pi_1,\pi_2,...,\pi_S)\succ(\rho_1,\rho_2,...,\rho_S)$, which is what we want to show. $\square$ 
 
 **Claim: (Expected Utility Theorem)** A preference relation on $H$ is independent , Archimedean, state independent if and only if there exists a Von-Neumann-Morgenstern utility function $U:X\to\R$, such that $U(h) = \sum_s\mu(s)\sum_x h_s(x)U(x)$, where $\mu(s)$ denote the subjective probability of state $s$.
 
@@ -664,31 +666,187 @@ Proof:
 
 ## Production Theory
 
-### Production Set
+### Production
 
+#### Production Possibility Set
 
+**Definition: (Production Possibility Set)** The set $Y\subset \R^n$, where $y = (y_1,y_2,...,y_n) \in Y$, and if $y_k>0$ it is the output, if $y_k<0$ it is the input.
 
-### Production Function
+**Axiom: (Properties of Production Possibility Set)** The production possibility set satisfies: 
 
+1. (No Free Lunch) $Y\cap \R^n_+ \subset {0}$
+2. (Possibility of Inaction) $0\in Y$
+3. (Free Disposal) If $y\in Y$, then $y'\in Y$ for all $y'<y$
+4. (Irreversibility) If $y\in Y$ and $y\neq 0$, then $-y\notin Y$
+5. (Non Increasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in [0,1]$
+6. (Non Decreasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in [1, +\infty)$
+7. (Constant Return to Scale)  If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in [0, +\infty)$
+8. (Increasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (1, +\infty)$ and If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (0, 1)$
+9. (Decreasing Return to Scale)  If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (0,1)$ and If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (1,+\infty)$
+10. (Additivity) If $y,y'\in Y$, then $y+y'\in Y$
+11. (Convexity) $Y$ is convex
+12. (Convex Cone) For any $y,y' \in Y$ and $\alpha,\beta \geq 0$, we have $\alpha y+ \beta y' \in Y$
 
+**Note:** Increasing return to scale and additivity don’t imply each other, especially when the other properties do not hold. Consider a production function where irreversibility doesn’t hold.
 
-### Transformation Function
+**Theorem: (Properties of Production Possibility Set)** the following are true:
 
+1. $Y$ is additive and non-increasing return to scale if and only if it is a convex cone.
+2. For any convex  $Y\subset \R^n$ with $0\in Y$, there is a convex $Y'\subset \R^{n+1}$ such that $Y'$ is constant return to scale and $Y' = \{(y,-1)|y\in Y\}$.
+
+Proof:
+
+1. If $Y$ is a convex cone, then by definition it is additive and non-increasing return to scale. If $Y$ is additive and non-increasing return to scale, for any $y,y' \in Y$ and $\alpha,\beta \geq 0$, by additivity $ky\in Y$. Then by non-increasing return to scale $\frac\alpha k ky\in Y$. Then by additivity $\alpha y+ \beta y' \in Y$.
+2. Let $Y' = \{\alpha(y,-1)|y\in Y, \forall \alpha>0\}$. By definition $Y'$ is constant return to scale. $\square$
+
+#### Production Function
+
+**Definition: (Production Function)** Let $y\in \R^m_+$ denotes the outputs and $x\in \R^k_+$ denotes the inputs. Suppose $m=1$, then define the production function as $y=f(x)$. The corresponding production possibility set is $Y = \{(-x,y)\in \R^k_-\times\R^m_+|y\leq f(x)\}$.
+
+**Assumption: (Production Function)** The production function $f$ is continuous, strictly increasing and strictly quasi-concave on $\R^n_+$, and $f(0) = 0$.
+
+**Definition: (Isoquant)** Isoquant is a collection of input combinations which keep output fixed, $Q(y) = \{x\in \R^k_+|f(x)=y\}$.
+
+**Theorem: (Properties of Production Function)** The following are true:
+
+1. $Y$ is constant return to scale if and only if $f(t x) = t f(x)$ for all $t>0$
+2. $Y$ is increasing return to scale if and only if $f(t x) > t f(x)$ for all $t>$1
+3. $Y$ is decreasing return to scale if and only if $f(t x) < t f(x)$ for all $t>$1
+4. $Y$ is convex if and only if $f(x)$ is concave
+
+Proof:
+
+1. If $f(t x) = t f(x)$ for all $t>0$, then it is trivial to show that $Y$ is constant return to scale. Now suppose the reverse is true. By definition we have if $y = f(x)$ then $tf(x)\leq f(tx)$ for all $t\geq 0$ and if $y = f(z)$, then $sf(z)\leq f(sz)$ for all $s>0$. Now set $s = 1/t$ and set $z = tx$ we have $tf(x)\geq f(tx)$, hence $tf(x)= f(tx)$.
+2. If $f(t x) > t f(x)$ for all $t>0$, then it is trivial to show that $Y$ is increasing return to scale. Now suppose the reverse is true. By definition we have if $y = f(x)$ then $ty < f(tx)$ for all $t>1$ and $(x,y)$. So $f(tx) > tf(x)$.
+3. If $f(t x) < t f(x)$ for all $t>0$, then it is trivial to show that $Y$ is decreasing return to scale. Now suppose the reverse is true. By definition we have if $y = f(x)$ then $ty > f(tx)$ for all $t>1$ and $(x,y)$. So $f(tx) < tf(x)$.
+4. This is automatically true by definition. $\square$ 
+
+**Definition: (Separable Production Function)** Let $K$ be the number of inputs. Suppose we can take partition of $K$, i.e. $K_1,...,K_s$, $s\in S$ then the production function is weakly separable if:
+$$
+\frac{\partial (f_i(x)/f_j(x)) }{\partial x_k} = 0 \space \forall i,j \in K_s,\space  k\notin K_s
+$$
+where $f_i = \partial f(x)/\partial x_i$. Furthermore, if $S>2$, the production function is strongly separable if:
+$$
+\frac{\partial (f_i(x)/f_j(x)) }{\partial x_k} = 0 \space \forall i\in K_s,\space \forall j \in K_t,\space  k\notin K_s \cup K_t
+$$
 
 
 ### Cost Minimization
+
+**Definition: (Cost Minimization Problem)** The Cost Minimization Problem of the firm is defined as:
+$$
+C(w,y) = min_{x\in \R^n_k} wx \space s.t.\space f(x)\geq y
+$$
+**Solution: (Cost Minimization Problem)**
+
+The solution to this problem is the same as the expenditure minimization problem. The existence of the solution comes from the same theorem. The first order condition are $w_i = f_i(x)$. Combine them with the production constraint $f(x) = y$ we can get the solution.
+
+**Claim: (Properties of Cost Function)** If $f$ satisfies our assumptions, the the cost function $C(w,y)$ has the following properties:
+
+1. $C(w,0) = 0$
+2. $C(w,y)$ is continuous
+3. For $w\gg 0$ $C(w,y)$ is strictly increasing and unbounded above in $y$
+4. $C(w,y)$ is increasing in $w$
+5. $C(w,y)$ is homogenous of degree 1 in $w$
+6. $C(w,y)$ is concave in $w$
+7. Shepard’s Lemma is true, i.e. $\partial C(w^0,y^0)/\partial w_i = x_i(w^0,y^0)$
+
+**Definition: (Conditional Input Demand)** The solution to the cost minimization problem is the conditional input demand function, denoted as $x(w,y)$.
+
+**Claim: (Properties of Conditional Input Demand)** Under the assumption of production function, suppose the cost function is twice differentiable, we have
+
+1. $x(w,y)$ is homogeneous of degree 0 in $w$
+2. The substitution matrix $\sigma(w,y) = [\partial x_i/\partial w_j]$ is symmetric and negative semi-definite. In particular, this implies that $\partial x_i/\partial w_j\leq 0$ for all $i$. 
+
+**Claim: (Recovering Production Function from Cost Function)** For a given function $C:\R^n_+\times \R_+ \to \R_+$, satisfying properties 1-7 for a cost function, the function $f(x) = max\{y\geq 0|wx\geq c(w,y) \forall w\gg0\}$ is an increasing, unbounded above, quasi-concave function. Moreover, the cost function generated by $f(x)$ is $C(.)$.
+
+**Claim: (Integrability)** If a differentiable function $x:\R^k_+ \times \R_+\to \R^k_+$ is homogenous of degree 0, and $wx(w,y)$ is strictly increasing in $w$, and satisfies symmetry and negative semi-definite of Slutsky matrix, if and only if it is the conditional input demand function generated by some strictly increasing, quasi-concave production function.
 
 
 
 ### Profit Maximization
 
+**Definition: (Profit Maximization Problem)** The Profit Maximization Problem of the firm is defined as:
+$$
+\pi(p, w) = max_{y,x\in \R^{k+1}_+} py-wx \space s.t.\space f(x)\geq y
+$$
+**Note:** When the production function is constant or increasing return to scale, the solution to the profit maximization problem doesn’t exist.
+
+**Solution: (Profit Maximization Problem)** The first order conditions are $pf_i(x)  =w_i$.
+
+**Claim: (Properties of Profit Function)** If $f$ satisfies the assumption, and suppose the profit function exists, then for $(p,w)\gg 0$, we have
+
+1. $\pi(p,w)$ is increasing in $p$
+2. $\pi(p,w)$ is decreasing in $w$
+3. $\pi(p,w)$ is homogenous of degree 1 in $(p,w)$
+4. $\pi(p,w)$ is convex in $(p,w)$
+5. $\pi(p,w)$ is differentiable in $(p,w)\gg 0$, and Hoteling's Lemma is true, i.e. $\partial \pi(p^0,w^0)/\partial p = y(p^0,w^0)$ and  $-\partial \pi(p^0,w^0)/\partial w_i = x_i(p^0,w^0)$.
+
+**Definition: (Input Demand and Output Supply)** The solution to the profit maximization problem are the Input Demand and Output Supply functions, i.e. $x(p,w)$ and $y(p,w)$.
+
+**Claim: (Properties of Input and Output)** Under the assumption of production function, suppose the cost function is twice differentiable, we have
+
+1. $x(p,w)$ and $y(p,w)$ are homogeneous of degree 0 in $(p,w)$
+2. No inferior goods and no inferior inputs, i.e. $\partial y /\partial p \geq 0 $ and $\partial x_i/\partial w_i \leq 0$
+3. The substitution matrix $\sigma(p,w)$ is symmetric and positive semi-definite.
 
 
-### Short Run and Long Run Problem
 
+### Short Run Problem and Long Run Problem
 
+#### Short Run Cost Minimization
+
+**Definition: (Short Run Cost Minimization Problem)** Let the production function be $f(x,\bar x)$, where $x$ is a vector of variable inputs and $\bar x$ is a vector of fixed inputs. Then the Short Run Cost Minimization Problem is:
+$$
+SC(w,\bar w, y; \bar x) = min_x wx+\bar w \bar x \space s.t. \space f(x,\bar x)\geq y
+$$
+And $wx(w,\bar w, y; \bar x)$ is called total variable cost, and $wx(w,\bar w, y; \bar x)+\bar w\bar x$ is called total cost.
+
+**Theorem: (MC and AVC)** When marginal cost is greater than the average variable cost, i.e. $MC>AVC$, $AVC$ is increasing, and vice versa.
+
+Proof:
+
+By definition $AVC = VC(y)/y$, take differentiation we have $\frac{d}{dy}AVC = \frac{y\frac{d}{dy}VC-VC}{y} = \frac{MC-AVC}{y}$. Hence it has the same sign as $MC-AVC$. $\square$ 
+
+**Corollary: (MC and AVC)** The MC curve will pass through the minimization point of AVC. 
+
+**Theorem: (Relationship between Short Run and Long Run)** By definition we have $C(w,\bar w,y)\leq SC(w,\bar w, y;\bar x)$. Furthermore, let $\bar x(w,\bar w, y) $ denote the optimal choice of input at $(w,\bar w, y)$, then we have $C(w,\bar w, y) = SC(w,\bar w, y; \bar x(w,\bar w, y)  )$. This implies that $\frac{dc(w,\bar w, y)}{dy} = \frac{\partial SC(w,\bar w,y ;\bar x(w,\bar w, y) )}{\partial y}$.
+
+Proof:
+
+$C(w,\bar w,y)\leq SC(w,\bar w, y;\bar x)$ is true because $C(w,\bar w,y)$ is the minimization. We have $C(w,\bar w, y) = SC(w,\bar w, y; \bar x(w,\bar w, y))$. This implies that $\bar x(w,\bar w, y)$ minimizes $SC(w,\bar w, y;\bar x)$, i.e.$\frac{\partial SC(w,\bar w,y ;\bar x(w,\bar w, y) )}{\partial \bar x}=0$. Now take differentiation of the equation $C(w,\bar w, y) = SC(w,\bar w, y; \bar x(w,\bar w, y)  )$, we have $\frac{dc(w,\bar w, y)}{dy} = \frac{\partial SC(w,\bar w,y ;\bar x(w,\bar w, y) )}{\partial y}+\frac{\partial SC(w,\bar w,y ;\bar x(w,\bar w, y) )}{\partial \bar x}\frac{\partial \bar x(w,\bar w, y)}{\partial y} = \frac{\partial SC(w,\bar w,y ;\bar x(w,\bar w, y) )}{\partial y}$. $\square$ 
+
+#### Short Run Profit Maximization
+
+**Definition: (Short Run Profit Maximization Problem)** Let the production function be $f(x,\bar x)$, where $x$ is a vector of variable inputs and $\bar x$ is a vector of fixed inputs. Then the Short Run Profit Maximization Problem is:
+$$
+\pi(p,w, \bar w; \bar x) = max_{y,x\in \R^{k+1}_+} py-wx-\bar w\bar x \space s.t.\space f(x,\bar x)\geq y
+$$
+**Claim: (Break Even Point)** The firm will stop producing when $p\leq min(AVC)$ in the short run and it will stop producing when $p\leq min(ATC)$ in the long run.
+
+**Theorem: (Relationship between Short Run and Long Run)** By definition we have $\pi(p,w, \bar w; \bar x) \leq \pi(p,w)$. Furthermore, let $\bar x(p,w,\bar w) $ denote the optimal choice of input at $(p,w,\bar w)$, then we have $\pi(p,w, \bar w; \bar x(p,w,\bar w)) = \pi(p,w)$.
+
+Proof:
+
+$\pi(p,w, \bar w; \bar x) \leq \pi(p,w)$ is true because $\pi(p,w)$ is the maximization. We have $\pi(p,w, \bar w; \bar x(p,w,\bar w)) = \pi(p,w)$. This implies that $\bar x(w,\bar w, y)$ maximize $\pi(p,w, \bar w; \bar x)$, i.e.$\frac{\partial \pi(p,w, \bar w; \bar x(p,w,\bar w) )}{\partial \bar x}=0$. $\square$ 
 
 ### Multi Product Firms
+
+**Definition: (Transformation Function)** Given a production set $Y\subset \R^n$ the Transformation Function is $F:Y\to \R$, such that $Y = \{y\in Y|F(y)\leq 0\}$.
+
+**Definition: (Transformation Frontier)** Given a production set $Y\subset \R^n$ the Transformation Frontier is $F:Y\to \R$, such that $Y = \{y\in Y|F(y)= 0\}$.
+
+**Definition: (Marginal Rate of Transformation)** Given a differentiable transformation function $F$ and a point $y$ on the frontier, the Marginal Rate of Transformation for good i and j is defined as $MRT_{i,j} = \frac{\partial F/\partial y_i}{\partial F/ \partial y_j} = -\frac{dy_j}{dy_i}$.
+
+**Definition: (Multi Product Firm Profit Maximization)** Multi Product Firm Profit Maximization Problem is defined as:
+$$
+\pi(p) = max_{y\in Y} \{py\} = max \{py\} \space s.t. \space F(y) \leq 0
+$$
+**Theorem: (Existence of Profit)** If $Y$ satisfies non-decreasing return to scale, then either $\pi(p)\leq 0$ or $\pi(p) = +\infty$.
+
+Proof:
+
+Suppose at some $y\in Y$ we have $py>0$, Since $Y$ satisfies non-decreasing return to scale, we have $ty\in Y$ for $t>1$.  So $tpy>py$ is always feasible. As $t\to+\infty$, $\pi\to+\infty$. $\square$ 
 
 
 
@@ -932,18 +1090,18 @@ We will verify that $z(p)$ satisfies the three properties of the Equilibrium Exi
 
 **Definition: (Feasible Allocation)** The Feasible Set is defined as $F(e) = \{\sum_{i\in I} x^i= \sum_{i\in I} e^i \}$.
 
-**Definition: (Pareto Optimality)** A feasible allocation $x\in F(e)$ is Pareto Efficient if there is no other feasible allocation  such that $y^i \succsim_i x^i$ for all $i$, and there exists a $j$ such that $y^j \succ_j x^j$.
+**Definition: (Pareto Optimality)** A feasible allocation $x^*\in F(e)$ is Pareto Efficient if there is no other feasible allocation such that $x^i \succsim_i x^{*i}$ for all $i$, and there exists a $j$ such that $x^j \succ_j x^{*j}$.
 
-**Definition: (Blocking Coalition)** Let $S\subset I$ be a coalition of consumers, We say $S$ blocks allocation $x$ if there is another allocation $y$ such that
+**Definition: (Blocking Coalition)** Let $S\subset I$ be a coalition of consumers, We say $S$ blocks allocation $x$ if there is another allocation $x'$ such that
 
-1. $\sum_{i\in S}y^i=\sum_{i\in S} e^i$
-2. $y^i \succsim_i x^i\space \forall i\in S$ and $\exist j\in S$ such that $y^j \succ_j x^j$
+1. $\sum_{i\in S}x'^i=\sum_{i\in S} e^i$
+2. $x'^i \succsim_i x^i\space \forall i\in S$ and $\exist j\in S$ such that $x'^j \succ_j x^j$
 
 **Theorem: (Efficiency of Unblocked Allocation)** Any unblocked allocation is Pareto Optimal.
 
 Proof:
 
-Suppose not. Then the allocation is not Pareto Optimal, so there is is another feasible allocation $y$ such that $y^i \succsim_i x^i\space \forall i\in I$ and $\exist j\in I$ such that $y^j \succ_j x^j$, which means $I$ is blocked by itself. $\square $
+Suppose not. Then the allocation is not Pareto Optimal, so there is is another feasible allocation $y$ such that $x'^i \succsim_i x^i\space \forall i\in I$ and $\exist j\in I$ such that $x'^j \succ_j x^j$, which means $I$ is blocked by itself. $\square $
 
 **Note:** Not all Pareto Optimal allocations are unblocked.
 
@@ -951,9 +1109,15 @@ Suppose not. Then the allocation is not Pareto Optimal, so there is is another f
 
 #### Pareto Optimality In Production Economy
 
-**Definition: (Feasible Allocation)** An allocation $(x,y)$ is feasible if $\sum_{i\in I} x^i \leq \sum_{i\in I} e^i + \sum_{j\in J} y^j$.
+**Definition: (Feasible Allocation in Production Economy)** An allocation $(x,y)$ is feasible if $\sum_{i\in I} x^i \leq \sum_{i\in I} e^i + \sum_{j\in J} y^j$.
 
-**Definition: (Pareto Optimality)**
+**Definition: (Pareto Optimality in Production Economy)** A feasible allocation $(x^*,y^*)$ is Pareto Efficient if there is no other feasible allocation $(x,y)$ such that $x^i \succsim_i x^{*i}$ for all $i$, and there exists a $j$ such that $x^j \succ_j x^{*j}$.
+
+**Definition: (Blocking Coalition in Production Economy)** Let $S\subset I$ be a coalition of consumers, We say $S$ blocks allocation $(x,y)$ if there is another allocation $(x',y')$ such that
+
+1. $y\in Y$
+2. $\sum_{i\in S}x'^i=\sum_{i\in S} e^i$
+3. $x'^i \succsim_i x^i\space \forall i\in S$ and $\exist j\in S$ such that $x'^j \succ_j x^j$
 
 **Definition: (Utility Possibility Set)** The Utility Possibility Set is defined as $U(x) = \{u_i\}_{i\in I }$ and $x$ is feasible, i.e.
 $$
@@ -986,7 +1150,7 @@ Proof:
 
    Case 1: when  $u_1(\tilde x^1) > u_1(x^{1*})$, then automatically $x^* $ is not the solution, contradiction.
 
-   Case 2: when $u_k(\tilde x^k) > u_1(x^{k*})$ for some $k\neq1$, and suppose  $\tilde x^k>0$. Without loss of generosity, we could assume the consumption of the first good of consumer $k$ is greater than zero, i.e. $\tilde x_1^k >0$. Now let $w\in \R^n$ be a vector with $w_1 = 1$ and $w_m = 0$ for $m = 2,...,n$, i.e. $w = (1,0,0,...0)$. by continuity of $u_k$, there is a $\epsilon >0$ such that $u_k(\tilde x^k -\epsilon w) > u_k(x^{k*})$. 
+   Case 2: when $u_k(\tilde x^k) > u_1(x^{k*})$ for some $k\neq1$, and suppose $\tilde x^k>0$. Without loss of generosity, we could assume the consumption of the first good of consumer $k$ is greater than zero, i.e. $\tilde x_1^k >0$. Now let $w\in \R^n$ be a vector with $w_1 = 1$ and $w_m = 0$ for $m = 2,...,n$, i.e. $w = (1,0,0,...0)$. by continuity of $u_k$, there is a $\epsilon >0$ such that $u_k(\tilde x^k -\epsilon w) > u_k(x^{k*})$. 
 
    Now consider another bundle $\hat x$, where $\hat x^1 = \tilde x^1 +\epsilon w$, $\hat x^i = \tilde x^i$ for $i\neq {1,k}$ and $\hat x^k = \tilde x^k -\epsilon w$. By strongly monotonicity, $u_1(\hat x_1) >u_1(x^*)$ and $\hat x$ is still feasible and everyone else is getting at least as good as $x^*$. So $x^*$ is not the solution, contradiction.
 
@@ -1059,7 +1223,7 @@ which is impossible if the feasible condition holds. Hence we get a contradictio
 
 Proof:
 
-Suppose not, and let $(x^*, y^*)$ and $p^*$ be a Walrasian Equilibrium Allocation, which is blocked by a subset $S\subset I$, then we have $x^i \succsim_i x^{i*}$ for all $i\in S$ and there exists $i'$ such that $x^{i'} \succ_{i'} x^{{i'}*}$, and $\sum_{i\in S} x^i \leq \sum_{i \in S} e^i + \sum_{i \in S} \sum_{j \in J} \theta^{ij} y^j$. Since we have local non-satiation, by the Local Non-satiation Theorem, $p^*x^i \geq p^*x^{i*} = p^*e^i +\sum_j \theta^{ij} p^*y^j \space \forall i \in S$ and $p^*x^{i'} > p^*e^{i'} +\sum_{j\in J} \theta^{{i'}j} p^*y^j$. Combine them we can get:
+Suppose not, and let $(x^*, y^*)$ and $p^*$ be a Walrasian Equilibrium Allocation, which is blocked by a subset $S\subset I$, then we have $x^i \succsim_i x^{i*}$ for all $i\in S$ and there exists $i'$ such that $x^{i'} \succ_{i'} x^{{i'}*}$, and $\sum_{i\in S} x^i \leq \sum_{i \in S} e^i + \sum_{i \in S} \sum_{j \in J} \theta^{ij} y^j$. Since we have local non-satiation, by the Local Non-satiation Theorem, $p^*x^i \geq p^*x^{i*} = p^*e^i +\sum_j \theta^{ij} p^*y^{*j} \space \forall i \in S$ and $p^*x^{i'} > p^*e^{i'} +\sum_{j\in J} \theta^{{i'}j} p^*y^{*j}$. Now since $y^*$ is the solution to the profit maximization problem, at price $p^*$ we have $p^*y^{*j}\geq p^*y^{j}$. Combine them we can get:
 $$
 \sum_{i\in S}p^*x^{i} > \sum_{i\in S}p^*e^{i} +p^*\sum_{j\in J} \sum_{i\in S}\theta^{{i}j} y^j
 $$
