@@ -417,7 +417,7 @@ Proof:
 
 2. Now prove the third equation. Since we have $\hat y' \hat e = 0$, this implies $\bar y = \bar{\hat y} = \hat\beta_1+\bar x \hat\beta_2$. And $\hat\beta_2 = \sum_{i = 1}^n(x_i-\bar x) (y_i-\bar y)/\sum_{i = 1}^n(x_i-\bar x)^2$ comes from partitioned regression. This is shown in next part. Plug in the formula with dimension 1, we have $\beta_2 = (X'M_{\iota}X)^{-1}X'M_{\iota}Y = [\sum_{i = 1}^n(x_i-\bar x)(x_i-\bar x)']^{-1} \sum_{i = 1}^n(x_i-\bar x) (y_i-\bar y)'$.
 
-3. Now prove the transformations. Regressing $y$ on $XC$, we have $\hat \beta^* = ((XC)'(XC))^{-1}(XC)'y = (C'X'XC)^{-1}C'X'y = C^{-1}(X'X)^{-1}C'^{-1}C'X'y = C^{-1}\hat\beta$. And $\hat y^* = XC\hat \beta^*= XCC^{-1}\hat\beta= \hat y $.
+3. Now prove the transformations. Regressing $y$ on $XC$, we have $\hat \beta^* = ((XC)'(XC))^{-1}(XC)'y = (C'X'XC)^{-1}C'X'y $, then we have $\hat \beta^*= C^{-1}(X'X)^{-1}C'^{-1}C'X'y = C^{-1}\hat\beta$. And $\hat y^* = XC\hat \beta^*= XCC^{-1}\hat\beta= \hat y $.
 
    Now regress $a\iota+by$ on $X_1$ and $ X_2 $, we have $\hat \beta^* = (X'X)^{-1}X'(a\iota+by) = av+b\hat \beta$, where $v = (1,0,0,...,0)'$, which will give us what we need. $\square$ 
 
@@ -435,7 +435,7 @@ or
 $$
 \hat \beta_1 = ((M_{X_2}X_1)'M_{X_2}X_1)^{-1}(M_{X_2}X_1)'y,\space \hat \beta_2 = ((M_{X_1}X_2)'M_{X_1}X_2)^{-1}(M_{X_1}X_2)'y
 $$
-i.e. the regression of the residuals of $y$ and $X_i$ on $X_j$.
+i.e. the regression of the residuals of $y$ and $X_1$ on $X_2$. 
 
 Proof:
 
@@ -445,7 +445,16 @@ Proof:
    \left( \begin{array}{ccc} X_1'X_1 & X_1'X_2 \\ X_2'X_1 & X_2'X_2 \end{array}\right ) \left( \begin{array}{ccc} \hat \beta_1 \\ \hat \beta_2 \end{array}\right ) = \left( \begin{array}{ccc} X_1'y \\ X_2'y \end{array}\right )
    $$
 
-   Using 
+   Now take the inverse of the left hand side we get the equation that we want. When $(X_1'M_{X_2}X_1)^{-1} = (X_1'X_1-X_1'X_2(X_2'X_2)^{-1}X_2'X_1)^{-1}$exists, we have 
+   $$
+   \hat \beta_1 = (X_1'M_{X_2}X_1)^{-1}\left( \begin{array}{ccc} 1 & -X_1'X_2 (X_2'X_2)^{-1} \end{array}\right ) \left( \begin{array}{ccc} X_1'y \\ X_2'y \end{array}\right ) \\
+   = (X_1'M_{X_2}X_1)^{-1}X_1'(I-P_{X_2})y = (X_1'M_{X_2}X_1)^{-1}X_1'M_{X_2}y
+   $$
+   When $(X_2'M_{X_1}X_2)^{-1} = (X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2)^{-1}$ exists, we have the other half of the equation.
+   
+2. Now prove the same estimator is the result of doing the regression of the residuals of $y$ and $X_i$ on $X_j$. First regress $M_{X_1}y$ on $X$, we will get that by definition $M_{X_1}y = M_{X_1}X_1\beta_1+M_{X_1}X_2\beta_2+M_{X_1}e$. However, we know that $M_{X_1}X_1 = 0$. This implies that $M_{X_1}y = M_{X_1}X_2\beta_2+M_{X_1}e$ and hence the estimator $\hat \beta_2 = ((M_{X_1}X_2)'M_{X_1}X_2)^{-1}(M_{X_1}X_2)'M_{X_1}y$. $\square$ 
+
+
 
 #### Special Cases
 
@@ -462,6 +471,11 @@ $$
 \hat\beta_2 = [\sum_{i = 1}^n(x_i-\bar x)(x_i-\bar x)']^{-1} \sum_{i = 1}^n(x_i-\bar x) (y_i-\bar y)' = (X_2'M_\iota X_2)^{-1}X_2'M_\iota y
 $$
 
+Proof: 
+
+1. Plug in the formula from last theorem.
+2. Since we have $\hat y' \hat e = 0$, this implies $\bar y = \bar{\hat y} = \hat\beta_1+\bar x \hat\beta_2$. Plug in the formula from last theorem, we have $\hat\beta_2  = (X_2'M_\iota X_2)^{-1}X_2'M_\iota y = [\sum_{i = 1}^n(x_i-\bar x)(x_i-\bar x)']^{-1} \sum_{i = 1}^n(x_i-\bar x) (y_i-\bar y)'$. $\square$
+
 
 
 ### R-Squared
@@ -476,8 +490,13 @@ $$
 
 **Theorem: (Variation Partition)** The following statements are true:
 
-1. $Yy = P_X y +M_X y$
+1. $y = P_X y +M_X y$
 2. $SST = SSR+SSE$
+
+Proof:
+
+1. First equation is automatically true by definition.
+2. $SST = (y-\iota\bar y)'(y-\iota\bar y)$, by $y = P_X y +M_X y$ we have $SST = (\hat y-\iota\bar y +\hat e)'(\hat y-\iota\bar y +\hat e) = (\hat y-\iota\bar y)'(\hat y-\iota\bar y)+\hat e'\hat e$ since we have $(\hat y-\iota\bar y)'\hat e=\hat e'(\hat y-\iota\bar y)=0$. This is because $(\hat y-\iota\bar y)'\hat e=\hat y'\hat e-\iota\bar y'\hat e=0-0=0$. $\square$ 
 
 #### R-Squared
 
@@ -485,9 +504,21 @@ $$
 
 **Theorem: (Properties of R-Squared)** The following statements are true:
 
-1.  $R^2 = corr(y,\hat y)^2$
+1.  $R^2 = corr(y,\hat y)^2$ for the sample
 2. $R^2 \in [0,1]$
 3. When k increases, R-squared will always increase.
+
+Proof:
+
+it is trivial to show that $R^2 \in [0,1]$. By definition we have $R^2 = SSR/SST = (\hat y-\iota\bar y)'(\hat y-\iota\bar y)/(y-\iota\bar y)'(y-\iota\bar y)$, where $SSR = \sum_{i=1}^n (\hat y_i-\bar y)^2$ and $SST = \sum_{i=1}^n ( y_i-\bar y)^2$. So we can rewrite $R^2 =\frac{\sum_{i=1}^n (\hat y_i-\bar y)^2}{\sum_{i=1}^n ( y_i-\bar y)^2}=\frac{\sum_{i=1}^n (\hat y_i-\bar y)^2\sum_{i=1}^n ( \hat y_i -\bar y)^2}{\sum_{i=1}^n ( y_i-\bar y)^2\sum_{i=1}^n ( \hat y_i-\bar y)^2}$. Note that the numerator is 
+$$
+\sum_{i=1}^n (\hat y_i-\bar y)^2\sum_{i=1}^n ( \hat y_i -\bar y)^2  = (\sum_{i=1}^n (\hat y_i-\bar y)( \hat y_i -\bar y))^2 =(\sum_{i=1}^n(\hat y_i-\bar y)(\hat y_i - \bar y)+\hat e_i(\hat y_i - \bar y))^2\\
+
+= (\sum_{i=1}^n(\hat y_i-\bar y+\hat e_i)(\hat y_i - \bar y))^2 = (\sum_{i=1}^n(y_i-\bar y)(\hat y_i - \bar y))^2
+$$
+Hence $R^2 = corr(y,\hat y)^2$ for the sample.
+
+Now want to show that when k increases, R-squared will always increase. Consider an OLS regressing $y$ on to $x_1,...,x_k$, and suppose $\hat\beta_1,...,\hat\beta_k$ minimize the SSE of the regression. Now suppose another $x_{k+1}$ is added to the regression, If we plug in $\hat\beta_1,...,\hat\beta_k,0$ it will generate the R-squared before adding the variable. If we redo the OLS and get $\hat\beta_1^*,...,\hat\beta_k^*,\hat\beta_{k+1}^*$, we will get the new R-squared. However, $\hat\beta_1^*,...,\hat\beta_k^*,\hat\beta_{k+1}^*$ minimize the new SSE, and hence leading to a higher R-squared. $\square$ 
 
 #### Adjusted R-Squared
 
@@ -516,7 +547,7 @@ $$
 
 3. $Var(\hat e | X) =  M_X \Sigma M_X'$
 
-   And when Homoscedasticity is true, we have:
+   And when homoscedasticity is true, we have:
 
 4. $Var(\hat\beta|X) = \sigma^2(X'X)^{-1}$
 
@@ -524,7 +555,21 @@ $$
 
 6. $E[\hat e_i^2|X] = \sigma^2(1-h_{ii})$
 
+Proof:
 
+1. $E[\hat \beta] = E[(X'X)^{-1}X'y] = E[(X'X)^{-1}X'X\beta]+E[(X'X)^{-1}X'e] = \beta+E[(X'X)^{-1}X'E[e|X]  =\beta$.
+
+2. $Var(\hat\beta|X) = Var((X'X)^{-1}X'y|X) = Var((X'X)^{-1}X'(X\beta+e)|X) = Var((X'X)^{-1}X'e|X)=(X'X)^{-1}X'Var(e|X)X(X'X)^{-1}$, where $Var(e|X) = \Sigma = E[ee'|X] = diag[\sigma^2(x_i)]$.
+
+3. $Var(\hat e | X) = Var(M_X y | X) = Var(M_X e | X) = M_X \Sigma M_X'$.
+
+   When homoscedasticity is true, we have:
+
+4. $Var(\hat\beta|X) = (X'X)^{-1}X'\sigma^2X(X'X)^{-1}= \sigma^2(X'X)^{-1}$
+
+5. $Var(\hat e | X) = M_X \sigma^2 M_X' = \sigma^2M_X$
+
+6. Since by equation 5 we have $Var(\hat e | X) = M_X \sigma^2 M_X' = \sigma^2M_X$. Now by definition $h_{ii}$ is the i-th element on the diagonal of $P_X$, so $1-h_{ii}$ is the i-th element on the diagonal of $M_X$, so we can write the i-th row of equation 5, which is $E[\hat e_i^2|X] = \sigma^2(1-h_{ii})$. $\square$ 
 
 ### Variance Estimation
 
@@ -556,9 +601,14 @@ $$
 
 1. $E[\hat V(\hat\beta|X)] = Var(\hat\beta|X)$
 
-   And when Homoscedasticity is true, we have:
+   And when homoscedasticity is true, we have:
 
 2. $E[s^2] = E[\tilde\sigma^2] = \sigma^2$, but $E[\hat \sigma^2] = (n-k)\sigma^2$
+
+Proof:
+
+1. $E[\hat V(\hat\beta|X)] = E[(X'X)^{-1}X'S X(X'X)^{-1}] = E[(X'X)^{-1}X'E[S|X] X(X'X)^{-1}]$ and 
+2. $E[\hat e'\hat e] = E[e'M_Xe|X] = E[Trace(e'M_Xe)|X] = E[Trac(M_Xe'e)|X] = Trace(M_XE[e'e|X]) = \sigma^2Trace(M_X) = \sigma^2 (n-k)$, so we have when homoscedasticity is true, we have $E[s^2] = E[\tilde\sigma^2] = E[\frac{\hat e'\hat e}{n-k}]$. $\square$ 
 
 
 
@@ -576,10 +626,18 @@ $$
 
 **Theorem: (Gauss Markov Theorem)** Under Assumption 1-5, OLS estimator is Best Linear Unbiased Estimator(BLUE).
 
-**Theorem: (WLS Theorem)** Under Assumption 1, 2, 3, and Heteroskedasticity,  OLS estimator is not the Best Linear Unbiased Estimator(BLUE), instead, The BLUE is:
+Proof:
+
+We want to show that there is no linear unbiased estimator that have a lower conditional variance. The conditional variance of any given estimator is $Var(\tilde \beta|X) = E[(\tilde\beta -\beta)'(\tilde\beta -\beta)|X] $, where $\tilde \beta = C'y$ is a linear estimator. It is also unbiased so $E[\tilde \beta] = E[C'(X\beta+e)]=C'X\beta$ implies that $C'X = I$. So $E[(\tilde\beta -\beta)'(\tilde\beta -\beta)|X] = C'E[ee'|X]C = \sigma^2C'C$.
+
+Now we have $C'C = (C-X(X'X)^{-1}+X(X'X)^{-1})'(C-X(X'X)^{-1}+X(X'X)^{-1})$, which can be written as $ (C-X(X'X)^{-1})'(C-X(X'X)^{-1})+ (X'X)^{-1}$. Because $(C-X(X'X)^{-1})'X(X'X)^{-1} = (CX-I)(X'X)^{-1} = 0$. Then since the first part of $C'C$ is a positive semi-definite matrix, we have $C'C\geq (X'X)^{-1}$, which shows that there is no linear unbiased estimator that have a lower conditional variance. $\square$ 
+
+**Claim: (WLS Theorem)** Under Assumption 1, 2, 3, and Heteroskedasticity,  OLS estimator is not the Best Linear Unbiased Estimator(BLUE), instead, The BLUE is:
 $$
 \hat\beta_W = (X'\Sigma^{-1}X)^{-1}X'\Sigma^{-1}y
 $$
+
+**Note:** Under homoscedasticity WLS will give the same estimator as OLS.
 
 #### Small Sample Distribution Result
 
@@ -604,10 +662,50 @@ $$
 9. When $R$ is a $J \times k$ matrix, we have $F|X=\frac{(R(\hat \beta-\beta ))'(R(X'X)^{-1}R')^{-1}(R(\hat\beta - \beta))/J}{\sigma^2}|X \sim \chi^2(J)/J$
 10. When $R$ is a $J \times k$ matrix, we have $\hat F|X=\frac{(R(\hat \beta-\beta ))'(R(X'X)^{-1}R')^{-1}(R(\hat\beta - \beta))/J}{s^2}|X \sim F(J,n-k)$
 
-Theorem: (Partitioned Regression) Suppose we see the regression model as $Y = X_1\beta_1+X_2\beta_2+e$. Under Assumption 1-5, we have:
+Proof:
+
+1. $\hat \beta |X  = (X'X)^{-1}X'y|X = (X'X)^{-1}X'(X\beta+e)|X\sim N(\beta ,\sigma^2(X'X)^{-1})$, by assumption $e|X\sim N(0,\sigma^2)$.
+
+2. $\hat e |X = M_Xe|X \sim N(0,\sigma^2M_X)$.
+
+3. Now want to show that $Cov(\hat\beta,\hat e) = 0$. $Cov(\hat\beta,\hat e) =E[(\hat\beta-\beta)\hat e'|X]= E[(X'X)^{-1}X'e(M_X e)'|X]= E[(X'X)^{-1}X'ee'M_X|X]$. But we have $E[ee'|X] = \sigma^2$, so $Cov(\hat\beta,\hat e) = \sigma^2(X'X)^{-1}X'M_X = 0$, since $M_X X = 0$. Under normality, $\hat \beta$ is independent to $\hat e$.
+
+4. $(n-k)s^2/\sigma^2 = \frac{1}{\sigma^2}e'M_X'M_Xe = (\frac{e}{\sigma})'M_X'M_X(\frac{e}{\sigma})=(\frac{e}{\sigma})'M_X(\frac{e}{\sigma})$. We know that $\frac{e}{\sigma}|X\sim N(0,I_n)$. Now we take the spectral decomposition of $M_X$. We have $M_X = H\Lambda H'$, where 
+   $$
+   \Lambda = \left( \begin{array}{ccc} I_{n-k} & 0 \\ 0 & 0 \end{array}\right )
+   $$
+   Note that the eigenvalues of $M_X$ are either 0 or 1. So $\sum_{i=1}^n\lambda_i = Trace(M_X) = n-k$. We also have $H'H= HH' = I_n$ and $H^{-1} = H'$ because $M_X$ is a symmetric and idempotent matrix. Then we define $(\frac{e}{\sigma})'M_X(\frac{e}{\sigma}) = z'\Lambda z$, and we have $z = H'(\frac{e}{\sigma})|X\sim N(0,H'I_nH) = N(0,I_n)$
+   $$
+   z'\Lambda z = \left( \begin{array}{ccc} z_1  \\ z_2 \end{array}\right )'
+   \left( \begin{array}{ccc} I_{n-k} & 0 \\ 0 & 0 \end{array}\right )
+   \left( \begin{array}{ccc} z_1  \\ z_2 \end{array}\right )
+   =z_1I_{n-k}z_1 = \sum_{i = 1}^{n-k} z_{1i}^2\sim \chi^2(n-k)
+   $$
+   
+5. Since $\hat \beta$ is independent to $\hat e$, we have $\hat \beta$ is independent to $s^2$, which is a function of $\hat e$.
+
+6. From above this is true by definition.
+
+7. From above this is true by definition.
+
+8. By linear combination of normal distribution, we have $C(\hat\beta-\beta)|X\sim N(0,\sigma^2C(X'X)^{-1}C')$. So this is true by the definition of T distribution.
+
+9. From above this is true by definition.
+
+10. From above this is true by definition. $\square$ 
+
+**Theorem: (Partitioned Regression)** Suppose we see the regression model as $Y = X_1\beta_1+X_2\beta_2+e$. Under Assumption 1-5, we have:
 
 1. $\hat \beta_1 |X \sim N(\beta_1 ,\sigma^2(X_1'X_1 - X_1'X_2(X_2'X_2)^{-1}X_2'X_1)^{-1})$
 2. $\hat \beta_2 |X \sim N(\beta_2 ,\sigma^2(X_2'X_2 - X_2'X_1(X_1'X_1)^{-1}X_1'X_2)^{-1})$
+
+Proof:
+
+By argument 1 from the last theorem, we have $\hat \beta |X \sim N(\beta ,\sigma^2(X'X)^{-1})$. If we write $X = (X_1, X_2)$, we can use the partition of matrix and we will get: 
+$$
+X'X  = \left( \begin{array}{ccc} X_1'X_1 & X_1'X_2 \\ X_2'X_1 & X_2'X_2 \end{array}\right )
+$$
+When $(X_1'M_{X_2}X_1)^{-1} = (X_1'X_1-X_1'X_2(X_2'X_2)^{-1}X_2'X_1)^{-1}$exists, we have what we want to show. Suppose $(X_2'X_2 - X_2'X_1(X_1'X_1)^{-1}X_1'X_2)^{-1}$ exists, we can prove the other half. $\square$ 
 
 
 
@@ -625,6 +723,10 @@ Theorem: (Partitioned Regression) Suppose we see the regression model as $Y = X_
 
 **Theorem: (Consistency)** Under Assumption 1-5, suppose we have large sample, then the OLS estimator is consistent.
 
+Proof:
+
+We want to show that $\hat \beta\to^p \beta$. We have $\hat\beta = (X'X)^{-1}X'y = \beta+(X'X/n)^{-1}(X'e/n)$, where $(X'X/n)^{-1} = (\sum_{i=1}^nx_ix_i'/n)^{-1}\to^p Q_{xx}^{-1}$, by the law of large number, and $(X'e/n) = (\sum_{i=1}^nx_ie_i/n)\to^p E[x_ie_i] = 0$ also by the law of large number. $\square$ 
+
 **Theorem: (Asymptotic Result)** Under Assumption 1-5, suppose we have large sample, then the following results are true:
 
 1. $\sqrt n (\hat \beta - \beta)|X \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$
@@ -636,6 +738,18 @@ Theorem: (Partitioned Regression) Suppose we see the regression model as $Y = X_
 7. When $R$ is a $J \times k$ matrix, we have $\hat F|X=(R(\hat \beta-\beta ))'(R \hat V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$
 8. Generally, suppose $g(.)$ is a function system with $J$ equations, $\sqrt n (g(\hat \beta)-g(\beta)) \to^d N(0,G'Q_{xx}^{-1}\Omega Q_{xx}^{-1}G)$, where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
 9. Generally, suppose $g(.)$ is a function system with $J$ equations, $\hat W = (g(\hat \beta)-g(\beta))'(G'\hat V(\hat\beta|X)G)^{-1}(g(\hat \beta)-g(\beta))/J \to^d \chi^2(J)/J$, where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
+
+Proof:
+
+1. $\sqrt n (\hat \beta-\beta) = \sqrt n ((X'X/n)^{-1}(X'e/n))$ where $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$ by the law of large number and $\sqrt n(X'e/n) \to^d N(0,\Omega)$ by the central limit theorem. Combine them we get $\sqrt n (\hat \beta - \beta)|X \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$.
+2. Note that $V(\hat\beta|X) = V((X'X)^{-1}X'e|X)$, so $n V(\hat\beta|X) = (X'X/n)^{-1}E[X'ee'X/n|X](X'X/n)^{-1}$ Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and $E[X'ee'X/n|X]\to^p \Omega$. Combine them we have $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$.
+3. Note that $n\hat V(\hat\beta|X) = (X'X/n)^{-1}(X'S X/n)(X'X/n)^{-1}$. Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and $X'S X/n= \frac{1}{n}\sum_{i=1}^n x_ix_i'\hat e_i^2 \to ^p \Omega$ by the law of large number. Combine them we have $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$.
+4. $\hat T_j=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}}$, and since equation 1 and 3 are true, we can combine them and conclude that $\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}}|X \to^d N(0,1)$.
+5. $\sqrt n (C\hat \beta-C\beta) = \sqrt n C((X'X/n)^{-1}(X'e/n))\to^d N(0,CQ_{xx}^{-1}\Omega Q_{xx}^{-1}C')$, and $nC\hat V(\hat\beta|X)C'\to^p CQ_{xx}^{-1}\Omega Q_{xx}^{-1}C'$. Combine them we will get $\hat T'|X=\frac{C\hat \beta -C\beta}{\sqrt{C\hat V(\hat\beta|X)C'}}|X \to^d N(0,1)$.
+6. We have $F=(\sqrt n R(\hat \beta-\beta))'(n R V(\hat\beta|X)R')^{-1}(\sqrt n R(\hat\beta - \beta))/J$. Now $\sqrt n R(\hat \beta-\beta)\to^dN(0,RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R')$, and $nRV(\hat\beta|X)R'\to^p RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R'$. Combine them we have $F|X=(R(\hat \beta-\beta ))'(R V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$.
+7. We have $\hat F=(\sqrt n R(\hat \beta-\beta))'(n R \hat V(\hat\beta|X)R')^{-1}(\sqrt n R(\hat\beta - \beta))/J$. Now $\sqrt n R(\hat \beta-\beta)\to^dN(0,RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R')$, and $nR\hat V(\hat\beta|X)R'\to^p RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R'$. Combine them we have $\hat F|X=(R(\hat \beta-\beta ))'(R \hat V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$.
+8. By equation 1 we have already shown that $\sqrt n (\hat \beta - \beta)|X \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$. Use delta method and we get what we want to show.
+9. We only need to show that $nG'\hat V(\hat\beta|X)G \to^p G'Q_{xx}^{-1}\Omega Q_{xx}^{-1}G$, which is true from what we have already shown before. $\square$
 
 #### Theory Under Homoscedasticity
 
@@ -665,10 +779,30 @@ Theorem: (Partitioned Regression) Suppose we see the regression model as $Y = X_
 8. Generally, suppose $g(.)$ is a function system with $J$ equations, $\sqrt n (g(\hat \beta)-g(\beta)) \to^d N(0,\sigma^2G'Q_{xx}^{-1}G)$, where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
 9. Generally, suppose $g(.)$ is a function system with $J$ equations,  $\hat W = \frac{(g(\hat \beta)-g(\beta))'(G'(X'X)^{-1}G)^{-1}(g(\hat \beta)-g(\beta))/J}{s^2} \to^d \chi^2(J)/J$, where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
 
-Theorem: (Partitioned Regression) Suppose we see the regression model as $Y = X_1\beta_1+X_2\beta_2+e$. Under Assumption 1-6, suppose we have large sample and  Homoscedasticity is true, we have:
+Proof:
+
+1. $\sqrt n (\hat \beta-\beta) = \sqrt n ((X'X/n)^{-1}(X'e/n))$ where $(X'X/n)^{-1}\to^p Q_{xx}^{-1}$ by the law of large number and $\sqrt n(X'e/n) \to^d N(0,\Omega) = N(0,\sigma^2Q_{xx})$ by the central limit theorem. Combine them we get $\sqrt n (\hat \beta - \beta) |X \to^d N(0,\sigma^2Q_{xx}^{-1})$.
+2. Note that $V(\hat\beta|X) = V((X'X)^{-1}X'e|X) =\sigma^2(X'X)^{-1}$, so $n V(\hat\beta|X) = (X'X/n)^{-1}X'E[ee'/n|X]X(X'X/n)^{-1}$ Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$. Combine them we have $lim_p n V(\hat\beta|X) = \sigma^2Q_{xx}^{-1} Q_{xx} Q_{xx}^{-1} = \sigma^2Q_{xx}^{-1}$.
+3. Note that $n\hat V(\hat\beta|X) = (X'X/n)^{-1}s^2$. Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and $s^2 = \frac{\hat e'\hat e}{n-k}\to^p \sigma^2$ by the law of large number. Combine them we have $lim_p n s^2(X'X)^{-1} = \sigma^2Q_{xx}^{-1}$.
+4. $\hat T_j=\frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}$, and since equation 1 and 3 are true, we can combine them and conclude that $\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}|X \to^d N(0,1)$.
+5. $\sqrt n (C\hat \beta-C\beta) = \sqrt n C((X'X/n)^{-1}(X'e/n))\to^d N(0,C\sigma^2Q_{xx}^{-1}C')$, and $ns^2[C(X'X)^{-1}C']\to^p C\sigma^2Q_{xx}^{-1}C'$. Combine them we will get $\hat T'|X=\frac{C\hat \beta -C\beta}{\sqrt{s^2[C(X'X)^{-1}C']}}|X \to^d N(0,1)$.
+6. We have $F=\frac{(R(\hat \beta-\beta ))'(R(X'X)^{-1}R')^{-1}(R(\hat\beta - \beta))/J}{\sigma^2}$. Now $\sqrt n R(\hat \beta-\beta)\to^dN(0,R\sigma^2Q_{xx}^{-1}R')$. So we have $F|X=\frac{(R(\hat \beta-\beta ))'(R(X'X)^{-1}R')^{-1}(R(\hat\beta - \beta))/J}{\sigma^2}|X \to^d \chi^2(J)/J$.
+7. We have $\hat F=\frac{(R(\hat \beta-\beta ))'(R(X'X)^{-1}R')^{-1}(R(\hat\beta - \beta))/J}{s^2}$. Now $\sqrt n R(\hat \beta-\beta)\to^dN(0,R\sigma^2Q_{xx}^{-1}R')$, and $nRs^2Q_{xx}^{-1}R'\to^p R\sigma^2Q_{xx}^{-1}R'$. Combine them we have $\hat F|X=\frac{(R(\hat \beta-\beta ))'(R(X'X)^{-1}R')^{-1}(R(\hat\beta - \beta))/J}{s^2}|X \to^d \chi^2(J)/J$.
+8. By equation 1 we have already shown that $\sqrt n (\hat \beta - \beta) |X \to^d N(0,\sigma^2Q_{xx}^{-1})$. Use delta method and we get what we want to show.
+9. We only need to show that $nG's^2Q_{xx}^{-1}G\to^p G'\sigma^2Q_{xx}^{-1}G$, which is true from what we have already shown before. $\square$
+
+**Theorem: (Partitioned Regression)** Suppose we see the regression model as $Y = X_1\beta_1+X_2\beta_2+e$. Under Assumption 1-6, suppose we have large sample and  Homoscedasticity is true, we have:
 
 1. $\sqrt n (\hat\beta_1 - \beta_1) |X \to^d N(0 ,\sigma^2 (Q_{11} - Q_{12}Q_{22} ^{-1} Q_{21})^{-1})$
 2. $\sqrt n (\hat\beta_2 - \beta_2) |X \to^d N(0 ,\sigma^2 (Q_{22} - Q_{21}Q_{11} ^{-1} Q_{12})^{-1})$
+
+Proof:
+
+By argument 1 from the last theorem, we have $\sqrt n (\hat \beta - \beta) |X \to^d N(0,\sigma^2Q_{xx}^{-1})$. If we write $X = (X_1, X_2)$, we can use the partition of matrix and we will get: 
+$$
+Q_{xx}  = \left( \begin{array}{ccc} Q_{11} & Q_{12} \\ Q_{21} & Q_{22} \end{array}\right )
+$$
+When $(X_{11}-Q_{12}(Q_{22})^{-1}Q_{21})^{-1}$exists, we have what we want to show. Suppose $(Q_{22} - Q_{21}Q_{11} ^{-1} Q_{12})^{-1}$ exists, we can prove the other half. $\square$ 
 
 
 
@@ -703,19 +837,29 @@ Theorem: (Partitioned Regression) Suppose we see the regression model as $Y = X_
 
 #### T test
 
-**Method: (Test with Small Sample)** Under the Assumption about small sample, we use the T estimator to do Hypothesis Test for $H_0: \beta =0$, and $H_1:\beta \neq 0$, i.e. reject if $\hat T \notin [-T_{\alpha/2},T_{\alpha/2}]$, where $\hat T$ is defined as:
+**Method: (Test with Small Sample)** Under the Assumption about small sample, we use the T estimator to do Hypothesis Test for $H_0: \beta =\beta_0$, and $H_1:\beta \neq \beta_0$, i.e. reject if $\hat T \notin [-T_{\alpha/2},T_{\alpha/2}]$, where $\hat T$ is defined as:
 $$
-\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}|X \sim T(n-k)
+\hat T_j|X=\frac{\hat \beta_j -\beta_{0j}}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}|X \sim T(n-k)
 $$
-**Method: (Test with Large Sample)** Under the Assumption about large sample and heteroskedasticity, we use the T estimator to do Hypothesis Test for $H_0: \beta =0$, and $H_1:\beta \neq 0$, i.e. reject if $\hat T \notin [-T_{\alpha/2},T_{\alpha/2}]$, where $\hat T$ is defined as:
+**Method: (Test with Large Sample)** Under the Assumption about large sample and heteroskedasticity, we use the T estimator to do Hypothesis Test for $H_0: \beta =\beta_0$, and $H_1:\beta \neq \beta_0$, i.e. reject if $\hat T \notin [-T_{\alpha/2},T_{\alpha/2}]$, where $\hat T$ is defined as:
 $$
-\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}}|X \to^d N(0,1)
+\hat T_j|X=\frac{\hat \beta_j -\beta_{0j}}{\sqrt{\hat V(\hat\beta|X)_{jj}}}|X \to^d N(0,1)
 $$
-**Method: (Test with Large Sample and Homoscedasticity)** Under the Assumption about large sample and homoscedasticity, we use the T estimator to do Hypothesis Test for $H_0: \beta =0$, and $H_1:\beta \neq 0$, i.e. reject if $\hat T \notin [-T_{\alpha/2},T_{\alpha/2}]$, where $\hat T$ is defined as:
+**Method: (Test with Large Sample and Homoscedasticity)** Under the Assumption about large sample and homoscedasticity, we use the T estimator to do Hypothesis Test for $H_0: \beta =\beta_0$, and $H_1:\beta \neq \beta_0$, i.e. reject if $\hat T \notin [-T_{\alpha/2},T_{\alpha/2}]$, where $\hat T$ is defined as:
 $$
-\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}|X \to^d N(0,1)
+\hat T_j|X=\frac{\hat \beta_j -\beta_{0j}}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}|X \to^d N(0,1)
 $$
 **Theorem: (Unbiased and Consistent T-Test)** The T-Test described above is unbiased under small sample assumption, and consistent under large sample assumption.
+
+Proof:
+
+1. Under small sample assumptions, we want to show that T-test is unbiased. Suppose the true value is $\beta$, instead of $\beta_0$. Then the T statistic is $T = \frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}+\frac{\beta_j -\beta_{0j}}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}$, where the first part of the equation is defined as $T_0 = \frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}\sim T(n-k)$. Under $H_0: \beta_j = \beta_{0j}$, the second term is negative so we have $T=T_0$, and $P(|T|>t_{\alpha/2})<\alpha$. Under $H_1:\beta_j \neq \beta_{0j}$, we have $T\neq T_0$, and $P(|T|>t_{\alpha/2})>\alpha$. So This test is unbiased.
+
+2. Under large sample assumptions, and under $H_1:\beta_j \neq \beta_{0j}$, we have :
+   $$
+   |T| = |\frac{\hat \beta_j -\beta_{0j}}{\sqrt{\hat V(\hat\beta|X)_{jj}}}| = |\frac{\beta_j+(X'X)^{-1}(X'e) -\beta_{0j}}{\sqrt{\hat V(\hat\beta|X)_{jj}}}| = |\frac{\beta_j -\beta_{0j}}{\sqrt{\hat V(\hat\beta|X)_{jj}}}+\frac{(X'X)^{-1}(X'e)}{\sqrt{\hat V(\hat\beta|X)_{jj}}}|
+   $$
+   where the first term goes to infinity when $H_1:\beta_j \neq \beta_{0j}$ is true. Since the second term goes to a standard normal distribution, we have $P(|T|>z_{\alpha/2})\to^p 1$, i.e. the test is constant. $\square$
 
 #### T Test with General Linear Restriction
 
@@ -738,10 +882,24 @@ $$
 $$
 \hat F|X=\frac{(R\hat \beta-r )'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r ))/J}{s^2}|X \sim F(J,n-k)
 $$
-**Method: (Alternative Derivation of F Statistic)** Under the small sample assumptions, suppose we have $SSE_U = (Y-X\hat\beta)'(Y-X\hat\beta)$, and $SSE_R = (Y-X\tilde\beta)'(Y-X\tilde\beta)$ where $\tilde \beta = \hat \beta -(X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)$, then we have:
+**Theorem: (Alternative Derivation of F Statistic)** Under the small sample assumptions, suppose we have $SSE_U = (Y-X\hat\beta)'(Y-X\hat\beta)$, and $SSE_R = (Y-X\tilde\beta)'(Y-X\tilde\beta)$ where $\tilde \beta = \hat \beta -(X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)$, then we have:
 $$
 \hat F = \frac{(SSE_R-SSE_U)/J}{SSE_U/(n-k)}
 $$
+Proof:
+
+Under the small sample assumptions, we have:
+$$
+\hat F = \frac{(SSE_R-SSE_U)/J}{SSE_U/(n-k)} = \frac{((y-X\tilde\beta)'(y-X\tilde\beta)-(y-X\hat\beta)'(y-X\hat\beta))/J}{SSE_U/(n-k)} \\
+=\frac{1}{Js^2}((y-X\tilde\beta)'(y-X\tilde\beta)-(y-X\hat\beta)'(y-X\hat\beta)) \\
+=\frac{1}{Js^2}(y'y -\tilde \beta'X'y -y'X\tilde \beta+ \tilde \beta'X'X\tilde \beta  -y'y +\hat \beta'X'y +y'X\hat \beta- \hat \beta'X'X\hat \beta) \\
+=\frac{1}{Js^2}(-(\tilde \beta-\beta)'X'y -y'X(\tilde \beta-\beta)+ \tilde \beta'X'X\tilde \beta +(\hat \beta-\beta)'X'y +y'X(\hat \beta-\beta)- \hat \beta'X'X\hat \beta )\\
+=\frac{1}{Js^2}(0 +0+ \tilde \beta'X'X\tilde \beta +0 +0- \hat \beta'X'X\hat \beta)\\
+=\frac{1}{Js^2}(\tilde \beta'X'X\tilde \beta -\tilde \beta'X'X\hat \beta+\tilde \beta'X'X\hat \beta- \hat \beta'X'X\hat \beta)\\
+=\frac{1}{Js^2}((\tilde \beta-\hat \beta)'X'X(\tilde \beta-\hat \beta)) =\frac{(R\hat \beta-r )'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r ))/J}{s^2}
+$$
+And hence finished the proof. $\square$ 
+
 **Method: (Test with Large Sample)** Under the Assumption about large sample and heteroscedasticity, we use the  F estimator to do Hypothesis Test for $H_0: R\beta -r =0$, and $H_1:R\beta -r\neq 0$, where $R$ is a $J\times k$ vector, i.e. reject if $\hat F \in [\chi^2_{\alpha},+\infty]$, where $\hat F$ is defined as:
 $$
 \hat F|X=(R\hat \beta-r )'(R \hat V(\hat\beta|X)R')^{-1}(R\hat \beta-r )/J|X \to^d \chi^2(J)/J
@@ -750,7 +908,7 @@ $$
 $$
 \hat F|X=\frac{(R\hat \beta-r )'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r )/J}{s^2}|X \to^d \chi^2(J)/J
 $$
-**Theorem: (Unbiased and Consistent F-Test)** The F-Test described above is unbiased under small sample assumption, and consistent under large sample assumption.
+**Claim: (Unbiased and Consistent F-Test)** The F-Test described above is unbiased under small sample assumption, and consistent under large sample assumption.
 
 #### Wald Test for General Non-linear Restriction
 
@@ -766,7 +924,7 @@ $$
 $$
 , where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
 
-**Theorem: (Consistent Wald Test)** The Wald Test described above is consistent under large sample assumption.
+**Claim: (Consistent Wald Test)** The Wald Test described above is consistent under large sample assumption.
 
 
 
@@ -774,10 +932,16 @@ $$
 
 #### Restricted Estimation
 
-**Definition: (Restricted Estimation)** Suppose the restriction $R\beta = r$ is true, then the restricted regressor is:
+**Theorem: (Restricted Estimation)** Suppose the restriction $R\beta = r$ is true, then the restricted regressor is:
 $$
 \tilde \beta = \hat \beta - (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)
 $$
+Proof:
+
+The restricted estimator solves the following problem: $min_b \frac{1}{n}(y-Xb)'(y-Xb)\space s.t. \space Rb = r$. Defined the Lagrange function as $L = \frac{1}{2}(y-Xb)'(y-Xb)-\lambda' (Rb - r)$. Take the first order condition we have $X'(y-Xb) - R'\lambda= 0$ and $Rb=r$. Now multiply the first FOC with $R(X'X)^{-1}$, we obtain $R(X'X)^{-1}X'(y-Xb) - R(X'X)^{-1}R'\lambda= 0$, i.e. $R\hat\beta = R\tilde \beta+R(X'X)^{-1}R'\lambda$, imposing $R\tilde \beta=r$ we can solve the Lagrange multiplier $\lambda = (R'(X'X)^{-1}R)^{-1}(R\hat\beta-r)$.
+
+Now plug it back into the first FOC, we have $\tilde \beta = \hat \beta - (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)$. $\square$
+
 **Theorem: (Properties of Restricted Estimation)** When the restriction is correct we have:
 
 1. the restricted estimator is consistent
@@ -790,6 +954,12 @@ $$
    
 4. $\sqrt n (\tilde \beta -\beta) \to^d N(0,\sigma ^2 A Q_{XX}^{-1}A')$, where $\sigma ^2 A Q_{XX}^{-1}A' = \sigma ^2 Q_{XX}^{-1} - \sigma ^2 Q_{XX}^{-1}R'(RQ_{XX}^{-1}R')^{-1}RQ_{XX}^{-1} < \sigma ^2 Q_{XX}^{-1}$.
 
+Proof:
+
+1. $\tilde \beta = \hat \beta - (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)$ when the restriction $R\beta = r$ is true and $\hat \beta\to^p \beta$, we have $\tilde \beta\to^p \beta$.
+2. Note that $r$ does not contribute to the variance of $\tilde beta$, so $\sqrt n (\tilde \beta -\beta) =\sqrt n A\hat \beta+ \sqrt n (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}r$. So $\sqrt n (\tilde \beta -\beta) \to^d N(0,AQ_{XX}^{-1}\Omega Q_{XX}^{-1}A')$.
+3. the statement 3 is proved by statement 4. $\square$ 
+
 **Note:** When the restriction is incorrect the restricted estimator is inconsistent.
 
 #### Special Case
@@ -801,12 +971,20 @@ $$
 1. the estimator is consistent
 2. $\sqrt n (\tilde \beta_1 -\beta_1) \to^d N(0, \sigma^2 Q_{11}^{-1})$, where  $\sigma^2 Q_{11}^{-1} \leq \sigma^2 (Q_{11} - Q_{12}Q_{22} ^{-1} Q_{21})^{-1}$, i.e. the restricted estimator is more efficient than the original OLS estimator
 
+Proof:
+
+The proof of the property comes from the partitioned regression large sample theory. $\square$ 
+
 **Definition: (Special Case Efficient Estimator)**  For a linear regression model $y = X_1\beta_1+X_2\beta_2+e$, suppose we impose the constraint $\beta_2 = 0$, the most efficient estimator is $\tilde \beta_1^* = (X_1'X(X'\Sigma X)^{-1}X'X_1)^{-1}X_1'X(X'\Sigma X)^{-1}X'y$, where $\Sigma = diag(\sigma^2(x_i))$.
 
 **Theorem: (Omitted Variables)** When the restriction is incorrect, i.e. $\beta_2 \neq 0$, we have
 
 1. Under small sample assumption, the restricted estimator is biased, and $E[\tilde \beta_1|X] = \beta_1+(X_1'X_1)^{-1}(X_1X_2)\beta_2$
 2. Under large sample assumption, the restricted estimator is inconsistent, and $lim_p \tilde \beta_1|X = \beta_1+Q_{11}^{-1}Q_{12}\beta_2$
+
+Proof:
+
+We have $\tilde \beta_1 = (X_1'X_1)^{-1}X_1y=(X_1'X_1)^{-1}X_1(X_1\beta_1+X_2\beta_2+e)$. Under specific conditions, we can show that the restricted estimator is biased or inconsistent. $\square$
 
 
 
@@ -816,7 +994,7 @@ $$
 
 **Definition: (LM Estimator)** Define the Lagrange Multiplier Estimator of the restricted estimation as $\tilde \lambda = (R(X'X)^{-1}R')^{-1}(R\hat \beta-r)$.
 
-**Theorem: (Properties of LM Estimator)** Under large sample assumption, we have:
+**Claim: (Properties of LM Estimator)** Under large sample assumption, we have:
 $$
 \frac{\tilde \lambda}{\sqrt n} \to^d N(0,(RQ_{xx}^{-1}R')^{-1}(R Q_{xx}^{-1}\Omega Q_{xx}^{-1}R')(RQ_{xx}^{-1}R')^{-1})
 $$
@@ -838,9 +1016,15 @@ where $\tilde s^2 = SSE_R/n-(k-J)$ is the variance of the residual of the restri
 
 #### Likelihood Ratio Test
 
-**Definition: (LR Estimator)** Under homoscedasticity and gaussian error assumption, define the Likelihood Ratio Estimator of the restricted estimation as $LR = 2(logL(\hat \beta, \hat \sigma^2)-logL(\tilde \beta, \tilde \sigma^2))$.
+**Definition: (LR Estimator)** Under homoscedasticity and gaussian error assumption, define the Likelihood Ratio Estimator of the restricted estimation as $LR = 2(lnL(\hat \beta, \hat \sigma^2)-lnL(\tilde \beta, \tilde \sigma^2))$. note that here $(\hat \beta, \hat \sigma^2)$ is the MLE estimator.
 
 **Theorem: (LR Estimator and F Statistic)** We have $LR = nlog(1+JF/(n-k))$.
+
+Proof:
+
+Note that $lnL(\hat \beta,\hat \sigma^2) = -\frac{n}{2} (ln(SSE_U/n)+ln(2\pi)+1)$ and $lnL(\tilde \beta,\tilde \sigma^2) = -\frac{n}{2} (ln(SSE_R/n)+ln(2\pi)+1)$. So we can plug them in and get $LR = 2(lnL(\hat \beta, \hat \sigma^2)-lnL(\tilde \beta, \tilde \sigma^2))=nln(SSE_R/SSE_U) = nln(1-\frac{J}{n-k}\frac{(SSE_R-SSE_U)/J}{SSE_U/(n-k)})$. Hence we have $LR = nlog(1+JF/(n-k))$.
+
+By Taylor expansion of a log function, we have $LR \approx n/(n-k)F$. $\square$ 
 
 **Method: (Likelihood Ratio Test with Homoscedasticity and Gaussian Error)** Under the Assumption about large sample and homoscedasticity and Gaussian Error, we use the LR statistic to do Hypothesis Test for $H_0: R\beta -r =0$, and $H_1:R\beta -r\neq 0$, where $R$ is a $J\times k$ vector, i.e. reject if $\hat {LR} \in [\chi^2_{\alpha},+\infty]$, where $\hat {LM}$ is defined as:
 $$
@@ -915,10 +1099,10 @@ where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestr
 
 #### Predictions
 
-**Theorem: (Prediction)** The forecast estimator for a single data point is $\hat y_i = x_i\hat\beta$. We have:
+**Claim: (Prediction)** The forecast estimator for a single data point is $\hat y_i = x_i\hat\beta$. We have:
 
-1. $AVAR (\hat y_i-y_i|X) = x_iAVAR(\hat \beta)x_i' + Var(e_i|x_i)$
-2. Under homoscedasticity, we have $AVAR (\hat y_i-y_i|X) = x_iAVAR(\hat \beta)x_i' + \sigma^2$
+1. $AVar (\hat y_i-y_i|X) = x_iAVar(\hat \beta)x_i' + Var(e_i|x_i)$
+2. Under homoscedasticity, we have $AVar (\hat y_i-y_i|X) = x_iAVar(\hat \beta)x_i' + \sigma^2$
 
 #### Clustering
 
@@ -928,7 +1112,7 @@ where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestr
 
 #### Multicollinearity
 
-**Theorem: (Multicollinearity)** Consider the partitioned model $y = x_1'\beta_1+x_K\beta_K+\epsilon$, assuming homoscedasticity, we have $Var(\hat \beta_K|X) = \sigma^2/((1-R_K^2)x_K'M_0x_K)$, where $R^2_K = 1-(x_K'M_1x_K)/(x_K'M_0x_K)$ is the R squared regressing $x_K$ on $x_1$. 
+**Claim: (Multicollinearity)** Consider the partitioned model $y = x_1'\beta_1+x_K\beta_K+\epsilon$, assuming homoscedasticity, we have $Var(\hat \beta_K|X) = \sigma^2/((1-R_K^2)x_K'M_0x_K)$, where $R^2_K = 1-(x_K'M_1x_K)/(x_K'M_0x_K)$ is the R squared regressing $x_K$ on $x_1$. 
 
 **Note:** This implies that when one of the independent variable $X$ can be predicted pretty well by other independent variables, the variance of the estimator $\hat \beta$ would be high. So the estimation might be less precise.
 
@@ -940,21 +1124,26 @@ where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestr
 
 #### Omitted Variables
 
-**Definition: (Omitted Variables)** For a linear regression model $Y = X_1\beta_1+X_2\beta_2+e$, suppose we omitted $X_2$ from the OLS. The OLS Estimator is called having Omitted Variable issue.
+**Definition: (Omitted Variables)** For a linear regression model $y = X_1\beta_1+X_2\beta_2+e$, suppose we omitted $X_2$ from the OLS. The OLS Estimator is called having Omitted Variable issue.
 
 **Theorem: (Omitted Variables Issues)** Suppose we have $X_2 = X_1\delta+\mu$, the OLS estimator have the following properties:
 
 1. Under small sample assumption, the estimator is biased, and $E[\hat \beta_1|X_1] = \beta _1 + \delta \beta_2$
 2. Under large sample assumption, the estimator is inconsistent, and $lim_p \hat \beta_1|X_1 = \beta _1 + \delta \beta_2$
 
+Proof:
+
+We have $\hat \beta_1  =(X_1'X_1)^{-1}X_1'y = (X_1'X_1)^{-1}X_1'(X_1\beta_1+X_2\beta_2+e) = \beta_1+(X_1'X_1)^{-1}X_1'X_2\beta_2+(X_1'X_1)^{-1}X_1'e$. We have $E[e|X] = 0$ and $X'e|X\to^p 0 $, hence we have what we want to show. $\square$ 
+
 #### Errors in Variables
 
-**Definition: (Errors in Variables)** For a linear regression model $Y = X\beta+e$, suppose we can only observe a noisy signal $S$ of $X$. The OLS Estimator of regression $Y$ on $S$ is called having Errors in Variables issue.
+**Definition: (Errors in Variables)** For a linear regression model $y = X\beta+e$, suppose we can only observe a noisy signal $S$ of $X$. The OLS Estimator of regression $Y$ on $S$ is called having Errors in Variables issue.
 
-**Theorem: (Errors in Variables Issues)** Suppose we have that $S = X+u$, the OLS estimator have the following properties:
+**Theorem: (Errors in Variables Issues)** Suppose we have that $S = X+u$, then under large sample assumption,  the OLS estimator is inconsistent, and $lim_p \hat \beta = \beta\frac{\sigma ^2_X}{\sigma ^2_X+\sigma ^2_u}$.
 
-1. Under small sample assumption, the estimator is biased, and $E[\hat \beta|S] =\beta\frac{\sigma ^2_X}{\sigma ^2_X+\sigma ^2_u}$
-2. Under large sample assumption, the estimator is inconsistent, and $lim_p \hat \beta|S = \beta\frac{\sigma ^2_X}{\sigma ^2_X+\sigma ^2_u}$
+Proof:
+
+We have $\hat \beta = (S'S)^{-1}S'y = ((X+u)'(X+u))^{-1}(X+u)'(X\beta + e)$. So $(S'S/n)^{-1}\to^p (\sigma ^2_X+\sigma ^2_u)^{-1}$, and $S'e\to^p 0$, and $S'X\beta\to^p \sigma ^2_X\beta$. Combine them we have $lim_p \hat \beta = \beta\frac{\sigma ^2_X}{\sigma ^2_X+\sigma ^2_u}$. $\square$ 
 
 #### Simultaneity
 
@@ -988,7 +1177,7 @@ We say the endogenous variable $X_2$ is identified.
 
 **Definition: (General Method of Moments)** Suppose we have $\frac{1}{n}\sum_{i=1}^nz_i(y_i-x_i'\beta) = 0$. Let $W_n$ be a symmetric positive definite matrix,  General Method of Moments estimator is defined as:
 $$
-\bar \beta = argmin_\beta \{(Y-X\beta)'ZW_nZ'(Y-X\beta)\}
+\bar \beta = argmin_\beta \{(y-X\beta)'ZW_nZ'(y-X\beta)\}
 $$
 Note: We only derive the GMM Estimator under the large sample assumptions.
 
@@ -1001,19 +1190,29 @@ Note: We only derive the GMM Estimator under the large sample assumptions.
 
 **Theorem: (GMM Estimator)** Under the Assumption of General Method of Moments, the GMM estimator is
 $$
-\bar \beta = (X'ZW_nZ'X)^{-1}X'ZW_nZ'Y
+\bar \beta = (X'ZW_nZ'X)^{-1}X'ZW_nZ'y
 $$
+Proof:
+
+GMM Estimator solves $min_\beta \{(y-X\beta)'ZW_nZ'(y-X\beta)\}$. The first order condition is $X'ZW_nZ'(y-X\beta) = 0$ which will give us what we want to show. $\square$ 
+
 **Theorem: (GMM Estimator Property)** Under the Large Sample Assumption of General Method of Moments, we have
 
 1. $\sqrt n (\bar \beta-\beta) \to^dN(0,(Q_{zx}'WQ_{zx})^{-1}Q_{zx}'W\Omega W Q_{zx}(Q_{zx}'WQ_{zx})^{-1})$
 2. $lim_p \hat Q_{zx} = lim_p Z'X/n = Q_{zx}$
-3. $lim_p \hat \Omega = lim_p \sum_{i=1}^n\hat e_i^2 z_iz_i'/n = \Omega$, where $\hat e = Y-X\bar\beta$
+3. $lim_p \hat \Omega = lim_p \sum_{i=1}^n\hat e_i^2 z_iz_i'/n = \Omega$, where $\hat e = y-X\bar\beta$
+
+Proof:
+
+1. $\sqrt n (\bar \beta-\beta) = \sqrt n ((X'ZW_nZ'X)^{-1}X'ZW_nZ'e)$. Note that $(X'ZW_nZ'X/n^2)^{-1}\to^p(Q_{zx}'WQ_{zx})^{-1}$, and $(X'Z/n)W_n\to^pQ_{zx}'W$, and $\sqrt n (Z'e/n)\to^d N(0,\Omega)$. Combine them we get what we want to show.
+2. This is true by law of large number.
+3. This is true by law of large number. $\square$ 
 
 **Note:** From 2 and 3 generate a consistent estimator of the asymptotic variance of the estimator $\bar \beta$.
 
 #### Special Case
 
-**Theorem: (Special Case)** Under the Assumption of General Method of Moments, if $J=K$, the GMM estimator is
+**Claim: (Special Case)** Under the Assumption of General Method of Moments, if $J=K$, the GMM estimator is
 $$
 \bar \beta = (Z'X)^{-1}Z'Y
 $$
@@ -1023,6 +1222,10 @@ $$
 2. $lim_p \hat Q_{zx} = lim_p Z'X/n = Q_{zx}$
 3. $lim_p \hat \Omega = lim_p \sum_{i=1}^n\hat e_i^2 z_iz_i'/n = \Omega$, where $\hat e = Y-X\bar\beta$
 
+Proof:
+
+Just apply the properties of GMM under the special case. $\square$ 
+
 **Note:** From 2 and 3 generate a consistent estimator of the asymptotic variance of the estimator $\bar \beta$.
 
 #### Efficient GMM Estimator
@@ -1031,6 +1234,16 @@ $$
 $$
 (Q_{zx}'WQ_{zx})^{-1}Q_{zx}'W\Omega W Q_{zx}(Q_{zx}'WQ_{zx})^{-1} \geq (Q_{zx}'\Omega^{-1} Q_{zx})^{-1}
 $$
+Proof:
+
+We want to show $(Q_{zx}'WQ_{zx})(Q_{zx}'W\Omega W Q_{zx})^{-1}(Q_{zx}'WQ_{zx}) \leq Q_{zx}'\Omega^{-1} Q_{zx}$. We can show that:
+$$
+Q_{zx}'\Omega^{-1} Q_{zx}-(Q_{zx}'WQ_{zx})(Q_{zx}'W\Omega W Q_{zx})^{-1}(Q_{zx}'WQ_{zx})\\
+= Q_{zx}'\Omega^{-\frac{1}{2}}(I-\Omega^{-\frac{1}{2}} Q_{zx}(Q_{zx}'W\Omega W Q_{zx})^{-1}Q_{zx}'\Omega^{-\frac{1}{2}})\Omega^{-\frac{1}{2}} Q_{zx} \\
+= A'(I-B(B'B)^{-1}B')A = A'M_BA'\geq  0
+$$
+because $A'M_BA'$ is the SSE of some regression, and SSE are positive semi-definite. $\square$ 
+
 **Definition: (Feasible Efficient GMM Estimator)** The feasible efficient estimator is $\bar \beta = (X'Z\hat\Omega^{-1}Z'X)^{-1}X'Z\hat\Omega^{-1}Z'Y$.
 
 **Theorem: (Efficient GMM Estimator Property)** Under the Large Sample Assumption of GMM Estimator we have
@@ -1038,6 +1251,10 @@ $$
 1. $\sqrt n (\bar \beta-\beta) \to^dN(0,(Q_{zx}'\Omega^{-1} Q_{zx})^{-1})$
 2. $lim_p \hat Q_{zx} = lim_p Z'X/n = Q_{zx}$
 3. $lim_p \hat \Omega = lim_p \sum_{i=1}^n\hat e_i^2 z_iz_i'/n = \Omega$, where $\hat e = Y-X\bar\beta$
+
+Proof:
+
+Just apply the properties of GMM to $W_n = \Omega^{-1}$. $\square$ 
 
 **Note:** From 2 and 3 generate a consistent estimator of the asymptotic variance of the estimator $\bar \beta$.
 
@@ -1051,6 +1268,10 @@ $$
 $$
 **Theorem: (2SLS and GMM)** 2SLS Estimator is GMM Estimator with $W_n = (Z'Z/n)^{-1}$, which is optimal if Homoscedasticity is true, i.e. $E[z_iz_i'e_i^2] = \sigma^2E[z_iz_i']$.
 
+Proof:
+
+The 2SLS estimator is defined with 2 stages. First regress $X$ on $Z$, we have $\hat X = P_Z X$. Then regress $y$ on $\hat X$, we will then get the 2 stage least square estimator, i.e. $\hat \beta  =(\hat X'\hat X)^{-1}\hat X'y = (X'P_ZX)^{-1}X'P_Z y$. $\square$ 
+
 
 
 ### Identification Issues
@@ -1059,7 +1280,11 @@ $$
 
 **Definition: (Weak Identification)** When the rank condition is not satisfied, i.e. $rank(\Gamma_2)<k$, we say that the IVs are weak.
 
-**Theorem: (Weak IV Problem)** When $\Gamma_2 = 0$, the GMM Estimator is inconsistent.
+**Theorem: (Weak IV Problem)** When $ X_1 = 0 $,  $\Gamma_2 = \delta/\sqrt n\to 0$, the GMM Estimator is inconsistent.
+
+Proof:
+
+For simplicity we prove it  with the special case when $J = K$ and $X = X_2$. We have $\bar \beta = (Z'X)^{-1}Z'y$ and $\bar \beta-\beta = (Z'X)^{-1}Z'e = (\Gamma Z'Z+Z'u)^{-1}Z'e $. Then $\delta Z'Z/n\to^p \delta E[z_i^2]\neq 0$, $\sqrt n Z'u/n\to ^d N(0,E[z_i^2u_i^2])$ and $\sqrt n Z'e/n \to ^d N(0,E[z_i^2e_i^2])$. Combine them we can conclude that $\bar \beta \nrightarrow^p \beta$. $\square$
 
 **Definition: (Weak IV Test)** To test if the IVs are weak, we can take the regression $X_2 = X_1\Gamma_1+Z\Gamma_2+u$, and do a Wald Test or F test with $H_0: \Gamma_2 = 0$.
 
@@ -1067,9 +1292,21 @@ $$
 
 **Definition: (Over Identification)** When we have more IVs than the endogenous variables, i.e. $J>k$, we say that the endogenous variables are over identified.
 
-**Definition: (Hansen’s J)** Define Hansen’s J statistic as $J = n(Y-X\bar \beta)'Z\hat \Omega^{-1}Z'(Y-X\bar \beta)$.
+**Definition: (Hansen’s J)** Define Hansen’s J statistic as $J = n(y-X\bar \beta)'Z\hat\Omega^{-1}Z'X \hat \Omega^{-1} X'Z \hat\Omega^{-1} Z'(y-X\beta)$.
 
 **Theorem: (Hansen’s J Property)** Under the large sample assumption of General Method of Moments, we have $J \to^d \chi^2(J-k)$.
+
+Proof:
+
+For simplicity we add homoscedasticity and try to prove this with the 2SLS estimator.
+
+Under homoscedasticity the statement Hansen’s J statistic is defined as $J = (e- \bar e)' P_Z (e- \bar e)$, where $\bar e = X(X'P_ZX)^{-1}X'P_Ze$. So we have $J = e'Z(Z'Z)^{-\frac{1}{2}}(I - (Z'Z)^\frac{1}{2}Z'X(X'Z(Z'Z)^{-\frac{1}{2}}(Z'Z)^{-\frac{1}{2}}Z'X)^{-1}X'Z(Z'Z)^{-\frac{1}{2}})(Z'Z)^{-\frac{1}{2}}Z'e = e'B_n'(I-B_n(B_n'B_n)^{-1}B_n)B_ne$. Note that we have $B_n\to^p B = Q_{ZZ}^{-\frac{1}{2}}Q_{ZX}$. Note that this implies $(I-B_n(B_n'B_n)^{-1}B_n)\to ^p M_B$. Since $M_B$ is symmetric and idempotent, we can write $M_B = H\Lambda H'$ where $H'H = I$ and 
+$$
+\Lambda  = \left( \begin{array}{ccc} I_{n-k} & 0 \\ 0 & 0 \end{array}\right )
+$$
+Since $Trace(M_B) = Trace(HH'\Lambda)=Trace(\Lambda) = n-k$ .
+
+Now since $Z'e/\sqrt n \to^d N(0,\sigma^2 Q_{ZZ})$ and $(Z'Z/n)^{-\frac{1}{2}} \to^p Q_{ZZ}^{-\frac{1}{2}}$. Combine everything together we have $J \to^d \chi^2(J-k)$. $\square$ 
 
 **Definition: (Hansen’s J Test)** Under the large sample assumption of General Method of Moments, we use the J estimator to do Hypothesis Test for $H_0: E[z_ie_i] = 0$, and $H_1:E[z_ie_i] \neq 0$, i.e. reject if $\hat J \in [\chi^2_{\alpha},+\infty]$, where $\hat J$ is defined as:
 $$
@@ -1084,6 +1321,6 @@ H = n(\hat \beta-\bar \beta)'V^{+}(\hat \beta-\bar \beta) \to^d \chi^2(k)
 $$
 where $V^{+} = V(\hat\beta-\bar \beta)^{+} = (V(\hat\beta)-V(\bar \beta))^{+}$ is the G-inverse of V.
 
-**Definition: (Alternative Hausman Test)** Under the large sample assumption of General Method of Moments, we do a Hypothesis Test for $H_0:E[z_ie_i] = 0$, and $H_1:E[x_ie_i] \neq 0$, i.e. if there are endogeneity or not, by doing OLS on $Y = X_1\beta_1+X_2\beta_2+\hat u\rho+\epsilon$, where $\hat u$ is the OLS residual from regressing $X_2 = X_1\Gamma_1+Z\Gamma_2+u$, and do a F Test with $\rho$.
+**Definition: (Alternative Hausman Test)** Under the large sample assumption of General Method of Moments, we do a Hypothesis Test for $H_0:E[z_ie_i] = 0$, and $H_1:E[x_ie_i] \neq 0$, i.e. if there are endogeneity or not, by doing OLS on $y = X_1\beta_1+X_2\beta_2+\hat u\rho+\epsilon$, where $\hat u$ is the OLS residual from regressing $X_2 = X_1\Gamma_1+Z\Gamma_2+u$, and do a F Test with $\rho$.
 
-**Theorem: (Relationship Between Alternative Hausman Test and 2SLS)** If we do the regression of $Y = X_1\beta_1+X_2\beta_2+\hat u\rho+\epsilon$, the estimator $\hat \beta$ will be the 2SLS estimator.
+**Claim: (Relationship Between Alternative Hausman Test and 2SLS)** If we do the regression of $y = X_1\beta_1+X_2\beta_2+\hat u\rho+\epsilon$, the estimator $\hat \beta$ will be the 2SLS estimator.

@@ -26,7 +26,7 @@
 
 #### Preference
 
-**Assumption: (Consumption)** The consumer has preferences over consumption bundle $X$, which is a nonempty, convex, compact subset of $\R^n$. $0$ is always in $X$.
+**Assumption: (Consumption)** The consumer has preferences over consumption bundle $X$, which is a nonempty, convex, compact subset of $\mathbb{R}^n$. $0$ is always in $X$.
 
 **Definition: (Preference)** A Preference relation is a binary relation on the set of alternatives $X$, denoted as $"\succsim"$.
 
@@ -56,13 +56,13 @@
 
 **Definition: (Rationality)** A preference is called rational if it satisfies completeness and transitivity.
 
-**Theorem: (Ranking)** Given a finite set of bundles $A\subset \R^n_+$, if the preference relation satisfies A1 and A2, then bundles in A can be ranked in a list consistent with the preference.
+**Theorem: (Ranking)** Given a finite set of bundles $A\subset \mathbb{R}^n_+$, if the preference relation satisfies A1 and A2, then bundles in A can be ranked in a list consistent with the preference.
 
 Proof:
 
-It suffices to show that there is a maximum of $A$. Define an algorithm to find this item. Start with the first item in the set. Suppose next item is preferred to the item in hand, switch the items, i.e. if $x^m\succsim x^*$ but  $x^m\nsucceq x^*$ do the switching. Keep doing this until we compare every item in the set.
+It suffices to show that there is a maximum of $A$. Define an algorithm to find this item. Start with the first item in the set. Suppose next item is preferred to the item in hand, switch the items, i.e. if $x^m\succsim x^\star$ but  $x^m\nsucceq x^\star$ do the switching. Keep doing this until we compare every item in the set.
 
-The only potential trouble happens when we switch the items. We want to show that $x^*$ is preferred to any other item before the switching. Suppose there is no switching before. This implies that $x^1\succsim x^i$ for $i = 2,3,..., m-1$. From the switching we know that $x^m \succsim x^1$, by Transitivity, we have $x^* = x^m \succsim x^i$ for $i<m$. Now suppose there are $k$ numbers of switching happened before. We have $x^{m_k} \succsim x^i $ for $i$ between $m_{k-1}$ and $m_k$, plus we have $x^{m_k} \succsim x^{m_{k-1}} $. This implies that $x^* = x^m \succsim x^i$ for any $i<m$.  If we repeat this algorithm, we will have $x^*\succsim x^i$ for any $i \in X$, i.e. $x^*$ is the maximum. $\square$
+The only potential trouble happens when we switch the items. We want to show that $x^\star$ is preferred to any other item before the switching. Suppose there is no switching before. This implies that $x^1\succsim x^i$ for $i = 2,3,..., m-1$. From the switching we know that $x^m \succsim x^1$, by Transitivity, we have $x^\star = x^m \succsim x^i$ for $i<m$. Now suppose there are $k$ numbers of switching happened before. We have $x^{m_k} \succsim x^i $ for $i$ between $m_{k-1}$ and $m_k$, plus we have $x^{m_k} \succsim x^{m_{k-1}} $. This implies that $x^\star = x^m \succsim x^i$ for any $i<m$.  If we repeat this algorithm, we will have $x^\star\succsim x^i$ for any $i \in X$, i.e. $x^\star$ is the maximum. $\square$
 
 **Axiom: (A3 - Continuity)** For any bundle $x$, the set $\succsim(x)$ and $\precsim(x)$ are closed, or the set $\succ(x)$ and $\prec(x)$ are open.
 
@@ -90,13 +90,13 @@ Define a subset of real number: $T = \{t\in (0,1)|ty+(1-t)z \in \succsim(x)\}$. 
 
 #### Existence of Utility Functions
 
-**Definition: (Utility Function)** A function $U:\R^n_+\to \R$ is called a utility function representing the preference if for any $x,y\in X$, $U(x)\geq U(y)$ if and only if $x\succsim y$.
+**Definition: (Utility Function)** A function $U:\mathbb{R}^n_+\to \mathbb{R}$ is called a utility function representing the preference if for any $x,y\in X$, $U(x)\geq U(y)$ if and only if $x\succsim y$.
 
 **Theorem: (Existence of Utility Function)** If the preference is complete, transitive, continuous, and strictly monatomic, then there is a real-valued and continuous function representing the preference.
 
 Proof:
 
-Let $e = [1,1,...,1]$ be a vector in $\R^n$. For any $x\in X$, define $U(x)$ so that $x\sim U(x)e$. We claim that such a number is well defined.
+Let $e = [1,1,...,1]$ be a vector in $\mathbb{R}^n$. For any $x\in X$, define $U(x)$ so that $x\sim U(x)e$. We claim that such a number is well defined.
 
 1. First we show that this number exists. Consider the following two sets: $A = \{t\geq 0|te\succsim x\}$ and $B = \{t\leq 0|te\precsim x\}$. Want to show that $A\cap B \neq \phi$. By continuity, both sets are closed. By strict monotonicity and transitivity, if $t_0\in A$, then $\forall t>t_0$ we have $t\in A$. Similarly, if $t_0\in B$, then $\forall t<t_0$ we have $t\in B$. So $A = [t_1,+\infty]$, and $B = [0,t_2]$. Suppose $t_1>t_2$, this would violate the completeness of the preference. Hence $t_1\leq t_2$, this number always exists.
 2. Second we show that such a number is unique. Suppose $t_0<t_1$ and $x\sim t_0e\sim t_1 e$, by strict monatomicity, we have $t_0e\prec t_1 e$, which is a contradiction.
@@ -115,7 +115,7 @@ The last step is to show $U(x)$ is continuous. It suffices to show that $U^{-1}(
 
 **Lemma: (Utility and Preference)** $U(x)> U(y)$ if and only if $x\succ y$ and $U(x) =  U(y)$ if and only if $x\sim y$.
 
-**Theorem: (Monotonic Transformation)** If $U$ is a function that represents the preference, and $V$ is another function representing the same preference, then $V = g(U)$ for some strictly increasing function $g:\R\to \R$. Inversely, if  $V = g(U)$ for some strictly increasing function $g:\R\to \R$, then $V$ is another function representing the same preference.
+**Theorem: (Monotonic Transformation)** If $U$ is a function that represents the preference, and $V$ is another function representing the same preference, then $V = g(U)$ for some strictly increasing function $g:\mathbb{R}\to \mathbb{R}$. Inversely, if  $V = g(U)$ for some strictly increasing function $g:\mathbb{R}\to \mathbb{R}$, then $V$ is another function representing the same preference.
 
 Proof:
 
@@ -182,25 +182,25 @@ $$
 \lambda (I-px) = 0\\
 \mu_i x_i = 0
 $$
-**Theorem: (Kuhn-Tucker Theorem)** Suppose $U$ is strictly quasi-concave and differentiable, $(p,I)\gg 0$, then if $(x^*,\lambda^*)\gg 0 $ solve the first order conditions, then $(x^*,\lambda^*)$ solve the consumer’s problem.
+**Theorem: (Kuhn-Tucker Theorem)** Suppose $U$ is strictly quasi-concave and differentiable, $(p,I)\gg 0$, then if $(x^\star,\lambda^\star)\gg 0 $ solve the first order conditions, then $(x^\star,\lambda^\star)$ solve the consumer’s problem.
 
 Proof:
 
 First notice one fact: when $x^1 \neq x$, $\nabla U(x)\neq 0$, and $U(x^1)>U(x)$, then $\nabla U(x)(x^1-x)>0$.
 
-Now prove the statement. Suppose not, the there is another solution $(x^1,\lambda^1)$ such that $U(x^1)>U(x^*)$. By the fact above, we have $\nabla U(x^*)(x^1-x^*)>0$, and $px^1\leq I$. Notice that since $(x^*,\lambda^*)$ solve the Kuhn-Tucker conditions, we have $\nabla U(x^*) = \lambda^*p$. By assumption, $\lambda^*p\gg 0$, so $\nabla U(x^*)\gg 0$. So $\nabla U(x^*)(x^1-x^*) =\lambda^*p(x^1-x^*) >0$ implies that $px^1>px^* = I$, which is a contradiction to the fact that $x^1$ is feasible. $\square$
+Now prove the statement. Suppose not, the there is another solution $(x^1,\lambda^1)$ such that $U(x^1)>U(x^\star)$. By the fact above, we have $\nabla U(x^\star)(x^1-x^\star)>0$, and $px^1\leq I$. Notice that since $(x^\star,\lambda^\star)$ solve the Kuhn-Tucker conditions, we have $\nabla U(x^\star) = \lambda^\star p$. By assumption, $\lambda^\star p\gg 0$, so $\nabla U(x^\star)\gg 0$. So $\nabla U(x^\star)(x^1-x^\star) =\lambda^\star p(x^1-x^\star) >0$ implies that $px^1>px^\star = I$, which is a contradiction to the fact that $x^1$ is feasible. $\square$
 
-**Definition: (Marshallian Demand)** The solution the the utility maximizing problem is called the Marshallian Demand, denoted by $x^*(p,I)$.
+**Definition: (Marshallian Demand)** The solution the the utility maximizing problem is called the Marshallian Demand, denoted by $x^\star(p,I)$.
 
-**Definition: (Elasticity)** The Price Elasticity of the demand is defined as $\epsilon_i = \partial lnx^*(p,I)/\partial lnp_i$.
+**Definition: (Elasticity)** The Price Elasticity of the demand is defined as $\epsilon_i = \partial lnx^\star(p,I)/\partial lnp_i$.
 
 
 
 #### Indirect Utility Function
 
-**Definition: (Indirect Utility Function)** The Indirect Utility Function, also known as the Value Function, is defined as $V(p,I) = U(x^*(p,I))$.
+**Definition: (Indirect Utility Function)** The Indirect Utility Function, also known as the Value Function, is defined as $V(p,I) = U(x^\star(p,I))$.
 
-**Theorem: (Properties of the Indirect Utility Function)** If $U(.)$ is strictly increasing on $\R^n_+$, then $V(p,I)$ is:
+**Theorem: (Properties of the Indirect Utility Function)** If $U(.)$ is strictly increasing on $\mathbb{R}^n_+$, then $V(p,I)$ is:
 
 1. Continuous on its domain
 2. Homogenous of degree 0 in $(p,I)$
@@ -223,7 +223,7 @@ Proof:
 
 6. The first proof follows from the Envelope Theorem. We have $\partial V / \partial p_i = \partial L/\partial p_i = -\lambda x_i$ and $\partial V / \partial I = \partial L/\partial I = \lambda $, which will give us the Roy’s Identity.
 
-   Another proof defines $x^0 = x(p^0,I^0)$. Consider $V(p,px^0)-U(x^0)$ as a function of prices. Note that $V(p,px^0)-U(x^0)\geq 0$ for any $p\in \R^n_+$ because $x^0$ is always affordable. This function is minimized at the price $p^0$. Since the function is differentiable, we have the first order condition: $\partial V(p^0,p^0x^0)/\partial p_i+(\partial V(p^0,p^0x^0)/\partial I) x^0 = 0$, which will give us the Roy’s Identity. $\square$
+   Another proof defines $x^0 = x(p^0,I^0)$. Consider $V(p,px^0)-U(x^0)$ as a function of prices. Note that $V(p,px^0)-U(x^0)\geq 0$ for any $p\in \mathbb{R}^n_+$ because $x^0$ is always affordable. This function is minimized at the price $p^0$. Since the function is differentiable, we have the first order condition: $\partial V(p^0,p^0x^0)/\partial p_i+(\partial V(p^0,p^0x^0)/\partial I) x^0 = 0$, which will give us the Roy’s Identity. $\square$
 
 
 
@@ -236,7 +236,7 @@ $$
 min_{x\in \R^m_+} \space px \\
 s.t. \space U(x)\geq U_0
 $$
-**Theorem: (Existence of the solution)** Let $U = \{u\in \R| \exist x \space s.t. \space U(x) = u\}$. If $U_0\in U$, and $U(.)$ is continuous, then there is a solution to the minimization problem. Furthermore, if $U(.)$ is strictly increasing and continuous and strictly quasi-concave, and $p\gg 0 $, then the solution is unique.
+**Theorem: (Existence of the solution)** Let $U = \{u\in \mathbb{R}| \exist x \space s.t. \space U(x) = u\}$. If $U_0\in U$, and $U(.)$ is continuous, then there is a solution to the minimization problem. Furthermore, if $U(.)$ is strictly increasing and continuous and strictly quasi-concave, and $p\gg 0 $, then the solution is unique.
 
 Proof:
 
@@ -265,7 +265,7 @@ Define the Lagrange function as $L = px+\lambda(U_0-U(x))$. Take the first order
 **Theorem: (Properties of the Expenditure Function)** If $U(.)$ is continuous, strictly increasing and strictly quasi-concave, then the expenditure function is:
 
 1. Zero when $U$ takes the lowest utility level in available $U$
-2.  Continuous on $\R^N_+\times U$
+2.  Continuous on $\mathbb{R}^N_+\times U$
 3. For $p\gg 0$, the expenditure function is strictly increasing and unbounded in $U$
 4. Increasing in $p$
 5. Homogenous of degree 1 in $p$
@@ -280,11 +280,11 @@ Proof:
 
 3. First prove the monotonicity. Suppose $U'>U$, let $px' = e(p,U')$, $U(x')\geq U'\geq U$, since $U(.)$ is strictly increasing and $px = e(p,U)$, we have $px = e(p,U)\leq e(p,U') = px'$, since $x$ is minimizing the objective function. Now we only need to show that $px'\neq px$. Suppose $px' = px$, since $U(x')\geq U'> U\geq U(0)$, we have $x'\neq 0$. There exists some $x_i'>0$ such that $U(\tilde x) = U(x_1',x_2',...,x_i'-\epsilon, ..., x_n')>U$ because $U'> U$ and $U$ is continuous. So $\tilde x$ is feasible for the minimization problem, and $px\leq p\tilde x<px'$, i.e. the expenditure function is strictly increasing in $U$.
 
-   Now we prove the unboundedness. Since $U(.)$ is increasing and continuous, the attainable utility level is an interval: $U = [U(0),\bar U)$, where $\bar U$ is a finite number or infinity. Pick an increasing sequence of utility level $U_n\to \bar U$, we want to show that $e(p,U_n)$ is unbounded above. Suppose this is not true. Since $U(.)$ is strictly increasing, let $px^n  = e(p,U_n)$, if $e(p,U_n)$ is bounded, then $x^n$ is also bounded. Then there is a subsequence of $x^n$,denoted as $x^{n_k}$ which goes to some $\bar x \in \R^n_+$. Then since $U(.)$ is continuous, we have $U(x^{n_k})\to U(\bar x)$. Since there is only one limit of the sequence $U_n$, which is $\bar U$, we have $ U(\bar x) = \bar U$. But then $\bar U $ would be attainable, which is impossible.
+   Now we prove the unboundedness. Since $U(.)$ is increasing and continuous, the attainable utility level is an interval: $U = [U(0),\bar U)$, where $\bar U$ is a finite number or infinity. Pick an increasing sequence of utility level $U_n\to \bar U$, we want to show that $e(p,U_n)$ is unbounded above. Suppose this is not true. Since $U(.)$ is strictly increasing, let $px^n  = e(p,U_n)$, if $e(p,U_n)$ is bounded, then $x^n$ is also bounded. Then there is a subsequence of $x^n$,denoted as $x^{n_k}$ which goes to some $\bar x \in \mathbb{R}^n_+$. Then since $U(.)$ is continuous, we have $U(x^{n_k})\to U(\bar x)$. Since there is only one limit of the sequence $U_n$, which is $\bar U$, we have $ U(\bar x) = \bar U$. But then $\bar U $ would be attainable, which is impossible.
 
 4. Suppose $p^1<p^2$, and $x^1$ and $x^2$ are the solutions to the minimizing problem, separately. Since $U_0$ is always attainable, we have $p^1x^1\leq p^1x^2 < p^2x^2$.
 
-5. At price $tp$, the problem can be rewrite as $t[min_{x\in \R^m_+} \space px] \space s.t. \space U(x)\geq U_0$, which is identical to the original problem. So the solution is the same, i.e. $e(tp,U_0) = tpx  =t(px) = te(p,U_0)$.
+5. At price $tp$, the problem can be rewrite as $t[min_{x\in \mathbb{R}^m_+} \space px] \space s.t. \space U(x)\geq U_0$, which is identical to the original problem. So the solution is the same, i.e. $e(tp,U_0) = tpx  =t(px) = te(p,U_0)$.
 
 6. Consider $p^1$ and $p^2$, define $\bar p = tp^1+(1-t)p^2$. Let $\bar x = x^H(\bar p, U_0)$, $x^1 = x^H(p^1, U_0)$, and $x^2 = x^H(p^2, U_0)$.  Then we have $p^1x^1 \leq p^1 \bar x$ and $p^2x^2 \leq p^2 \bar x$. Combine them we have $\bar p (tx^1+(1-t)x^2)\leq \bar p\bar x$, i.e. the expenditure function is concave.
 
@@ -305,12 +305,12 @@ Proof:
 1. Prove by contradiction. Suppose $e(p,V(p,I_0)) < I_0$, let $U_0  =V(p,I_0)$ so then $e(p,U_0)<I_0$. Since $e(p,U)$ is continuous in $(p,U)$, there is a $\epsilon >0$ such that $e(p,U_0+\epsilon)<I_0$, denote $I_\epsilon = e(p,U_0+\epsilon)$, then $I_\epsilon<I_0$. But then we have $U_0+\epsilon \leq V(p,I_\epsilon)<V(p,I_0) = U_0$, which is impossible.
 2. Prove by contradiction. Suppose $V(p,e(p,U_0)) > U_0$, let $I_0  = e(p,U_0)$ so then $V(p,I_0)>U_0$. Since $V(p,I)$ is continuous in $(p,I)$, there is a $\epsilon >0$ such that $V(p,I_0-\epsilon)>U_0$, denote $U_\epsilon = V(p,I_0-\epsilon)$, then $U_\epsilon>U_0$. But then we have $I_0-\epsilon \geq e(p,U_\epsilon)>e(p,U_0) = I_0$, which is impossible. $\square$
 
-**Theorem: (Duality of the Solutions)** Suppose $U$ is continuous, strictly increasing and strictly quasi-concave. Then we have $x^*  =x^H(p,V(p,I))$ and $x^H = x^*(p,e(p,U))$ for all $p\gg 0$ and U attainable.
+**Theorem: (Duality of the Solutions)** Suppose $U$ is continuous, strictly increasing and strictly quasi-concave. Then we have $x^\star  =x^H(p,V(p,I))$ and $x^H = x^\star(p,e(p,U))$ for all $p\gg 0$ and U attainable.
 
 Proof:
 
-1. By continuity and strictly quasi-concavity, both solutions are unique. By definition we have $e(p,V(p,I)) = px^H(p,V(p,I))$. By the duality theorem $e(p,V(p,I)) =I = px^H(p,V(p,I))$. Then by definition of the utility maximizing problem, $x^H(p,V(p,I))$ is affordable under income level $I$ and gives a utility level of $V(p,I)$. So $x^H(p,V(p,I))$ is a solution to the utility maximizing problem. However, since the solution is unique, we have $x^*  =x^H(p,V(p,I))$.
-2. Similarly, by definition we have $V(p,e(p,U)) = U(x^*(p,e(p,U)))$. By the duality theorem $V(p,e(p,U)) = U = U(x^*(p,e(p,U)))$. Then by definition of the expenditure minimizing problem, $x^*(p,e(p,U))$ is attainable at utility level $U$ and gives an expenditure level of $e(p,U)$. So $x^*(p,e(p,U))$ is a solution to the expenditure minimizing problem. However, since the solution is unique, we have $x^H = x^*(p,e(p,U))$. $\square$
+1. By continuity and strictly quasi-concavity, both solutions are unique. By definition we have $e(p,V(p,I)) = px^H(p,V(p,I))$. By the duality theorem $e(p,V(p,I)) =I = px^H(p,V(p,I))$. Then by definition of the utility maximizing problem, $x^H(p,V(p,I))$ is affordable under income level $I$ and gives a utility level of $V(p,I)$. So $x^H(p,V(p,I))$ is a solution to the utility maximizing problem. However, since the solution is unique, we have $x^\star  =x^H(p,V(p,I))$.
+2. Similarly, by definition we have $V(p,e(p,U)) = U(x^\star(p,e(p,U)))$. By the duality theorem $V(p,e(p,U)) = U = U(x^\star(p,e(p,U)))$. Then by definition of the expenditure minimizing problem, $x^\star(p,e(p,U))$ is attainable at utility level $U$ and gives an expenditure level of $e(p,U)$. So $x^\star(p,e(p,U))$ is a solution to the expenditure minimizing problem. However, since the solution is unique, we have $x^H = x^\star(p,e(p,U))$. $\square$
 
 
 
@@ -320,7 +320,7 @@ Proof:
 
 Proof:
 
-From the duality theorem, we have $x^H = x^*(p,e(p,U))$. Take total differentiation with respect to $p_j$, we have $\frac{\partial x_i(p,I)}{\partial p_j} = \frac{\partial x_i^H(p,U)}{\partial p_j}-x_j(p,I)\frac{\partial x_i(p,I)}{\partial I}$. $\square$
+From the duality theorem, we have $x^H = x^\star(p,e(p,U))$. Take total differentiation with respect to $p_j$, we have $\frac{\partial x_i(p,I)}{\partial p_j} = \frac{\partial x_i^H(p,U)}{\partial p_j}-x_j(p,I)\frac{\partial x_i(p,I)}{\partial I}$. $\square$
 
 **Definition: (Substitution Effect)** $\frac{\partial x_i^H(p,U)}{\partial p_j}$ is defined as the Substitution Effect.
 
@@ -340,15 +340,15 @@ From the duality theorem, we have $x^H = x^*(p,e(p,U))$. Take total differentiat
 
 Proof:
 
-We have $V(p,I) = V(tp,tI)$, which is equivalent to $U(x^*(p,I)) = U(x^*(tp,tI))$. Since $U(.)$ is continuous and strictly increasing, $x^*(p,I) = x^*(tp,tI)$. The budget balance follows from the strictly increasing property of the utility. Suppose $px^*(p,I) <I$, then we can find another bundle such that $U(x’)>U(x^*)$ and $px'<I$, contradicting to the fact that $x^*$ is the solution. $\square$
+We have $V(p,I) = V(tp,tI)$, which is equivalent to $U(x^\star(p,I)) = U(x^\star(tp,tI))$. Since $U(.)$ is continuous and strictly increasing, $x^\star(p,I) = x^\star(tp,tI)$. The budget balance follows from the strictly increasing property of the utility. Suppose $px^\star(p,I) <I$, then we can find another bundle such that $U(x’)>U(x^\star)$ and $px'<I$, contradicting to the fact that $x^\star$ is the solution. $\square$
 
 **Theorem: (Properties of Hicks Demand)** Under all assumptions of the utility function, and suppose $(p,I)\gg 0$, the Hicks demand is homogenous of degree 0 with respect to $p$, and exhausts the utility constraint.
 
 Proof:
 
-At price $tp$, the problem can be rewrite as $t[min_{x\in \R^m_+} \space px] \space s.t. \space U(x)\geq U_0$, which is identical to the original problem. So the solution is the same.
+At price $tp$, the problem can be rewrite as $t[min_{x\in \mathbb{R}^m_+} \space px] \space s.t. \space U(x)\geq U_0$, which is identical to the original problem. So the solution is the same.
 
-Exhausting the utility constraint follows from the strictly increasing property of the utility. Suppose $U(x^*(p,I)) >U$, then we can find another bundle such that $U(x’)<U(x^*)$ and $px'<I$, when $p\gg 0$. This is contradicting to the fact that $x^*$ is the solution. $\square$
+Exhausting the utility constraint follows from the strictly increasing property of the utility. Suppose $U(x^\star(p,I)) >U$, then we can find another bundle such that $U(x’)<U(x^\star)$ and $px'<I$, when $p\gg 0$. This is contradicting to the fact that $x^\star$ is the solution. $\square$
 
 **Definition: (Slutsky Matrix)** Define the Slutsky Matrix as $S(p,I) = [\frac{\partial x_i(p,I)}{\partial p_j} +x_j(p,I)\frac{\partial x_i(p,I)}{\partial I}]$.
 
@@ -364,7 +364,7 @@ Note that by Slutsky Equation, $S(p,I) = [\frac{\partial x_i(p,I)}{\partial p_j}
 
 #### Recover Utility from the Expenditure Function
 
-**Theorem: (Recovering Expenditure Function)** Suppose $e: \R^n\times \R$ satisfies the seven properties of the expenditure function, then define $u(x) = max\{u\geq U(0)|px\geq e(p,u) \space \forall p\gg 0\}$. $u(x)$ is well defined, unbounded, increasing and quasi-concave.
+**Theorem: (Recovering Expenditure Function)** Suppose $e: \mathbb{R}^n\times \mathbb{R}$ satisfies the seven properties of the expenditure function, then define $u(x) = max\{u\geq U(0)|px\geq e(p,u) \space \forall p\gg 0\}$. $u(x)$ is well defined, unbounded, increasing and quasi-concave.
 
 Proof:
 
@@ -372,15 +372,15 @@ Proof:
 2. Second we prove the function is increasing. Suppose we have $x^1\geq x^2$, we have $px^1\geq px^2\geq e(p,u(x^2))$ by the definition of $u(x^2)$. This implies $u(x^2)\in \bar U(x^1)$. Since $u(x^1)$ is the maximum, we have $u(x^1)\geq u(x^2)$.
 3. Third we prove the function is quasi-concave. Take any $x^1$ and $x^2$ and $t\in [0,1]$. By definition we have $px^1\geq e(p,u(x^1))$ and $px^2\geq e(p,u(x^2))$. So $p(tx^1+(1-t)x^2)\geq te(p,u(x^1))+(1-t)e(p,u(x^2))\geq min\{e(p,u(x^1)),e(p,u(x^2))\}$. Hence we have $min\{e(p,u(x^1)),e(p,u(x^2))\} \in \bar U(tx^1+(1-t)x^2)$. since $u(tx^1+(1-t)x^2)$ is the maximum, we have $u(tx^1+(1-t)x^2)\geq min\{e(p,u(x^1)),e(p,u(x^2))\}$, i.e. u(x) is quasi-concave. $\square$
 
- **Theorem: (Verification)** Suppose $e: \R^n\times \R\to \R$ is any function that satisfies the seven properties of the expenditure function, then define $u(x) = max\{u\geq0|px\geq e(p,u) \space \forall p\gg 0\}$. Then $e(p^0,U_0) = min_{x\in \R^m_+} \space p^0x \space s.t. \space u(x)\geq U_0$.
+**Theorem: (Verification)** Suppose $e: \mathbb{R}^n\times \mathbb{R}\to \mathbb{R}$ is any function that satisfies the seven properties of the expenditure function, then define $u(x) = max\{u\geq0|px\geq e(p,u) \space \forall p\gg 0\}$. Then $e(p^0,U_0) = min_{x\in \mathbb{R}^m_+} \space p^0x \space s.t. \space u(x)\geq U_0$.
 
 Proof:
 
-1. First we prove that $[min_{x\in \R^m_+} \space p^0 x \space s.t. \space u(x)\geq U_0]\geq e(p^0,U_0)$.
+1. First we prove that $[min_{x\in \mathbb{R}^m_+} \space p^0 x \space s.t. \space u(x)\geq U_0]\geq e(p^0,U_0)$.
 
-   Fix $p^0\gg0$ and $U_0\geq 0$, for any $x$ such that $u(x)\geq U_0$, by the definition of $u(x)$, we have $px^0\geq e(p,u(x))$ for all $p$. This implies $p^0 x^0\geq e(p^0,u(x))$. Furthermore, since $e(p,u)$ is increasing in $u$, and $u(x)\geq U_0$, we have $p^0 x\geq e(p^0,u(x)) \geq e(p^0,U_0)$. Recall this inequality holds for all $x$ such that $u(x)\geq U_0$. Suppose the solution to minimization problem is $x^0$, we have $p^0 x^0 \geq e(p^0,U_0)$, i.e. $[min_{x\in \R^m_+} \space p^0 x \space s.t. \space u(x)\geq U_0]\geq e(p^0,U_0)$.
+   Fix $p^0\gg0$ and $U_0\geq 0$, for any $x$ such that $u(x)\geq U_0$, by the definition of $u(x)$, we have $px^0\geq e(p,u(x))$ for all $p$. This implies $p^0 x^0\geq e(p^0,u(x))$. Furthermore, since $e(p,u)$ is increasing in $u$, and $u(x)\geq U_0$, we have $p^0 x\geq e(p^0,u(x)) \geq e(p^0,U_0)$. Recall this inequality holds for all $x$ such that $u(x)\geq U_0$. Suppose the solution to minimization problem is $x^0$, we have $p^0 x^0 \geq e(p^0,U_0)$, i.e. $[min_{x\in \mathbb{R}^m_+} \space p^0 x \space s.t. \space u(x)\geq U_0]\geq e(p^0,U_0)$.
 
-2. Now we prove that $[min_{x\in \R^m_+} \space px \space s.t. \space u(x)\geq U_0]\leq e(p^0,U_0)$.
+2. Now we prove that $[min_{x\in \mathbb{R}^m_+} \space px \space s.t. \space u(x)\geq U_0]\leq e(p^0,U_0)$.
 
    It suffices to find $x'$ such that $u(x')\ge U_0$ and $p^0x'\leq e(p^0, U_0)$. Let $\frac{\partial e(p^0,U_0)}{\partial p} = x'$. We first prove that $ u(x')\ge U_0$. By assumption we have that $e(p,U)$ is homogenous of degree 1 in prices. So by Euler’s theorem, $\frac{\partial e(p^0,U_0)}{\partial p}p = e(p^0,U_0)$. Also, we know that $e(p,U)$ is concave in $p$, so $e(p,U_0) \leq e(p^0, U_0)+(p-p^0)\frac{\partial e(p^0,U_0)}{\partial p}$. Plug in the Euler’s theorem, we have $e(p,U_0) \leq p \frac{\partial e(p^0,U_0)}{\partial p} =  px'$ for any $p$.  By definition, $u(x')\geq U_0$.
 
@@ -414,17 +414,17 @@ f_i'(t)= \sum_{j = 1}^n \frac{\partial x_j(tp,tI)}{ \partial p_i}tp_j + \sum_{j 
 $$
 This finishes the proof. $\square$ 
 
-**Theorem: (Slutsky Property)** Suppose that $x(p, I)\in \R^n_+$ satisfies budget balance and homogeneity. Then for all $(p, y)$, $S(p, y)p= 0$.
+**Theorem: (Slutsky Property)** Suppose that $x(p, I)\in \mathbb{R}^n_+$ satisfies budget balance and homogeneity. Then for all $(p, y)$, $S(p, y)p= 0$.
 
 Proof:
 
 Note that $S(p, y)p= \sum_{j=1}^n(\frac{\partial x_i}{\partial p_j}+x_j\frac{\partial x_i}{\partial I})p_j = \sum_{j=1}^n(p_j\frac{\partial x_i}{\partial p_j}+p_jx_j\frac{\partial x_i}{\partial I}) = \sum_{j=1}^n(p_j\frac{\partial x_i}{\partial p_j}+I\frac{\partial x_i}{\partial I}) = 0$. $\square$
 
-**Theorem: (Integrability Theorem)** If a differentiable function $x:\R^n_+ \times \R_+\to \R^n_+$ satisfies budget balance, symmetry and negative semi-definite of Slutsky matrix, then it is the demand function generated by some increasing, quasi-concave function.
+**Theorem: (Integrability Theorem)** If a differentiable function $x:\mathbb{R}^n_+ \times \mathbb{R}_+\to \mathbb{R}^n_+$ satisfies budget balance, symmetry and negative semi-definite of Slutsky matrix, then it is the demand function generated by some increasing, quasi-concave function.
 
 Proof:
 
-1. First we want to show that suppose $e(p,U)$ is an expenditure function that is generated by some utility function, that is not related to the given function $x(.)$. However, when we have $\frac{\partial e(p,U)}{\partial p_i} = x_i(p,e(p,U))$ for all $i$, the Marshallian demand generated by the same utility function satisfies $x^*(p,I) = x(p,I)$. This follows from duality and Shepherd’s lemma. We have $x^*(p,e(p,U)) = x^H(p,U) = x(p,e(p,U))$. For each fixed $p$, as $U$ varies $e(p,U)$ assumes all numbers on $[0,+\infty)$, so we could change $e(p,U)$ to $I$ and have the aimed equation.
+1. First we want to show that suppose $e(p,U)$ is an expenditure function that is generated by some utility function, that is not related to the given function $x(.)$. However, when we have $\frac{\partial e(p,U)}{\partial p_i} = x_i(p,e(p,U))$ for all $i$, the Marshallian demand generated by the same utility function satisfies $x^\star(p,I) = x(p,I)$. This follows from duality and Shepherd’s lemma. We have $x^\star(p,e(p,U)) = x^H(p,U) = x(p,e(p,U))$. For each fixed $p$, as $U$ varies $e(p,U)$ assumes all numbers on $[0,+\infty)$, so we could change $e(p,U)$ to $I$ and have the aimed equation.
 
 2. Second we want to show that the solution to $\frac{\partial e(p,U)}{\partial p_i} = x_i(p,e(p,U))$ for all $i$ always exists. By Fubini theorem, if $[\frac{\partial^2 e(p,U)}{\partial p_i\partial p_j}]$ is symmetric, the solution exists, which is guaranteed by the assumption of $x(p,I)$.
 
@@ -455,7 +455,7 @@ $$
 (p^0-p^1)x^1\geq (p^0-p^1)x^0 \\
 (p^0-p^1)(x^1-x^0) \geq 0
 $$
-Let $p^1 = p^0+tz$, where $t>0$ and $z$ is a vector in $\R^n$. so this becomes $tz(x^1-x^0)\leq 0$. Choose $t$ close to zero, we have $tzx(p^1,p^1x^0)\leq tzx^0$, i.e. $zx(p^0+tz , (p^0+tz)x^0)\leq zx^0$. If we define a function $f(t) = zx(p^0+tz , (p^0+tz)x^0)$, this implies that the function attains its maximum when $t = 0$. Note that $t\in [0,\bar t)$, so the equivalent condition is $f'(0)\leq 0$. So we have
+Let $p^1 = p^0+tz$, where $t>0$ and $z$ is a vector in $\mathbb{R}^n$. so this becomes $tz(x^1-x^0)\leq 0$. Choose $t$ close to zero, we have $tzx(p^1,p^1x^0)\leq tzx^0$, i.e. $zx(p^0+tz , (p^0+tz)x^0)\leq zx^0$. If we define a function $f(t) = zx(p^0+tz , (p^0+tz)x^0)$, this implies that the function attains its maximum when $t = 0$. Note that $t\in [0,\bar t)$, so the equivalent condition is $f'(0)\leq 0$. So we have
 $$
 f'(t)|_{t= 0} = \sum _{i=1}^n z_i(\sum_{j=1}^n\frac{\partial x_i(p^0+tz,(p^0+tz)x^0)}{\partial p_j}|_{t= 0}z_j+\frac{\partial x_i(p^0+tz,(p^0+tz)x^0)}{\partial I}|_{t= 0}(\sum_{j=1}^nz_jx^0_j)) \\
 = \sum _{i=1}^n \sum_{j=1}^n z_i z_j(\frac{\partial x_i(p^0,p^0x^0)}{\partial p_j}+\frac{\partial x_i(p^0,p^0x^0)}{\partial I}x^0_j) \\
@@ -581,14 +581,14 @@ Proof:
 
 **Definition: (Comparing Risk Aversion)** Given 2 preferences, preference 1 is more risk averse than preference 2 if and only if $F\succsim_1 \delta_x$ implies $F\succsim_2 \delta_x$.
 
-**Definition: (Arrow-Pratt Measure of Absolute Risk Aversion)** The Absolute Risk Aversion is defined as $\lambda(x) = -\frac{U''(x)}{U'(x)}$ for all $X\in \R$.
+**Definition: (Arrow-Pratt Measure of Absolute Risk Aversion)** The Absolute Risk Aversion is defined as $\lambda(x) = -\frac{U''(x)}{U'(x)}$ for all $X\in \mathbb{R}$.
 
-**Definition: (Arrow-Pratt Measure of Relative Risk Aversion)** The Relative Risk Aversion is defined as $R(x) = -\frac{xU''(x)}{U'(x)}$ for all $X\in \R$.
+**Definition: (Arrow-Pratt Measure of Relative Risk Aversion)** The Relative Risk Aversion is defined as $R(x) = -\frac{xU''(x)}{U'(x)}$ for all $X\in \mathbb{R}$.
 
 **Theorem: (Relative Risk Aversion)** Suppose 2 preferences have the expected utility property, the following are equivalent:
 
 1. Preference 1 is more risk averse than preference 2
-2. $U_1(.) = \phi(U_2(.))$ for some concave and strictly increasing function $\phi:\R\to\R$
+2. $U_1(.) = \phi(U_2(.))$ for some concave and strictly increasing function $\phi:\mathbb{R}\to\mathbb{R}$
 3. $CE(F,U_1)\leq CE(F,U_2)$ for all $F$
 4. $r(F,U_1) \geq r(F,U_2)$ for all $F$
 5. $\lambda_1(x) \geq \lambda_2(x)$ for all $x$
@@ -606,15 +606,15 @@ Proof:
 
 ### Comparing Gambles
 
-**Definition: (First Order Stochastically Domination)** $F$ First Order Stochastically Dominate $G$, denoted by $F\succsim _{FOSD} G$, if $\int UdF\geq \int UdG$ for all non-decreasing function $U:\R\to \R$.
+**Definition: (First Order Stochastically Domination)** $F$ First Order Stochastically Dominate $G$, denoted by $F\succsim _{FOSD} G$, if $\int UdF\geq \int UdG$ for all non-decreasing function $U:\mathbb{R}\to \mathbb{R}$.
 
 **Theorem: (FOSD Property)** $F\succsim _{FOSD} G$ if and only if $F(x)\leq G(x)$ for all $x$.
 
 Proof:
 
-If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing function $U:\R\to \R$. Now by integration by parts, we have $\int_a^b U(x)dF(x) = U(x)F(x)|_a^b-\int_a^bU'(x)F(x)dx = U(b)-\int_a^bU'(x)F(x)dx$. So $\int_a^b U(x)(dF(x)-dG(x)) = \int_a^bU'(x)(G(x)-F(x))dx$. Since $U'(x)\geq 0$, we have $F(x)\leq G(x)$. Suppose for some $x'$ we have $F(x')> G(x')$,  since all the probability distributions are right continuous, we can define $U(x) = 1$ for $x\geq x'$ and for $x< x'$. This will lead to a contradiction that  $\int UdF< \int UdG$. It is trivial to show the inverse of this is also true. $\square$ 
+If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing function $U:\mathbb{R}\to \mathbb{R}$. Now by integration by parts, we have $\int_a^b U(x)dF(x) = U(x)F(x)|_a^b-\int_a^bU'(x)F(x)dx = U(b)-\int_a^bU'(x)F(x)dx$. So $\int_a^b U(x)(dF(x)-dG(x)) = \int_a^bU'(x)(G(x)-F(x))dx$. Since $U'(x)\geq 0$, we have $F(x)\leq G(x)$. Suppose for some $x'$ we have $F(x')> G(x')$,  since all the probability distributions are right continuous, we can define $U(x) = 1$ for $x\geq x'$ and for $x< x'$. This will lead to a contradiction that  $\int UdF< \int UdG$. It is trivial to show the inverse of this is also true. $\square$ 
 
-**Definition: (Second Order Stochastically Domination)** $F$ Second Order Stochastically Dominate $G$, denoted by $F\succsim _{SOSD} G$, if $\int UdF\geq \int UdG$ for all non-decreasing and concave function $U:\R\to \R$.
+**Definition: (Second Order Stochastically Domination)** $F$ Second Order Stochastically Dominate $G$, denoted by $F\succsim _{SOSD} G$, if $\int UdF\geq \int UdG$ for all non-decreasing and concave function $U:\mathbb{R}\to \mathbb{R}$.
 
 **Claim: (SOSD Property)** $F\succsim _{SOSD} G$ if and only if $\int_{-\infty}^xF(t)dt\leq \int_{-\infty}^xG(t)dt$ for all $x$.
 
@@ -632,15 +632,15 @@ If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing f
 
 **Definition: (Constant Act)** A Constant Act is defined as an Anscombe-Aumann Act which satisfies $h_s= h_{s'}$ for any $s,s'\in \Omega$.
 
-**Definition: (Affine)** Function $f:\Pi\to\R$ is an Affine if for any $\pi, \rho \in\Pi$, and $\alpha\in [0,1]$, we have $ f(\alpha\pi+(1-\alpha)\rho) = \alpha f(\pi)+(1-\alpha)f(\rho) $.
+**Definition: (Affine)** Function $f:\Pi\to\mathbb{R}$ is an Affine if for any $\pi, \rho \in\Pi$, and $\alpha\in [0,1]$, we have $ f(\alpha\pi+(1-\alpha)\rho) = \alpha f(\pi)+(1-\alpha)f(\rho) $.
 
-**Definition: (Linear)** Function $f:\Pi\to\R$ is an Affine if for any $\pi, \rho \in\Pi$, and $\alpha, \beta\in \R$, we have  $f(\alpha\pi+\beta\rho) = \alpha f(\pi)+\beta f(\rho) $.
+**Definition: (Linear)** Function $f:\Pi\to\mathbb{R}$ is an Affine if for any $\pi, \rho \in\Pi$, and $\alpha, \beta\in \mathbb{R}$, we have  $f(\alpha\pi+\beta\rho) = \alpha f(\pi)+\beta f(\rho) $.
 
 #### Mixture Space Theorem
 
-**Claim: (Mixture Space Theorem)** A preference on a convex subset of $\R^n$ is complete, transitive, independent and Archimedean if and only if there exists an affine function $U:\Pi\to \R$ representing the preference. Moreover, if $U(.)$ is an affine representation then $V(.)$ is an affine representation of the same preference if and only if there exist $a>0$ and $b\in \R$ such that $V(\pi) = \alpha U(\pi)+b$.
+**Claim: (Mixture Space Theorem)** A preference on a convex subset of $\mathbb{R}^n$ is complete, transitive, independent and Archimedean if and only if there exists an affine function $U:\Pi\to \mathbb{R}$ representing the preference. Moreover, if $U(.)$ is an affine representation then $V(.)$ is an affine representation of the same preference if and only if there exist $a>0$ and $b\in \mathbb{R}$ such that $V(\pi) = \alpha U(\pi)+b$.
 
-**Claim: (State Dependent Expected Utility)** A preference on a convex subset of $\R^n$ is complete, transitive, independent and Archimedean if and only if there exists a set of Von-Neumann-Morgenstern utility functions $U_1,..,U_m:X\to\R$, such that $U(h) = \sum_s\sum_x h_s(x)U_s(x)$.
+**Claim: (State Dependent Expected Utility)** A preference on a convex subset of $\mathbb{R}^n$ is complete, transitive, independent and Archimedean if and only if there exists a set of Von-Neumann-Morgenstern utility functions $U_1,..,U_m:X\to\mathbb{R}$, such that $U(h) = \sum_s\sum_x h_s(x)U_s(x)$.
 
 #### Subject Probability
 
@@ -660,7 +660,7 @@ Proof:
 2. Now want to show that suppose $h\succ g$ and $\pi\succ \rho$ at each state, then $(h-s,\pi)\succ (g-s,\rho)$. By state independence,  $(h-s,\pi)\succ (h-s,\rho)$ implies $(g-s,\pi)\succ (g-s,\rho)$. We only need to show $(h-s,\pi)\succ (g-s,\rho)$, but this is because of the fact that $\pi\succ \rho$ at each state.
 3. Now start with $(\pi_1,\pi_1,...,\pi_1)\succ(\rho_1,\rho_1,...,\rho_1)$. By step 2 we have $(\pi_1,\pi_2,...,\pi_1)\succ(\rho_1,\rho_2,...,\rho_1)$. Then repeat using step 2 we will have $(\pi_1,\pi_2,...,\pi_S)\succ(\rho_1,\rho_2,...,\rho_S)$, which is what we want to show. $\square$ 
 
-**Claim: (Expected Utility Theorem)** A preference relation on $H$ is independent , Archimedean, state independent if and only if there exists a Von-Neumann-Morgenstern utility function $U:X\to\R$, such that $U(h) = \sum_s\mu(s)\sum_x h_s(x)U(x)$, where $\mu(s)$ denote the subjective probability of state $s$.
+**Claim: (Expected Utility Theorem)** A preference relation on $H$ is independent , Archimedean, state independent if and only if there exists a Von-Neumann-Morgenstern utility function $U:X\to\mathbb{R}$, such that $U(h) = \sum_s\mu(s)\sum_x h_s(x)U(x)$, where $\mu(s)$ denote the subjective probability of state $s$.
 
 
 
@@ -670,11 +670,11 @@ Proof:
 
 #### Production Possibility Set
 
-**Definition: (Production Possibility Set)** The set $Y\subset \R^n$, where $y = (y_1,y_2,...,y_n) \in Y$, and if $y_k>0$ it is the output, if $y_k<0$ it is the input.
+**Definition: (Production Possibility Set)** The set $Y\subset \mathbb{R}^n$, where $y = (y_1,y_2,...,y_n) \in Y$, and if $y_k>0$ it is the output, if $y_k<0$ it is the input.
 
 **Axiom: (Properties of Production Possibility Set)** The production possibility set satisfies: 
 
-1. (No Free Lunch) $Y\cap \R^n_+ \subset {0}$
+1. (No Free Lunch) $Y\cap \mathbb{R}^n_+ \subset {0}$
 2. (Possibility of Inaction) $0\in Y$
 3. (Free Disposal) If $y\in Y$, then $y'\in Y$ for all $y'<y$
 4. (Irreversibility) If $y\in Y$ and $y\neq 0$, then $-y\notin Y$
@@ -692,7 +692,7 @@ Proof:
 **Theorem: (Properties of Production Possibility Set)** the following are true:
 
 1. $Y$ is additive and non-increasing return to scale if and only if it is a convex cone.
-2. For any convex  $Y\subset \R^n$ with $0\in Y$, there is a convex $Y'\subset \R^{n+1}$ such that $Y'$ is constant return to scale and $Y' = \{(y,-1)|y\in Y\}$.
+2. For any convex  $Y\subset \mathbb{R}^n$ with $0\in Y$, there is a convex $Y'\subset \mathbb{R}^{n+1}$ such that $Y'$ is constant return to scale and $Y' = \{(y,-1)|y\in Y\}$.
 
 Proof:
 
@@ -701,11 +701,11 @@ Proof:
 
 #### Production Function
 
-**Definition: (Production Function)** Let $y\in \R^m_+$ denotes the outputs and $x\in \R^k_+$ denotes the inputs. Suppose $m=1$, then define the production function as $y=f(x)$. The corresponding production possibility set is $Y = \{(-x,y)\in \R^k_-\times\R^m_+|y\leq f(x)\}$.
+**Definition: (Production Function)** Let $y\in \mathbb{R}^m_+$ denotes the outputs and $x\in \mathbb{R}^k_+$ denotes the inputs. Suppose $m=1$, then define the production function as $y=f(x)$. The corresponding production possibility set is $Y = \{(-x,y)\in \mathbb{R}^k_-\times\mathbb{R}^m_+|y\leq f(x)\}$.
 
-**Assumption: (Production Function)** The production function $f$ is continuous, strictly increasing and strictly quasi-concave on $\R^n_+$, and $f(0) = 0$.
+**Assumption: (Production Function)** The production function $f$ is continuous, strictly increasing and strictly quasi-concave on $\mathbb{R}^n_+$, and $f(0) = 0$.
 
-**Definition: (Isoquant)** Isoquant is a collection of input combinations which keep output fixed, $Q(y) = \{x\in \R^k_+|f(x)=y\}$.
+**Definition: (Isoquant)** Isoquant is a collection of input combinations which keep output fixed, $Q(y) = \{x\in \mathbb{R}^k_+|f(x)=y\}$.
 
 **Theorem: (Properties of Production Function)** The following are true:
 
@@ -758,9 +758,9 @@ The solution to this problem is the same as the expenditure minimization problem
 1. $x(w,y)$ is homogeneous of degree 0 in $w$
 2. The substitution matrix $\sigma(w,y) = [\partial x_i/\partial w_j]$ is symmetric and negative semi-definite. In particular, this implies that $\partial x_i/\partial w_j\leq 0$ for all $i$. 
 
-**Claim: (Recovering Production Function from Cost Function)** For a given function $C:\R^n_+\times \R_+ \to \R_+$, satisfying properties 1-7 for a cost function, the function $f(x) = max\{y\geq 0|wx\geq c(w,y) \forall w\gg0\}$ is an increasing, unbounded above, quasi-concave function. Moreover, the cost function generated by $f(x)$ is $C(.)$.
+**Claim: (Recovering Production Function from Cost Function)** For a given function $C:\mathbb{R}^n_+\times \mathbb{R}_+ \to \mathbb{R}_+$, satisfying properties 1-7 for a cost function, the function $f(x) = max\{y\geq 0|wx\geq c(w,y) \forall w\gg0\}$ is an increasing, unbounded above, quasi-concave function. Moreover, the cost function generated by $f(x)$ is $C(.)$.
 
-**Claim: (Integrability)** If a differentiable function $x:\R^k_+ \times \R_+\to \R^k_+$ is homogenous of degree 0, and $wx(w,y)$ is strictly increasing in $w$, and satisfies symmetry and negative semi-definite of Slutsky matrix, if and only if it is the conditional input demand function generated by some strictly increasing, quasi-concave production function.
+**Claim: (Integrability)** If a differentiable function $x:\mathbb{R}^k_+ \times \mathbb{R}_+\to \mathbb{R}^k_+$ is homogenous of degree 0, and $wx(w,y)$ is strictly increasing in $w$, and satisfies symmetry and negative semi-definite of Slutsky matrix, if and only if it is the conditional input demand function generated by some strictly increasing, quasi-concave production function.
 
 
 
@@ -832,9 +832,9 @@ $\pi(p,w, \bar w; \bar x) \leq \pi(p,w)$ is true because $\pi(p,w)$ is the maxim
 
 ### Multi Product Firms
 
-**Definition: (Transformation Function)** Given a production set $Y\subset \R^n$ the Transformation Function is $F:Y\to \R$, such that $Y = \{y\in Y|F(y)\leq 0\}$.
+**Definition: (Transformation Function)** Given a production set $Y\subset \mathbb{R}^n$ the Transformation Function is $F:Y\to \mathbb{R}$, such that $Y = \{y\in Y|F(y)\leq 0\}$.
 
-**Definition: (Transformation Frontier)** Given a production set $Y\subset \R^n$ the Transformation Frontier is $F:Y\to \R$, such that $Y = \{y\in Y|F(y)= 0\}$.
+**Definition: (Transformation Frontier)** Given a production set $Y\subset \mathbb{R}^n$ the Transformation Frontier is $F:Y\to \mathbb{R}$, such that $Y = \{y\in Y|F(y)= 0\}$.
 
 **Definition: (Marginal Rate of Transformation)** Given a differentiable transformation function $F$ and a point $y$ on the frontier, the Marginal Rate of Transformation for good i and j is defined as $MRT_{i,j} = \frac{\partial F/\partial y_i}{\partial F/ \partial y_j} = -\frac{dy_j}{dy_i}$.
 
@@ -862,7 +862,7 @@ Suppose at some $y\in Y$ we have $py>0$, Since $Y$ satisfies non-decreasing retu
 - Society admits to the institution of private ownership
 - Principle of voluntary and non-coercive trade is respected
 
-**Assumption: (Consumers’ Behavior)** Agents have complete, transitive, continuous, and strictly convex preference over bundles in $\R^n_+$.
+**Assumption: (Consumers’ Behavior)** Agents have complete, transitive, continuous, and strictly convex preference over bundles in $\mathbb{R}^n_+$.
 
 **Definition: (Barter Exchange Economy)** An Exchange Economy is defined as:
 
@@ -892,11 +892,11 @@ $$
 
 #### Properties of Excess Demand
 
-**Assumption: (Excess Demand)** The utility functions are continuous, strictly increasing and strictly quasi-concave on $\R^n_+$.
+**Assumption: (Excess Demand)** The utility functions are continuous, strictly increasing and strictly quasi-concave on $\mathbb{R}^n_+$.
 
 **Theorem: (Properties of Excess Demand)** Under the above assumption about consumer behavior, we have:
 
-1. $z(p)$ is continuous on $\R^n_+$
+1. $z(p)$ is continuous on $\mathbb{R}^n_+$
 2. $z(p)$ is homogenous of degree zero at $p$
 3. (Walras Law) $pz(p) = 0\space \forall p\gg 0$, i.e. the value of excess demand is always zero.
 
@@ -918,39 +918,39 @@ which is what we want to show. $\square$
 
 **Corollary: (Walras Law)** If there are $n$ markets in total and $n-1$ markets clear, then the last market clears, too.
 
-**Assumption: (Consumer’s Behavior)** The utility functions are continuous, strongly increasing and strictly quasi-concave on $\R^n_+$.
+**Assumption: (Consumer’s Behavior)** The utility functions are continuous, strongly increasing and strictly quasi-concave on $\mathbb{R}^n_+$.
 
 **Theorem: (Utility and Aggregate Demand)** If each consumer’s utility satisfies the assumption above, and if the aggregate endowment of each good is positive, then the aggregate excess demand satisfies the following properties:
 
-1. $z(p)$ is continuous on $\R^n_+$
+1. $z(p)$ is continuous on $\mathbb{R}^n_+$
 2. $pz(p) = 0\space \forall p\gg 0$
-3. If $\{p^m\}$ is a sequence of price vectors in $\R^n_+$ converging to $\bar p \ne 0$, and $\bar p_k = 0$ for some $k$, then for some good $k’$ with $\bar p_k' = 0$ the associated sequence of excess demands for good $k'$ at any price in that sequence, $\{z_{k’}(p^m)\}$, is unbounded above. 
+3. If $\{p^m\}$ is a sequence of price vectors in $\mathbb{R}^n_+$ converging to $\bar p \ne 0$, and $\bar p_k = 0$ for some $k$, then for some good $k’$ with $\bar p_k' = 0$ the associated sequence of excess demands for good $k'$ at any price in that sequence, $\{z_{k’}(p^m)\}$, is unbounded above. 
 
 Proof:
 
 Continuity follows from the continuity of individual demands. Walras Law follows from the individual budget constraint. We only need to show the third property.
 
-Suppose $\bar p$ is a price vector such that $p_k = 0$, we need to find a $k'$ such that property 3 is true. We are going to argue with contradiction. Take a sequence of price vectors $p^m \to \bar p$, suppose that the aggregate excess demand $\{z_{k’}(p^m)\}$ is bounded, then demand $x^{i,m} (p^m, e^i p^m)$ for individual $i$ is bounded. Then there is a converging subsequence $x^{i,m_j} \to x^{i*}$.
+Suppose $\bar p$ is a price vector such that $p_k = 0$, we need to find a $k'$ such that property 3 is true. We are going to argue with contradiction. Take a sequence of price vectors $p^m \to \bar p$, suppose that the aggregate excess demand $\{z_{k’}(p^m)\}$ is bounded, then demand $x^{i,m} (p^m, e^i p^m)$ for individual $i$ is bounded. Then there is a converging subsequence $x^{i,m_j} \to x^{i\star}$.
 
-Now construct another allocation $\hat x^i$ such that $\hat x^i_r = x^{i*}_r$ for $r \neq k$ and  $\hat x^i_k = x^{i*}_k+1$. Then $\bar p \hat x^{i} =\bar p x^{i*} = \bar p e^{i}>0$. But since the utility is strongly increasing, we have $u^i(\hat x^i)>u^i(x^{i*})$.
+Now construct another allocation $\hat x^i$ such that $\hat x^i_r = x^{i\star}_r$ for $r \neq k$ and  $\hat x^i_k = x^{i\star}_k+1$. Then $\bar p \hat x^{i} =\bar p x^{i\star} = \bar p e^{i}>0$. But since the utility is strongly increasing, we have $u^i(\hat x^i)>u^i(x^{i\star})$.
 
-Now because $u^i$ is continuous, there exist a $t \in(0,1)$, such that $u^i(t\hat x^i)>u^i(x^{i*})$ and $\bar p t\hat x^{i} <\bar p x^{i*} = \bar p e^{i}$. Then because as $p^m \to \bar p$, $x^{i,m_j} \to x^{i*}$, there exist a $m$ such that $u^i(t\hat x^i)>u^i(x^{i,m} (p^m, e^i p^m))$ and $p^m t\hat x^{i} <p^m e^{i}$, which is a contradiction to the fact that $x^{i,m} (p^m, e^i p^m)$ is the solution to the maximizing problem of the consumer. $\square$
+Now because $u^i$ is continuous, there exist a $t \in(0,1)$, such that $u^i(t\hat x^i)>u^i(x^{i\star})$ and $\bar p t\hat x^{i} <\bar p x^{i\star} = \bar p e^{i}$. Then because as $p^m \to \bar p$, $x^{i,m_j} \to x^{i\star}$, there exist a $m$ such that $u^i(t\hat x^i)>u^i(x^{i,m} (p^m, e^i p^m))$ and $p^m t\hat x^{i} <p^m e^{i}$, which is a contradiction to the fact that $x^{i,m} (p^m, e^i p^m)$ is the solution to the maximizing problem of the consumer. $\square$
 
 
 
 ### Existence of Equilibrium
 
-**Definition: (Walrasian Equilibrium)** a vector $p^* \in \R^n_+$ is called a Walrasian Equilibrium if $z(p^*) = 0$.
+**Definition: (Walrasian Equilibrium)** a vector $p^\star \in \mathbb{R}^n_+$ is called a Walrasian Equilibrium if $z(p^\star) = 0$.
 
-**Lemma: (Brower’s Fixed Point Theorem)** If $f:S \to S$ is a continuous function mapping from a non-empty, compact and convex subset of $\R^n_+$ to itself, then there is a fixed point $x^*\in S$ such that $f(x^*) = x^*$.
+**Lemma: (Brower’s Fixed Point Theorem)** If $f:S \to S$ is a continuous function mapping from a non-empty, compact and convex subset of $\mathbb{R}^n_+$ to itself, then there is a fixed point $x^\star\in S$ such that $f(x^\star) = x^\star$.
 
 **Theorem: (Aggregate Excess and Walrasian Equilibrium)** Suppose $z(p)$ has the following properties:
 
-1. $z(p)$ is continuous on $\R^n_+$
+1. $z(p)$ is continuous on $\mathbb{R}^n_+$
 2. $pz(p) = 0\space \forall p\gg 0$
-3. If $\{p^m\}$ is a sequence of price vectors in $\R^n_+$ converging to $\bar p \ne 0$, and $\bar p_k = 0$ for some $k$, then for some good $k’$ with $\bar p_k' = 0$ the associated sequence of excess demands for good $k'$ , $\{z_{k’}(p^m)\}$, is unbounded above as $p^m\to \bar p$
+3. If $\{p^m\}$ is a sequence of price vectors in $\mathbb{R}^n_+$ converging to $\bar p \ne 0$, and $\bar p_k = 0$ for some $k$, then for some good $k’$ with $\bar p_k' = 0$ the associated sequence of excess demands for good $k'$ , $\{z_{k’}(p^m)\}$, is unbounded above as $p^m\to \bar p$
 
-Then there is a price vector $p^* \gg 0$ such that $z(p^*) = 0$, i.e. the Walrasian Equilibrium exists.
+Then there is a price vector $p^\star \gg 0$ such that $z(p^\star) = 0$, i.e. the Walrasian Equilibrium exists.
 
 Proof:
 
@@ -978,29 +978,29 @@ Proof:
    $$
    which means for every $\epsilon \in (0,1)$ there is a price vector in $S_\epsilon$ satisfying the above equation. 
 
-2. Now take a sequence of price vectors $\{p^\epsilon\}$ that satisfies the above equation, as $\epsilon $ goes to zero. Since $p^\epsilon \in S_\epsilon \space \forall \epsilon>0$, we have $p^\epsilon \in [0,1]$, which is bounded, there exists a subsequence of $\{p^\epsilon\}$ that converges to a price vector, denoted as $p^*\geq 0$.
+2. Now take a sequence of price vectors $\{p^\epsilon\}$ that satisfies the above equation, as $\epsilon $ goes to zero. Since $p^\epsilon \in S_\epsilon \space \forall \epsilon>0$, we have $p^\epsilon \in [0,1]$, which is bounded, there exists a subsequence of $\{p^\epsilon\}$ that converges to a price vector, denoted as $p^\star\geq 0$.
 
-   Note that $p^*\neq 0$ because its components add up to 1. We claim that $p^* \gg 0$. We argue with contradiction. Suppose there is a $\bar k$ such that $p_\bar k^* = 0$, by property 3 that is given to us in the first place, there is a $k'$ such that $p_{k'}^* = 0$ and when $\epsilon$ goes to zero, $z_{k’}(p^\epsilon)$ is unbounded above.
+   Note that $p^\star\neq 0$ because its components add up to 1. We claim that $p^\star \gg 0$. We argue with contradiction. Suppose there is a $\bar k$ such that $p_\bar k^\star = 0$, by property 3 that is given to us in the first place, there is a $k'$ such that $p_{k'}^\star = 0$ and when $\epsilon$ goes to zero, $z_{k’}(p^\epsilon)$ is unbounded above.
 
    Then $p_{k'}^\epsilon [n\epsilon +\sum_{m =1}^n max\{0,\bar z_m(p^\epsilon)\}] \leq p_{k'}^\epsilon [n\epsilon +n\}] \to 0$, but $\epsilon +max\{0,\bar z_k(p^\epsilon)\} \to 1$, which means the above equation cannot hold, which is a contradiction.
 
-3. Now we find a price vector $p^* \gg 0$. Want to show that $z(p^*) = 0$.
+3. Now we find a price vector $p^\star \gg 0$. Want to show that $z(p^\star) = 0$.
 
    Note that as $\epsilon\to 0$, the above equation becomes:
    $$
-   p_k^* \sum_{m =1}^nmax\{0,\bar z_m(p^*)\} = max\{0,\bar z_k(p^*)\}
+   p_k^\star \sum_{m =1}^nmax\{0,\bar z_m(p^\star)\} = max\{0,\bar z_k(p^\star)\}
    $$
-   Multiply both sides by $z_k(p^*)$ and sum over $k$, we get:
+   Multiply both sides by $z_k(p^\star)$ and sum over $k$, we get:
    $$
-   0 = p^* z(p^*)\sum_{m =1}^nmax\{0,\bar z_m(p^*)\} = \sum_{k =1}^nz_k(p^*) max\{0,\bar z_k(p^*)\}
+   0 = p^\star z(p^\star)\sum_{m =1}^nmax\{0,\bar z_m(p^\star)\} = \sum_{k =1}^nz_k(p^\star) max\{0,\bar z_k(p^\star)\}
    $$
-   by Walras Law (property 2), we have $p^* z(p^*) = 0$. To summary we have:
+   by Walras Law (property 2), we have $p^\star z(p^\star) = 0$. To summary we have:
    $$
-   \sum_{k =1}^nz_k(p^*) max\{0,\bar z_k(p^*)\}=\sum_{k =1}^nz_k(p^*) max\{0,min\{1,  z_k(p^*)\}\} = 0
+   \sum_{k =1}^nz_k(p^\star) max\{0,\bar z_k(p^\star)\}=\sum_{k =1}^nz_k(p^\star) max\{0,min\{1,  z_k(p^\star)\}\} = 0
    $$
-   Suppose for some $k$, we have $z_k(p^*) > 0$, then $\bar z_k(p^*) > 0$ and hence $z_k(p^*)\bar z_k(p^*) > 0$, which means the above equation cannot hold. Hence $z_k(p^*) \leq 0$ for all $k$.
+   Suppose for some $k$, we have $z_k(p^\star) > 0$, then $\bar z_k(p^\star) > 0$ and hence $z_k(p^\star)\bar z_k(p^\star) > 0$, which means the above equation cannot hold. Hence $z_k(p^\star) \leq 0$ for all $k$.
 
-   Now remember the Walras Law, $\sum_{k=1}^n p^*_kz_k(p^*) = 0$ we conclude that $z_k(p^*) = 0$ for all $k$, i.e. $z(p^*) = 0$. $\square$
+   Now remember the Walras Law, $\sum_{k=1}^n p^\star_kz_k(p^\star) = 0$ we conclude that $z_k(p^\star) = 0$ for all $k$, i.e. $z(p^\star) = 0$. $\square$
 
 **Corollary: (Existence of Equilibrium)** The Walrasian Equilibrium exists.
 
@@ -1018,7 +1018,7 @@ Proof:
 
 **Assumption: (Firm)** The firms in the model satisfy the following assumptions:
 
-1. (Nonnegative Profits) $0\in Y^j \subset\R^n$
+1. (Nonnegative Profits) $0\in Y^j \subset\mathbb{R}^n$
 2. (Inputs are required, imposing continuity) $Y^j$ is closed and bounded
 3. (Convexity) $Y^j$ is strictly convex, ruling out constant or increasing return to scale technology, and guarantees the existence of profit maximizing solutions.
 
@@ -1026,7 +1026,7 @@ Proof:
 $$
 \pi^j(p) = max_{y^j\in Y^j}p y^j
 $$
-**Note:** Under the assumption above, for any given price vector $p\gg0$ the solution of the problem is unique, denoted by $y^j(p)$, which is continuous on $\R^n_+$ and the profit function $\pi^j(p) = py^j(p)$ is well defined.
+**Note:** Under the assumption above, for any given price vector $p\gg0$ the solution of the problem is unique, denoted by $y^j(p)$, which is continuous on $\mathbb{R}^n_+$ and the profit function $\pi^j(p) = py^j(p)$ is well defined.
 
 #### Aggregate Supply
 
@@ -1043,7 +1043,7 @@ Proof:
 
 #### Aggregate Demand
 
-**Assumption: (Consumers’ Behavior)** Agents have complete, transitive, continuous, and strictly convex preference over bundles in $\R^n_+$.
+**Assumption: (Consumers’ Behavior)** Agents have complete, transitive, continuous, and strictly convex preference over bundles in $\mathbb{R}^n_+$.
 
 **Definition: (Consumer’s Problem)** Consumer $i$ choose $x^i$ to solve:
 $$
@@ -1053,11 +1053,11 @@ Note: If $y^j$ and $u^i$ satisfies the assumptions above, then the solution of t
 
 #### Existence of the Equilibrium
 
-**Definition: (Walrasian Equilibrium)** a vector $p^* \in \R^n_+$ is called a Walrasian Equilibrium if 
+**Definition: (Walrasian Equilibrium)** a vector $p^\star \in \mathbb{R}^n_+$ is called a Walrasian Equilibrium if 
 $$
-z(p^*) = \sum_{i\in I}(x^i(p^*)-e^i) - \sum_{j\in J} y^j(p^*)= 0
+z(p^\star) = \sum_{i\in I}(x^i(p^\star)-e^i) - \sum_{j\in J} y^j(p^\star)= 0
 $$
-**Theorem: (Existence of The Equilibrium)** Consider the economy $(u^i,e^i,\theta^{ij},y^j)$ with $i\in I$ and $j\in J$. If All the assumptions are satisfied, and $y+\sum_{i\in I }ei \gg 0$ for some production vector $y \in \sum_{j\in J}y^j$, then there exists at least one price vector $p^*\gg 0$ such that $z(p^*) =0$.
+**Theorem: (Existence of The Equilibrium)** Consider the economy $(u^i,e^i,\theta^{ij},y^j)$ with $i\in I$ and $j\in J$. If All the assumptions are satisfied, and $y+\sum_{i\in I }ei \gg 0$ for some production vector $y \in \sum_{j\in J}y^j$, then there exists at least one price vector $p^\star\gg 0$ such that $z(p^\star) =0$.
 
 Proof:
 
@@ -1067,9 +1067,9 @@ We will verify that $z(p)$ satisfies the three properties of the Equilibrium Exi
 
 2. Walras Law is still true because of budget balance.
 
-3. We want to show that if $p^m \to \bar p $,  and $\exist k$, such that $\bar p_k = 0$, then  $\exist k'$ with  $\bar p_{k'} = 0$, such that the excess demand of $k'$, $z_{k'}(p^m)$  is unbounded as $p^m \to p^*$.
+3. We want to show that if $p^m \to \bar p $,  and $\exist k$, such that $\bar p_k = 0$, then  $\exist k'$ with  $\bar p_{k'} = 0$, such that the excess demand of $k'$, $z_{k'}(p^m)$  is unbounded as $p^m \to p^\star$.
 
-   If there is some consumers with strictly positive income at the limit price $\bar p$, then this person’s income will remain to be positive at $p^m$ as $p^m \to p^*$ due to the fact that $m^i(p)$ is continuous. This person’s demand for good $k$ will be unbounded above as  $p_k^m \to 0 $.
+   If there is some consumers with strictly positive income at the limit price $\bar p$, then this person’s income will remain to be positive at $p^m$ as $p^m \to p^\star$ due to the fact that $m^i(p)$ is continuous. This person’s demand for good $k$ will be unbounded above as  $p_k^m \to 0 $.
 
    Hence it suffices to show that there is some consumers with strictly positive income at the limit price $\bar p$. 
    
@@ -1090,7 +1090,7 @@ We will verify that $z(p)$ satisfies the three properties of the Equilibrium Exi
 
 **Definition: (Feasible Allocation)** The Feasible Set is defined as $F(e) = \{\sum_{i\in I} x^i= \sum_{i\in I} e^i \}$.
 
-**Definition: (Pareto Optimality)** A feasible allocation $x^*\in F(e)$ is Pareto Efficient if there is no other feasible allocation such that $x^i \succsim_i x^{*i}$ for all $i$, and there exists a $j$ such that $x^j \succ_j x^{*j}$.
+**Definition: (Pareto Optimality)** A feasible allocation $x^\star\in F(e)$ is Pareto Efficient if there is no other feasible allocation such that $x^i \succsim_i x^{*i}$ for all $i$, and there exists a $j$ such that $x^j \succ_j x^{*j}$.
 
 **Definition: (Blocking Coalition)** Let $S\subset I$ be a coalition of consumers, We say $S$ blocks allocation $x$ if there is another allocation $x'$ such that
 
@@ -1111,7 +1111,7 @@ Suppose not. Then the allocation is not Pareto Optimal, so there is is another f
 
 **Definition: (Feasible Allocation in Production Economy)** An allocation $(x,y)$ is feasible if $\sum_{i\in I} x^i \leq \sum_{i\in I} e^i + \sum_{j\in J} y^j$.
 
-**Definition: (Pareto Optimality in Production Economy)** A feasible allocation $(x^*,y^*)$ is Pareto Efficient if there is no other feasible allocation $(x,y)$ such that $x^i \succsim_i x^{*i}$ for all $i$, and there exists a $j$ such that $x^j \succ_j x^{*j}$.
+**Definition: (Pareto Optimality in Production Economy)** A feasible allocation $(x^\star,y^\star)$ is Pareto Efficient if there is no other feasible allocation $(x,y)$ such that $x^i \succsim_i x^{*i}$ for all $i$, and there exists a $j$ such that $x^j \succ_j x^{*j}$.
 
 **Definition: (Blocking Coalition in Production Economy)** Let $S\subset I$ be a coalition of consumers, We say $S$ blocks allocation $(x,y)$ if there is another allocation $(x',y')$ such that
 
@@ -1123,20 +1123,20 @@ Suppose not. Then the allocation is not Pareto Optimal, so there is is another f
 $$
 U = \{(\bar u_1,..., \bar u_I)\in \R^I|u_i(x^i)\geq \bar u_i \space \forall i\in I \space \& \space x \space feasible \}
 $$
-**Definition: (Pareto Optimality Alternative Definition)** A feasible allocation $x^*$ is Pareto Efficient if $\{\bar u\in U|\bar u \geq u^*\} = \{u^*\}$ where $u^* = (u_1(x_1^*), ..., u_I(x_I^*))$.
+**Definition: (Pareto Optimality Alternative Definition)** A feasible allocation $x^\star$ is Pareto Efficient if $\{\bar u\in U|\bar u \geq u^\star\} = \{u^\star\}$ where $u^\star = (u_1(x_1^\star), ..., u_I(x_I^\star))$.
 
 **Definition: (Boundary)** Let $\partial U$ denote the Boundary of the Utility Possibility Set, also known as the utility frontier: $\{u\in U|\nexists u'\in U, u'>u\}$.
 
-**Theorem: (Pareto Optimality Alternative Definition)** A feasible allocation $x^*$ is Pareto Optimal if and only if $u^* = (u_1^*(x_1^*),..., u_I^*x(_I^*)) \in \partial U$.
+**Theorem: (Pareto Optimality Alternative Definition)** A feasible allocation $x^\star$ is Pareto Optimal if and only if $u^\star = (u_1^\star(x_1^\star),..., u_I^\star (x_I^\star)) \in \partial U$.
 
 Proof:
 
-1. Let $x^*$ be a Pareto Optimal solution, suppose $u(x^*) \notin \partial U$, then there exists $\bar u \in U$ such that $\bar u > u^*$, which implies that $x^*$ is not Pareto Optimal.
-2. Let $u(x^*) \in \partial U$,  suppose  $x^*$ is not Pareto Optimal, then there exists $\bar u \in U$ such that $\bar u > u^*$, then $u(x^*) \notin \partial U$, contradiction. $\square$
+1. Let $x^\star$ be a Pareto Optimal solution, suppose $u(x^\star) \notin \partial U$, then there exists $\bar u \in U$ such that $\bar u > u^\star$, which implies that $x^\star$ is not Pareto Optimal.
+2. Let $u(x^\star) \in \partial U$,  suppose  $x^\star$ is not Pareto Optimal, then there exists $\bar u \in U$ such that $\bar u > u^\star$, then $u(x^\star) \notin \partial U$, contradiction. $\square$
 
 #### Solve for Pareto Optimality
 
-**Theorem: (Solution of Pareto Optimality)** let the utility functions $u_i$, for $i\in I $, be continuous. Suppose $u_1$ is strongly increasing, then $x^*$ is Pareto Optimal if and only if it’s a solution to the following problem:
+**Theorem: (Solution of Pareto Optimality)** let the utility functions $u_i$, for $i\in I $, be continuous. Suppose $u_1$ is strongly increasing, then $x^\star$ is Pareto Optimal if and only if it’s a solution to the following problem:
 $$
 max\{u_1(x^1)\} \space s.t.\space u_i(x^i)\geq\bar u_i \space \& \space \sum_{i\in I} x^i \leq \sum_{i\in I} e^i + \sum_{j\in J} y^j
 $$
@@ -1144,17 +1144,17 @@ for some $(\bar u_2, ..., \bar u_i) \in U_{-1}$.
 
 Proof:
 
-1. Want to show that the Pareto Optimal allocation solves the problem. By definition, if we set $u_i =  u_i^*$ for $i = 2,...,I$, then $u_1^*$ is the maximum utility we could get to give to person 1, hence it’s a solution.
+1. Want to show that the Pareto Optimal allocation solves the problem. By definition, if we set $u_i =  u_i^\star$ for $i = 2,...,I$, then $u_1^\star$ is the maximum utility we could get to give to person 1, hence it’s a solution.
 
-2. Want to show the solution to the problem is Pareto Optimal. Let $x^*$ be the solution, suppose that is not Pareto Optimal, then there is another allocation, $\tilde x$, which is feasible and satisfying $u_i(\tilde x^i) \geq u_i(x^{i*})$ for all $i$ and there is one $j$ such that $u_j(\tilde x^j) > u_j(x^{j*})$.
+2. Want to show the solution to the problem is Pareto Optimal. Let $x^\star$ be the solution, suppose that is not Pareto Optimal, then there is another allocation, $\tilde x$, which is feasible and satisfying $u_i(\tilde x^i) \geq u_i(x^{i\star})$ for all $i$ and there is one $j$ such that $u_j(\tilde x^j) > u_j(x^{j\star})$.
 
-   Case 1: when  $u_1(\tilde x^1) > u_1(x^{1*})$, then automatically $x^* $ is not the solution, contradiction.
+   Case 1: when  $u_1(\tilde x^1) > u_1(x^{1\star})$, then automatically $x^\star $ is not the solution, contradiction.
 
-   Case 2: when $u_k(\tilde x^k) > u_1(x^{k*})$ for some $k\neq1$, and suppose $\tilde x^k>0$. Without loss of generosity, we could assume the consumption of the first good of consumer $k$ is greater than zero, i.e. $\tilde x_1^k >0$. Now let $w\in \R^n$ be a vector with $w_1 = 1$ and $w_m = 0$ for $m = 2,...,n$, i.e. $w = (1,0,0,...0)$. by continuity of $u_k$, there is a $\epsilon >0$ such that $u_k(\tilde x^k -\epsilon w) > u_k(x^{k*})$. 
+   Case 2: when $u_k(\tilde x^k) > u_1(x^{k\star})$ for some $k\neq1$, and suppose $\tilde x^k>0$. Without loss of generosity, we could assume the consumption of the first good of consumer $k$ is greater than zero, i.e. $\tilde x_1^k >0$. Now let $w\in \mathbb{R}^n$ be a vector with $w_1 = 1$ and $w_m = 0$ for $m = 2,...,n$, i.e. $w = (1,0,0,...0)$. by continuity of $u_k$, there is a $\epsilon >0$ such that $u_k(\tilde x^k -\epsilon w) > u_k(x^{k\star})$. 
 
-   Now consider another bundle $\hat x$, where $\hat x^1 = \tilde x^1 +\epsilon w$, $\hat x^i = \tilde x^i$ for $i\neq {1,k}$ and $\hat x^k = \tilde x^k -\epsilon w$. By strongly monotonicity, $u_1(\hat x_1) >u_1(x^*)$ and $\hat x$ is still feasible and everyone else is getting at least as good as $x^*$. So $x^*$ is not the solution, contradiction.
+   Now consider another bundle $\hat x$, where $\hat x^1 = \tilde x^1 +\epsilon w$, $\hat x^i = \tilde x^i$ for $i\neq {1,k}$ and $\hat x^k = \tilde x^k -\epsilon w$. By strongly monotonicity, $u_1(\hat x_1) >u_1(x^\star)$ and $\hat x$ is still feasible and everyone else is getting at least as good as $x^\star$. So $x^\star$ is not the solution, contradiction.
 
-   Case 3: when $u_k(\tilde x^k) > u_k(x^{k*})$ for some $k\neq1$, and suppose  $\tilde x^k=0$. If $x^{k*} = 0$, then the equation before would become $u_k(0) > u_k(0)$, which is not possible. Since we know $x^{k*} \geq0$, this means the only possible case is $x^{k*} > 0$. Now we can define a new allocation $\hat x$, where $\hat x^1 = x^{1*} +x^{k*}$, $\hat x^i = x^{i*}$ for $i\neq {1,k}$ and $\hat x^k = 0$. Then by strongly monotonicity, $u_1(\hat x_1) >u_1(x^*)$ and $\hat x$ is still feasible and everyone else is getting at least as good as $x^*$. So $x^*$ is not the solution, contradiction. $\square$
+   Case 3: when $u_k(\tilde x^k) > u_k(x^{k\star})$ for some $k\neq1$, and suppose  $\tilde x^k=0$. If $x^{k\star} = 0$, then the equation before would become $u_k(0) > u_k(0)$, which is not possible. Since we know $x^{k\star} \geq0$, this means the only possible case is $x^{k\star} > 0$. Now we can define a new allocation $\hat x$, where $\hat x^1 = x^{1\star} +x^{k\star}$, $\hat x^i = x^{i\star}$ for $i\neq {1,k}$ and $\hat x^k = 0$. Then by strongly monotonicity, $u_1(\hat x_1) >u_1(x^\star)$ and $\hat x$ is still feasible and everyone else is getting at least as good as $x^\star$. So $x^\star$ is not the solution, contradiction. $\square$
 
 #### Social Planner
 
@@ -1163,25 +1163,25 @@ $$
 max \space \{U(x) = \sum_{i\in I } \lambda_i U_i(x^i)\} \space s.t.\space \sum_{i\in I }x^i \leq \sum_{i\in I }e^i +\sum_{j\in J }y^i \space x^i \gg 0
 $$
 
-**Theorem: (Sufficient Condition for Pareto Optimality)** If $x^*$ is a solution to the social planner’s problem, then $x^*$ is Pareto Optimal.
+**Theorem: (Sufficient Condition for Pareto Optimality)** If $x^\star$ is a solution to the social planner’s problem, then $x^\star$ is Pareto Optimal.
 
 Proof:
 
-Let $x^*$ to be a solution to the social planner’s problem, and suppose $x^*$ is not Pareto Optimal. Then there exists another allocation $\tilde x$ such that  $u_i(\tilde x^i) \geq u_i(x^{i*})$ for all $i$, and there exists a $j$ such that $u_j(\tilde x^j) > u_j(x^{j*})$. Then multiply each side by $\lambda_i$ and add up all the equations, we will get $\sum_{i\in I } \lambda_i u_i(\tilde x^i > \sum_{i\in I } \lambda_i u_i(x^{i*})$, hence $x^*$ is not the solution to the above problem, Contradiction. $\square$
+Let $x^\star$ to be a solution to the social planner’s problem, and suppose $x^\star$ is not Pareto Optimal. Then there exists another allocation $\tilde x$ such that  $u_i(\tilde x^i) \geq u_i(x^{i\star})$ for all $i$, and there exists a $j$ such that $u_j(\tilde x^j) > u_j(x^{j\star})$. Then multiply each side by $\lambda_i$ and add up all the equations, we will get $\sum_{i\in I } \lambda_i u_i(\tilde x^i > \sum_{i\in I } \lambda_i u_i(x^{i\star})$, hence $x^\star$ is not the solution to the above problem, Contradiction. $\square$
 
 **Lemma: (Convexity)** Let $u_i$ be concave, then the utility possibility set is convex.
 
-**Lemma: (Supporting Hyperplane Theorem)** Let $Z \subset \R^n$ be convex, $a\in R^n$ be a point that is not in the interior of $Z$, then there exists a vector $p\in \R^n\backslash\{0\}$ such that $pa\geq pz \space \forall z\in Z$.
+**Lemma: (Supporting Hyperplane Theorem)** Let $Z \subset \mathbb{R}^n$ be convex, $a\in R^n$ be a point that is not in the interior of $Z$, then there exists a vector $p\in \mathbb{R}^n\backslash\{0\}$ such that $pa\geq pz \space \forall z\in Z$.
 
-**Theorem: (Necessary Condition for Social Planner’s Problem)** Let $u_i$ be concave, $x^*$ be Pareto Optimal. There exists a vector $\lambda \in \R^I_+\backslash\{0\}$, such that $x^*$ is a solution to the social planner’s problem.
+**Theorem: (Necessary Condition for Social Planner’s Problem)** Let $u_i$ be concave, $x^\star$ be Pareto Optimal. There exists a vector $\lambda \in \mathbb{R}^I_+\backslash\{0\}$, such that $x^\star$ is a solution to the social planner’s problem.
 
 Proof:
 
-Suppose $x^*$ is Pareto Optimal. Then $u^* = (u_1(x^{1*}),...,u_1(x^{1*}))$ is on the boundary of the utility possibility set. By Convexity Lemma, $U$ is a convex set. By Supporting Hyperplane Theorem, there exists $\lambda \in \R^I\backslash\{0\}$, such that $\lambda u^* \geq \lambda u \space \forall u\in U$, hence $\sum_{i\in I }\lambda_i u^{i*} \geq \sum_{i\in I }\lambda_i u^{i}$. 
+Suppose $x^\star$ is Pareto Optimal. Then $u^\star = (u_1(x^{1\star}),...,u_1(x^{1\star}))$ is on the boundary of the utility possibility set. By Convexity Lemma, $U$ is a convex set. By Supporting Hyperplane Theorem, there exists $\lambda \in \mathbb{R}^I\backslash\{0\}$, such that $\lambda u^\star \geq \lambda u \space \forall u\in U$, hence $\sum_{i\in I }\lambda_i u^{i\star} \geq \sum_{i\in I }\lambda_i u^{i}$. 
 
 It remains to show that $\lambda \geq 0$. Suppose not, then there is a $k$ such that $\lambda_k <0$. Then
 $$
-\lambda u^* = \sum_{i\in I }\lambda_i u^{i*} \geq \sum_{i\neq k }\lambda_i u^{i} +\lambda_k u^{k}
+\lambda u^\star = \sum_{i\in I }\lambda_i u^{i\star} \geq \sum_{i\neq k }\lambda_i u^{i} +\lambda_k u^{k}
 $$
 But this is impossible to hold since $u^{k}$ can goes to negative infinity. When it does so, and $\lambda_k <0$, the right hand side of the equation will goes to positive infinity, but the left hand side stays finite, so we get a contradiction. $\square $
 
@@ -1189,29 +1189,29 @@ But this is impossible to hold since $u^{k}$ can goes to negative infinity. When
 
 ### First Welfare Theorem
 
-**Theorem: (Local Non-satiation)** Suppose the preference is locally non-satiated, $x^{i*}$ is defined as the solution to the maximizing problem of the consumer given a budget constraint $px^i \leq m_i(p)$. Then we have:
+**Theorem: (Local Non-satiation)** Suppose the preference is locally non-satiated, $x^{i\star}$ is defined as the solution to the maximizing problem of the consumer given a budget constraint $px^i \leq m_i(p)$. Then we have:
 $$
-(x^i \succsim_i x^{i*})\Rightarrow (px^i \geq m_i(p)) \\
-(x^i \succ_i x^{i*})\Rightarrow (px^i > m_i(p))
+(x^i \succsim_i x^{i\star})\Rightarrow (px^i \geq m_i(p)) \\
+(x^i \succ_i x^{i\star})\Rightarrow (px^i > m_i(p))
 $$
 Proof:
 
-If $x^i \succsim_i x^{i*}$ and suppose $px^i < m_i(p)$, then by local non-satiation there exists another bundle $\tilde x^i \in B_\epsilon(x^i)$ such that $u_i(\tilde x^i) >u_i(x^{i*})$ and  $p\tilde x^i < m_i(p)$. Hence $x^{i*}$ is not the solution to the maximizing problem, contradiction.
+If $x^i \succsim_i x^{i\star}$ and suppose $px^i < m_i(p)$, then by local non-satiation there exists another bundle $\tilde x^i \in B_\epsilon(x^i)$ such that $u_i(\tilde x^i) >u_i(x^{i\star})$ and  $p\tilde x^i < m_i(p)$. Hence $x^{i\star}$ is not the solution to the maximizing problem, contradiction.
 
-If $x^i \succ_i x^{i*}$ and suppose $px^i \leq m_i(p)$, then  $x^{i*}$ is not the solution to the maximizing problem, contradiction. $\square$
+If $x^i \succ_i x^{i\star}$ and suppose $px^i \leq m_i(p)$, then  $x^{i\star}$ is not the solution to the maximizing problem, contradiction. $\square$
 
-**Theorem: (First Welfare Theorem)** Suppose that each consumer’s preference are locally non-satiated, then for any allocation $(x^*,y^*)$ that forms a Walrasian Equilibrium with some price vector $p^*$ is Pareto Optimal.
+**Theorem: (First Welfare Theorem)** Suppose that each consumer’s preference are locally non-satiated, then for any allocation $(x^\star,y^\star)$ that forms a Walrasian Equilibrium with some price vector $p^\star$ is Pareto Optimal.
 
 Proof:
 
-Suppose an allocation $(x^*,y^*)$ that forms a Walrasian Equilibrium with some price vector $p^*$ is not Pareto Optimal. Then there is another feasible allocation $(x,y)$ such that $x^i \succsim_i x^{i*}\space \forall i\in I $, and $\exist i' \space x^{i'} \succ_{i'} x^{i'*}$. by local non-satiation, we have $px^i \geq m_i(p) \space \forall i\in I$ and $px^{i'} > m_{i'}(p)$. If we combine them, we can get:
+Suppose an allocation $(x^\star,y^\star)$ that forms a Walrasian Equilibrium with some price vector $p^\star$ is not Pareto Optimal. Then there is another feasible allocation $(x,y)$ such that $x^i \succsim_i x^{i\star}\space \forall i\in I $, and $\exist i' \space x^{i'} \succ_{i'} x^{i'*}$. by local non-satiation, we have $px^i \geq m_i(p) \space \forall i\in I$ and $px^{i'} > m_{i'}(p)$. If we combine them, we can get:
 $$
-\sum_{i\in I} p^*x^i > \sum_{i\in I} p^*e^i +\sum_{i\in I} \sum_{j\in J} \theta^{ij} p^*y^{j*} = \sum_{i\in I} p^*e^i + \sum_{j\in J} (\sum_{i\in I}\theta^{ij}) p^*y^{j*} \\
-=\sum_{i\in I} p^*e^i + \sum_{j\in J} p^*y^{j*}
+\sum_{i\in I} p^\star x^i > \sum_{i\in I} p^\star e^i +\sum_{i\in I} \sum_{j\in J} \theta^{ij} p^\star y^{j\star} = \sum_{i\in I} p^\star e^i + \sum_{j\in J} (\sum_{i\in I}\theta^{ij}) p^\star  y^{j\star} \\
+=\sum_{i\in I} p^\star e^i + \sum_{j\in J} p^\star y^{j\star}
 $$
-Since $y^{j*}$ is the solution to the profit maximization problem of the firm, we have $\sum_{j\in J} p^*y^{j*} \geq \sum_{j\in J} p^*y^{j}$ for any $j$. Combine this with the above equation, we have:
+Since $y^{j\star}$ is the solution to the profit maximization problem of the firm, we have $\sum_{j\in J} p^\star y^{j\star} \geq \sum_{j\in J} p^\star y^{j}$ for any $j$. Combine this with the above equation, we have:
 $$
-\sum_{i\in I} p^*x^i >\sum_{i\in I} p^*e^i + \sum_{j\in J} p^*y^{j*} >\sum_{i\in I} p^*e^i +\sum_{j\in J} p^*y^{j}
+\sum_{i\in I} p^\star x^i >\sum_{i\in I} p^\star e^i + \sum_{j\in J} p^\star y^{j\star} >\sum_{i\in I} p^\star e^i +\sum_{j\in J} p^\star y^{j}
 $$
 which is impossible if the feasible condition holds. Hence we get a contradiction. $\square$
 
@@ -1223,9 +1223,9 @@ which is impossible if the feasible condition holds. Hence we get a contradictio
 
 Proof:
 
-Suppose not, and let $(x^*, y^*)$ and $p^*$ be a Walrasian Equilibrium Allocation, which is blocked by a subset $S\subset I$, then we have $x^i \succsim_i x^{i*}$ for all $i\in S$ and there exists $i'$ such that $x^{i'} \succ_{i'} x^{{i'}*}$, and $\sum_{i\in S} x^i \leq \sum_{i \in S} e^i + \sum_{i \in S} \sum_{j \in J} \theta^{ij} y^j$. Since we have local non-satiation, by the Local Non-satiation Theorem, $p^*x^i \geq p^*x^{i*} = p^*e^i +\sum_j \theta^{ij} p^*y^{*j} \space \forall i \in S$ and $p^*x^{i'} > p^*e^{i'} +\sum_{j\in J} \theta^{{i'}j} p^*y^{*j}$. Now since $y^*$ is the solution to the profit maximization problem, at price $p^*$ we have $p^*y^{*j}\geq p^*y^{j}$. Combine them we can get:
+Suppose not, and let $(x^\star, y^\star)$ and $p^\star$ be a Walrasian Equilibrium Allocation, which is blocked by a subset $S\subset I$, then we have $x^i \succsim_i x^{i\star}$ for all $i\in S$ and there exists $i'$ such that $x^{i'} \succ_{i'} x^{{i'}*}$, and $\sum_{i\in S} x^i \leq \sum_{i \in S} e^i + \sum_{i \in S} \sum_{j \in J} \theta^{ij} y^j$. Since we have local non-satiation, by the Local Non-satiation Theorem, $p^\star x^i \geq p^\star x^{i\star} = p^\star e^i +\sum_j \theta^{ij} p^\star y^{*j} \space \forall i \in S$ and $p^\star x^{i'} > p^\star e^{i'} +\sum_{j\in J} \theta^{{i'}j} p^\star y^{*j}$. Now since $y^\star$ is the solution to the profit maximization problem, at price $p^\star$ we have $p^\star y^{*j}\geq p^\star y^{j}$. Combine them we can get:
 $$
-\sum_{i\in S}p^*x^{i} > \sum_{i\in S}p^*e^{i} +p^*\sum_{j\in J} \sum_{i\in S}\theta^{{i}j} y^j
+\sum_{i\in S}p^\star x^{i} > \sum_{i\in S}p^\star e^{i} +p^\star\sum_{j\in J} \sum_{i\in S}\theta^{{i}j} y^j
 $$
 But this cannot hold when feasibility is satisfied. Contradiction. $\square$
 
@@ -1233,59 +1233,59 @@ But this cannot hold when feasibility is satisfied. Contradiction. $\square$
 
 ### Second Welfare Theorem
 
-**Definition: (Equilibrium with Transfers)** Given an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, an allocation $(x^*, y^*)$ and a price vector $p^*$ constitute an equilibrium with transfers if there are some wealth levels $w = (w_1,...w_I)$ with $\sum_{i\in I }w_i = p^* e+\sum_{j\in J} p^* y^j$ where $y^{j*}$ solves the profit maximization problem, and for each $i$, $x^*$ solves the utility maximizing problem with the wealth level assigned to them, and the feasible condition holds, i.e. we have $\sum_{i\in I} x^{i*} \leq \sum_{i \in I} e^{i*} + \sum_{j \in J} y^{j*}$.
+**Definition: (Equilibrium with Transfers)** Given an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, an allocation $(x^\star, y^\star)$ and a price vector $p^\star$ constitute an equilibrium with transfers if there are some wealth levels $w = (w_1,...w_I)$ with $\sum_{i\in I }w_i = p^\star e+\sum_{j\in J} p^\star y^j$ where $y^{j\star}$ solves the profit maximization problem, and for each $i$, $x^\star$ solves the utility maximizing problem with the wealth level assigned to them, and the feasible condition holds, i.e. we have $\sum_{i\in I} x^{i\star} \leq \sum_{i \in I} e^{i\star} + \sum_{j \in J} y^{j\star}$.
 
-**Definition: (Income Transfer)** Define the Income Transfer of individual $i$ as $T_i = w_i - [p^*e_i+p^*\sum_{j \in J} \theta^{ij}y^{j*}]$.
+**Definition: (Income Transfer)** Define the Income Transfer of individual $i$ as $T_i = w_i - [p^\star e_i+p^\star\sum_{j \in J} \theta^{ij}y^{j\star}]$.
 
-**Definition: (Quasi-Equilibrium)** Given an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, an allocation $(x^*, y^*)$ and a price vector $p^*$ constitute a Quasi-Equilibrium with transfers if there are some wealth levels $w = (w_1,...w_I)$ with $\sum_{i\in I }w_i = p^* e+\sum_{j\in J} p^* y^j$ such that:
+**Definition: (Quasi-Equilibrium)** Given an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, an allocation $(x^\star, y^\star)$ and a price vector $p^\star$ constitute a Quasi-Equilibrium with transfers if there are some wealth levels $w = (w_1,...w_I)$ with $\sum_{i\in I }w_i = p^\star e+\sum_{j\in J} p^\star y^j$ such that:
 
-1. $\forall j \in J, \space p^*y^j \leq p^*y^{j*} $ for all $y^j\in Y^j$
-2. $\forall i \in I, \space x^i \succ_i x^{i*} $ implies that $p^*x^i \geq w_i $
-3. Feasibility is still true, i.e. $\sum_{i\in I} x^{i*} \leq \sum_{i \in I} e^{i*} + \sum_{j \in J} y^{j*}$
+1. $\forall j \in J, \space p^\star y^j \leq p^\star y^{j\star} $ for all $y^j\in Y^j$
+2. $\forall i \in I, \space x^i \succ_i x^{i\star} $ implies that $p^\star x^i \geq w_i $
+3. Feasibility is still true, i.e. $\sum_{i\in I} x^{i\star} \leq \sum_{i \in I} e^{i\star} + \sum_{j \in J} y^{j\star}$
 
 **Note:** The Definition of Quasi-Equilibrium will eliminate the problem of boundary solutions. Convexity ensures the existence of a hyperplane that support the better-than set.
 
-**Lemma: (Separating Hyperplane Theorem)** If $A$ and $B$ are two disjoint convex subset of $\R^n$, then there exist a vector $p$, such that $pz\geq r$ for all $z \in A$, and $pz\leq r$ for all $z \in B$.
+**Lemma: (Separating Hyperplane Theorem)** If $A$ and $B$ are two disjoint convex subset of $\mathbb{R}^n$, then there exist a vector $p$, such that $pz\geq r$ for all $z \in A$, and $pz\leq r$ for all $z \in B$.
 
-**Theorem: (Second Welfare Theorem)** Consider an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, we assume that $Y^j$ are convex for all $j\in J $, the preferences are convex and locally non-satiated. for all $i \in I$, then for each Pareto Optimal allocation $(x^*, y^*)$, there exists a price vector $p^* \neq 0$, such that $(x^*, y^*)$ forms a Quasi-Equilibrium with transfers.
+**Theorem: (Second Welfare Theorem)** Consider an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, we assume that $Y^j$ are convex for all $j\in J $, the preferences are convex and locally non-satiated. for all $i \in I$, then for each Pareto Optimal allocation $(x^\star, y^\star)$, there exists a price vector $p^\star \neq 0$, such that $(x^\star, y^\star)$ forms a Quasi-Equilibrium with transfers.
 
 Proof:
 
 1. Aggregation
 
-   Start with a Pareto Optimal allocation $(x^*, y^*)$, define the strictly-better-than sets as $V_i = \{x^i \in \R^n| x^i \succ_i x^{i*}\}$, and define $V = \sum_{i\in I} V_i$. Since we have that preferences are convex, which means for any two bundles $x'$ and $x''$, suppose $x' \succsim_ix''$, then for any $\theta \in [0,1]$, we have $\theta x'+(1-\theta) x''\succsim_ix''$,  i.e. $V_i$ are convex. Take the sum of finitely many convex set and we will still get a convex set, so $V$ is also convex.
+   Start with a Pareto Optimal allocation $(x^\star, y^\star)$, define the strictly-better-than sets as $V_i = \{x^i \in \mathbb{R}^n| x^i \succ_i x^{i\star}\}$, and define $V = \sum_{i\in I} V_i$. Since we have that preferences are convex, which means for any two bundles $x'$ and $x''$, suppose $x' \succsim_ix''$, then for any $\theta \in [0,1]$, we have $\theta x'+(1-\theta) x''\succsim_ix''$,  i.e. $V_i$ are convex. Take the sum of finitely many convex set and we will still get a convex set, so $V$ is also convex.
 
-   Now we aggregate all the firms and define the aggregate production set as $Y = \sum_{j\in J}Y^j = \{\sum_{j\in J}y^j\in \R^n|y^j\in Y^j \space \forall j\in J\}$, and the set of attainable consumption bundles as $Y+\{e\}$. Since  $Y^j$ are convex, we can conclude that $Y$ is also convex, and so is $Y+\{e\}$.
+   Now we aggregate all the firms and define the aggregate production set as $Y = \sum_{j\in J}Y^j = \{\sum_{j\in J}y^j\in \mathbb{R}^n|y^j\in Y^j \space \forall j\in J\}$, and the set of attainable consumption bundles as $Y+\{e\}$. Since  $Y^j$ are convex, we can conclude that $Y$ is also convex, and so is $Y+\{e\}$.
 
 2. Separation
 
-   Now want to show that $(Y+{e}) \cap V = \varnothing $. Because $(x^*, y^*)$ is Pareto Optimal, this must be true, otherwise there will exist a $x^{**}$ in the intersection area such that $x^{i**} \succ_i x^{i*}$, which is still feasible, contradicting to the fact that $(x^*, y^*)$ is Pareto Optimal.
+   Now want to show that $(Y+{e}) \cap V = \varnothing $. Because $(x^\star, y^\star)$ is Pareto Optimal, this must be true, otherwise there will exist a $x^{**}$ in the intersection area such that $x^{i\star\star} \succ_i x^{i\star}$, which is still feasible, contradicting to the fact that $(x^\star, y^\star)$ is Pareto Optimal.
 
    Now $Y+{e}$ and $V$ are two convex and disjoint set, by the Separating Hyperplane Theorem, there exists a vector $p\neq 0$, such that $pz\geq r$ for all $z\in V$ and $pz\leq r$ for all $z\in Y+\{e\}$.
 
-   We claim that if $x_i \succsim_i x_i^*$ for all $i$, then $p x \geq r$. Take any  $x_i \succsim_i x_i^*$, by local non-satiation, there exists $\hat x_i \in B_\epsilon(x_i)$ such that $\hat x_i \succ_i x_i^*$, hence $\hat x_i \in V_i$ and $\sum_{i\in I}\hat x_i \in V$. So $p \sum_{i\in I}\hat x_i \geq r$ by the separation. Now take a sequence of $\hat x_i \to x_i$, then we have $p \sum_{i\in I} x_i \geq r$, which is what we claimed to be true. Now apply the result to $x_i = x_i^*$, we have $x_i^* \succsim_i x_i^*$, so by the claim we have $p x^* \geq r$. 
+   We claim that if $x_i \succsim_i x_i^\star$ for all $i$, then $p x \geq r$. Take any  $x_i \succsim_i x_i^\star$, by local non-satiation, there exists $\hat x_i \in B_\epsilon(x_i)$ such that $\hat x_i \succ_i x_i^\star$, hence $\hat x_i \in V_i$ and $\sum_{i\in I}\hat x_i \in V$. So $p \sum_{i\in I}\hat x_i \geq r$ by the separation. Now take a sequence of $\hat x_i \to x_i$, then we have $p \sum_{i\in I} x_i \geq r$, which is what we claimed to be true. Now apply the result to $x_i = x_i^\star$, we have $x_i^\star \succsim_i x_i^\star$, so by the claim we have $p x^\star \geq r$. 
 
-   Similarly, the separation gives us $pz\leq r$ for all $z = (\sum_{j\in J}y^{j}+e)\in Y+\{e\}$, which can be rewrite as $p(\sum_{j\in J}y^{j}+e)\leq r$. Remember $(x^*, y^*)$ is Pareto Optimal in the first place, and all Pareto Optimal allocations are feasible, i.e. $\sum_{i\in I} x_i^*  \leq \sum_{j\in J}y^{j*}+e$. Multiply by the price, we get $r \leq p\sum_{i\in I} x_i^*  \leq p(\sum_{j\in J}y^{j*}+e) \leq r$. 
+   Similarly, the separation gives us $pz\leq r$ for all $z = (\sum_{j\in J}y^{j}+e)\in Y+\{e\}$, which can be rewrite as $p(\sum_{j\in J}y^{j}+e)\leq r$. Remember $(x^\star, y^\star)$ is Pareto Optimal in the first place, and all Pareto Optimal allocations are feasible, i.e. $\sum_{i\in I} x_i^\star  \leq \sum_{j\in J}y^{j\star}+e$. Multiply by the price, we get $r \leq p\sum_{i\in I} x_i^\star  \leq p(\sum_{j\in J}y^{j\star}+e) \leq r$. 
 
-   In a word, we conclude that $r = p\sum_{i\in I} x_i^*  = p(\sum_{j\in J}y^{j*}+e) $.
+   In a word, we conclude that $r = p\sum_{i\in I} x_i^\star  = p(\sum_{j\in J}y^{j\star}+e) $.
 
 3. Decentralization
 
-   Last we want to show that $x^*$ satisfies the consumer’s conditions of being a part of the Quasi-Equilibrium at price $p = p^*$, i.e. we want to show that $\forall i \in I, \space x^i \succ_i x^{i*} $ implies that $p^*x^i \geq w_i $ for some $w_i$.
+   Last we want to show that $x^\star$ satisfies the consumer’s conditions of being a part of the Quasi-Equilibrium at price $p = p^\star$, i.e. we want to show that $\forall i \in I, \space x^i \succ_i x^{i\star} $ implies that $p^\star x^i \geq w_i $ for some $w_i$.
 
-   Suppose for person $k$ we have $x^k \succ_k x^{k*} $, define $\hat x^i = x^{i*}$ for $i\neq k$ and $\hat x^k = x^{k}$ then use the claim from step 2, we get that  $\hat x_i \succsim_i x_i^*$ for all $i$, then $p \hat x \geq r$. Since from step 2 we have $r = p\sum_{i\in I} x_i $, we have the following equation:
+   Suppose for person $k$ we have $x^k \succ_k x^{k\star} $, define $\hat x^i = x^{i\star}$ for $i\neq k$ and $\hat x^k = x^{k}$ then use the claim from step 2, we get that  $\hat x_i \succsim_i x_i^\star$ for all $i$, then $p \hat x \geq r$. Since from step 2 we have $r = p\sum_{i\in I} x_i $, we have the following equation:
    $$
-   p(x_k+\sum_{i\neq k} x_k^*) = p \hat x \geq r = p\sum_{i\in I} x_i^*
+   p(x_k+\sum_{i\neq k} x_k^\star) = p \hat x \geq r = p\sum_{i\in I} x_i^\star
    $$
-   Hence $px_k \geq px_k^*$.
+   Hence $px_k \geq px_k^\star$.
 
-   Similarly, we want to show that $\forall j \in J, \space p^*y^j \leq p^*y^{j*} $ for all $y^j\in Y^j$. Note that following similar steps, we have:
+   Similarly, we want to show that $\forall j \in J, \space p^\star y^j \leq p^\star y^{j\star} $ for all $y^j\in Y^j$. Note that following similar steps, we have:
    $$
-   p(e+y_k+\sum_{j\neq k} y_k^*) = p (e+\hat y) \leq r = p(e+\sum_{j\in J} x_j^*)
+   p(e+y_k+\sum_{j\neq k} y_k^\star) = p (e+\hat y) \leq r = p(e+\sum_{j\in J} x_j^\star)
    $$
-   Hence $py^j \leq py^{j*} $.
+   Hence $py^j \leq py^{j\star} $.
 
-   In conclusion, $(x^*, y^*), p^*$ forms a Quasi-Equilibrium with transfers. $\square$
+   In conclusion, $(x^\star, y^\star), p^\star$ forms a Quasi-Equilibrium with transfers. $\square$
 
    
 

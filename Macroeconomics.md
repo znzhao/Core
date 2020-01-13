@@ -15,9 +15,9 @@
 **Assumption: (Inada Condition)**
 
 - $F(0,0) = 0$
-- $F_K>0$, $F_L>0$, $F_{KK}<0$, $F_{LL}<0$
-- $F(K,L)$ is constant return to scale
-- $F_K(0,L) = F_{L}(K,0) = +\infty$
+- $F_K>0$, $F_L>0$, $F_{KK}<0 $, $F_{LL}<0$
+- $ F(K,L)$ is constant return to scale
+- $ F_K(0,L) = F_{L}(K,0) = +\infty $
 - $F_K(+\infty,L) = F_{L}(K,+\infty) = 0$
 
 **Definition: (Steady State)** For a dynamic system model, the Steady State is when all the endogenous variables are stable, i.e. $x_{t+1} = x_t$.
@@ -28,9 +28,9 @@
 
 **Solution: (Solow Growth Model)**
 
-1. Detrend the model by redefine $y_t = Y_t/A_tL_t = F(K_t/A_tL_t,1) = f(k_t)$, hence we can rewrite the law of motion of the capital accumulation as $(1+g)k_{t+1} = (1-\delta ) k_t+ sf(k_t)$.
-2. Solve for Steady State. Let $k = k_t = k_{t+1}$, and we have $(g+\delta )k = sf(k)$. The left hand side of the equation is a linear function, the right hand side is a strictly increasing and strictly concave function. Inada condition ensures that there is a unique solution to this equation.
-3.  Solve for the golden rule of saving. $s^* = argmax_s (1-s)f(k(s)) = f(k(s)) - (g+\delta )k$. Taking the first order conditions, we have $f'(k^*) = g+\delta$, which will determine the optimal capital per capita and hence determine the optimal saving rate.
+1. Detrend the model by redefine $y_t = Y_t/A_tL_t = F(K_t/A_tL_t,1) = f(k_t)$, hence we can rewrite the law of motion of the capital accumulation as $(1+g) k_{t+1}  = (1-\delta ) k_t+ s f(k_t)$. 
+2. Solve for Steady State. Let $ k = k_t = k_{t+1} $, and we have $(g+\delta )k = sf(k)$. The left hand side of the equation is a linear function, the right hand side is a strictly increasing and strictly concave function. Inada condition ensures that there is a unique solution to this equation.
+3. Solve for the golden rule of saving. $s^{\star} = argmax_s (1-s)f(k(s)) = f(k(s)) - (g+\delta )k$. Taking the first order conditions, we have $f'(k^{\star}) = g+\delta$, which will determine the optimal capital per capita and hence determine the optimal saving rate.
 4. Compare the growth rate of capital with different initial value. Suppose two countries start from different initial capital per capita $k_1<k_2$. the growth rate of capital is defined as $(k_{t+1}-k_t)/k_t = sf(k_t)/k_t -(g+\delta)$, since $f(k)$ is a concave function, we have that $f(k_1)/k_1>f(k_2)/k_2$, i.e. the country that is more poor will grows faster.
 
 
@@ -171,19 +171,19 @@ $$
 
 **Definition: (Contraction Mapping)** A function $f:X\to X$ is a contraction mapping if and only if there is a $\beta \in [0,1)$ such that for any $x,y \in X$, $d(f(x),f(y))\leq \beta d(x,y)$.
 
-**Lemma: (Blackwell Sufficient Condition)** Let $X\subset \R^l$ and $T:B(X)\to B(X)$ be a functional where $B(X)$ is the set of all bounded real-value functions on $X$. Then $T$ is a contraction mapping if 
+**Claim: (Blackwell Sufficient Condition)** Let $X\subset \mathbb{R}^l$ and $T:B(X)\to B(X)$ be a functional where $B(X)$ is the set of all bounded real-value functions on $X$. Then $T$ is a contraction mapping if 
 
 1. $\forall f,g \in B(X)$, if $f\leq g$, then $Tf\leq Tg$
-2. $\exist \beta <1$ such that $T(f+\alpha ) \leq Tf+\beta \alpha$ for all $f\in B(X)$ and $\forall \alpha \in \R_+$
+2. $\exist \beta <1$ such that $T(f+\alpha ) \leq Tf+\beta \alpha$ for all $f\in B(X)$ and $\forall \alpha \in \mathbb{R}_+$
 
-**Lemma: (Contraction Mapping Theorem)** Let $(X,d)$ be a complete metric space, $f:X\to X$ be a  contraction mapping Then f has a fixed point, i.e. there is a $x\in X$ such that $f(x) = x$ and the fixed point is unique.
+**Claim: (Contraction Mapping Theorem)** Let $(X,d)$ be a complete metric space, $f:X\to X$ be a  contraction mapping Then f has a fixed point, i.e. there is a $x\in X$ such that $f(x) = x$ and the fixed point is unique.
 
-**Lemma: (Useful Corollary)** Suppose $T:S\to S$ and $Tv^* = v^*$ exists. Then:
+**Claim: (Useful Corollary)** Suppose $T:S\to S$ and $Tv^{\star} = v^{\star}$ exists. Then:
 
-1. If $S' \subset S$ is a closed subset of $S$, and $T(S')\subset  S'$, then $v^* \in S'$
-2. If $T(S') \subset S'' \subset S$, then $v^* \in S''$
+1. If $S' \subset S$ is a closed subset of $S$, and $T(S')\subset  S'$, then $v^{\star} \in S'$
+2. If $T(S') \subset S'' \subset S$, then $v^{\star} \in S''$
 
-**Lemma: (Theorem of Maximum)** Let $F:X\times X \to \R$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. There exists a value function satisfying the Bellman equation $V(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$, which is continuous. Furthermore, the policy correspondence $G:X\to X$ is non-empty and upper hemi-continuous.
+**Claim: (Theorem of Maximum)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. There exists a value function satisfying the Bellman equation $V(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$, which is continuous. Furthermore, the policy correspondence $G:X\to X$ is non-empty and upper hemi-continuous.
 
 
 
@@ -191,33 +191,33 @@ $$
 
 #### Bellman Equation
 
-**Definition: (Bellman Equation)** Let $F:X\times X \to \R$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. The Bellman equation is defined as $TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$.
+**Definition: (Bellman Equation)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. The Bellman equation is defined as $TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$.
 
 **Definition: (Graph)** The graph of the correspondence $\Gamma : X\to X$ is $A = graph (\Gamma ) = \{(x,y)\in X\times X|y\in \Gamma(X)\}$.
 
 #### Properties of the Bellman Equation
 
-**Assumption: (Assumption 1)** $X\subset \R^n $ and the correspondence $\Gamma :X\to X$ is non-empty, compact valued and continuous.
+**Assumption: (Assumption 1)** $X\subset \mathbb{R}^n $ and the correspondence $\Gamma :X\to X$ is non-empty, compact valued and continuous.
 
-**Assumption: (Assumption 2)** $F: A\to \R$ is bounded and continuous.
+**Assumption: (Assumption 2)** $F: A\to \mathbb{R}$ is bounded and continuous.
 
-**Claim: (Continuity and Boundedness)** Under Assumption 1 and 2, use the theorem of maximum, if we start from a continuous function, the fixed point $v^*$ will also be continuous and bounded.
+**Claim: (Continuity and Boundedness)** Under Assumption 1 and 2, use the theorem of maximum, if we start from a continuous function, the fixed point $v^{\star}$ will also be continuous and bounded.
 
 **Assumption: (Assumption 3)** Given $y$, $F(x,.)$ is strictly increasing in $x$.
 
 **Assumption: (Assumption 4)** $\Gamma (x)$ is monotone. i.e. if $x\leq x'$ then $\Gamma(x) \subset \Gamma (x')$
 
-**Claim: (Monotonicity)** Under Assumption 1-4, if we start from a increasing function, the fixed point $v^*$ will also be increasing.
+**Claim: (Monotonicity)** Under Assumption 1-4, if we start from a increasing function, the fixed point $v^{\star}$ will also be increasing.
 
 **Assumption: (Assumption 5)** Given $y$, $F(x,.)$ is strictly concave, i.e. $F(\theta (x,y)+(1-\theta)(x',y'))>\theta F(x,y)+(1-\theta )F(x',y')$.
 
 **Assumption: (Assumption 6)** $\Gamma (x)$ is convex. i.e.  $\theta y+(1-\theta ) y'\in \Gamma (\theta x+(1-\theta)x')$ for any $\theta \in (0,1)$ and $y\in \Gamma(x)$ and $y' \in\Gamma(x')$ for any $x$ and $x'$.
 
-**Claim: (Concavity)** Under Assumption 1-2 and 5-6, if we start from a strictly concave function, the fixed point $v^*$ will also be strictly concave, and the policy function exists.
+**Claim: (Concavity)** Under Assumption 1-2 and 5-6, if we start from a strictly concave function, the fixed point $v^{\star}$ will also be strictly concave, and the policy function exists.
 
 **Assumption: (Assumption 7)** $F(x,y)$ is continuously differentiable on the interior of $A$.
 
-**Claim: (Differentiability)** Under Assumption 1-2 and 5-7, the fixed point $v^*$ will also be strictly concave, and the unique fixed point of $T$ is continuously differentiable at $x_0\in int(A)$ with $\frac{\partial v^*(x_0)}{\partial x^i} = \frac{\partial F(x_0,g(x_0))}{\partial x^i} $.
+**Claim: (Differentiability)** Under Assumption 1-2 and 5-7, the fixed point $v^{\star}$ will also be strictly concave, and the unique fixed point of $T$ is continuously differentiable at $x_0\in int(A)$ with $\frac{\partial v^{\star}(x_0)}{\partial x^i} = \frac{\partial F(x_0,g(x_0))}{\partial x^i} $.
 
 #### Sequential Problem and Recursive Problem
 
@@ -229,7 +229,7 @@ $$
 $$
 v(x) = sup_{y\in \Gamma(x)} [F(x,y)+\beta v(y)]
 $$
-**Claim: (Principle of Optimality)** Under Assumption 1 and 2, if $v$ solves the sequential problem it will also solves the recursive problem. Suppose $v^*$ solves the recursive problem and satisfies the boundedness condition, i.e. $lim_{n\to +\infty } \beta ^n v(x_n) = 0$ for all $x\in \pi (x_0)$ and $x_0 \in X$, where $\pi(x_0) = \{\{x_{t+1}\}_{t=0}^\infty| x_{t+1} \in \Gamma (x_t)\}$. Then $v^*$ also solves the sequential problem.
+**Claim: (Principle of Optimality)** Under Assumption 1 and 2, if $v$ solves the sequential problem it will also solves the recursive problem. Suppose $v^{\star}$ solves the recursive problem and satisfies the boundedness condition, i.e. $lim_{n\to +\infty } \beta ^n v(x_n) = 0$ for all $x\in \pi (x_0)$ and $x_0 \in X$, where $\pi(x_0) = \{\{x_{t+1}\}_{t=0}^\infty| x_{t+1} \in \Gamma (x_t)\}$. Then $v^{\star}$ also solves the sequential problem.
 
 #### Solution to the Bellman Equation
 
@@ -281,7 +281,7 @@ $$
 
 **Solution: (Guess and Verify)**
 
-1. First we check that the value function is in fact a contraction mapping. Since $k'\in [\epsilon,K]$, notice that $\bar k = max\{k_0,K\}$, the Bellman function is a mapping $T:B([\epsilon,K])\to B([\epsilon,K])$ where $B([\epsilon,K])$ is the set of all bounded real-value functions on $[\epsilon,K]$. Now check the monotonicity and discounting condition. Suppose $f \in B([\epsilon,K])$ and $h \in B([\epsilon,K])$, and $f\geq h$. Suppose $k' = g(k)$ is the solution to $T(h)$. Then We have:
+1. First we check that the value function is in fact a contraction mapping. Since $k'\in [\epsilon,K]$, notice that we can define $\bar K = max\{k_0,K\}$, the Bellman function is a mapping $T:B([\epsilon,\bar K])\to B([\epsilon,\bar K])$ where $B([\epsilon,\bar K])$ is the set of all bounded real-value functions on $[\epsilon,\bar K]$. Now check the monotonicity and discounting condition. Suppose $f \in B([\epsilon,\bar K])$ and $h \in B([\epsilon,\bar K])$, and $f\geq h$. Suppose $k' = g(k)$ is the solution to $T(h)$. Then We have:
    $$
    T(h) = max\space ln(k^\alpha - k')+\beta h(k') = ln(k^\alpha - g(k))+\beta h(g(k)) \\
    \leq ln(k^\alpha - g(k))+\beta f(g(k)) \leq max\space ln(k^\alpha - k')+\beta f(k') = T(f)
@@ -299,6 +299,35 @@ $$
    Aln(k)+ (1-\beta)B = -ln(1+\beta A)+\alpha ln(k)+\beta Aln(\frac{\beta A }{1+\beta A})+\beta A\alpha ln(k)
    $$
    Hence$ A = (1+\beta A)\alpha$.
+
+#### Neoclassical Growth Model with Asset
+
+**Assumption: (Setup)**
+
+- Basic neoclassical growth model setup
+- There is another asset $a_t$, which can be chosen by the consumer
+- The return of the asset is exogenous, given as $r_t$
+- Suppose the return is constant
+
+**Definition: (Neoclassical Growth Model with Asset)** The recursive problem of the Neoclassical Growth Model with asset is
+$$
+V(k,a)  =max\space ln(k^\alpha+ ra - k'-a')+\beta V(k',a'), \space k'\in [\epsilon,K], \space a'\in [-A,A]
+$$
+
+**Solution: (Check CMT)**
+
+The main aim of this problem is to check the contraction mapping theorem works. Similarly define $\bar K = max\{k_0,K\}$, the Bellman function is a mapping $T:B([\epsilon,\bar K]\times[-A,A])\to B([\epsilon,\bar K]\times[-A,A])$ where $B([\epsilon,\bar K]\times[-A,A])$ is the set of all bounded real-value functions on $[\epsilon,\bar K]\times[-A,A]$. 
+
+Now check the monotonicity and discounting condition. Suppose $f \in B([\epsilon,\bar K]\times[-A,A])$ and $h \in B([\epsilon,\bar K]\times[-A,A])$, and $f\geq h$. Suppose $k' = g_1(k,a)$ and $a' = g_2(k,a)$ are the solutions to $T(h)$. Then We have:
+$$
+T(h) = max\space ln(k^\alpha+ ra - k'-a')+\beta h(k',a') = max\space ln(k^\alpha+ ra - g_1(k,a)-g_2(k,a))+\beta h(g_1(k,a),g_2(k,a)) \\
+\leq ln(k^\alpha+ ra - g_1(k,a)-g_2(k,a))+\beta f(g_1(k,a),g_2(k,a)) \leq max\space ln(k^\alpha+ ra - k'-a')+\beta f(k',a') = T(f)
+$$
+And we also have:
+$$
+T(f+a) = max\space ln(k^\alpha+ ra - k'-a')+\beta f(k',a')+\beta a \leq T(f) +\beta a
+$$
+By the Blackwell Condition, we conclude that the Bellman function is a contraction mapping.
 
 
 
@@ -322,13 +351,13 @@ $$
 
 **Definition: (Unconditional Expectation)** The Unconditional Expectation of $S_t$ is defined as $E[S_t] =  ((P')^t\psi_0)'\tilde S$.
 
-**Definiton: (Stationary Distribution)** The Stationary Distribution is defined as $\psi^* = P'\psi^*$, i.e. the stationary distribution solves $(I-P')\psi^* = 0$ and $\sum_i \psi^*_i = 1$.
+**Definiton: (Stationary Distribution)** The Stationary Distribution is defined as $\psi^{\star} = P'\psi^{\star}$, i.e. the stationary distribution solves $(I-P')\psi^{\star} = 0$ and $\sum_i \psi^{\star}_i = 1$.
 
 **Definition: (Conditional Expectation)** The Conditional Expectation of $S_t$ is defined as $E_t[S_{t+1}] = E[S_{t+1}|S_t] = \sum_jP_{ij}S_j$.
 
 ####  Stochastic Dynamic Programming
 
-**Definition: (Stochastic Bellman Equation)** Let $F:X\times X \to \R$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. X can include a random variable. The Bellman equation is defined as $TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta E[V(y)|x]$.
+**Definition: (Stochastic Bellman Equation)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. X can include a random variable. The Bellman equation is defined as $TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta E[V(y)|x]$.
 
 **Note:** The properties of the Bellman Equation is not changing when we include random variable in the state variable. Now a policy function $y = g(x)$ is the solution of a stochastic difference equation. There is no staeady state in the stochastic model, instead, the endogenous variables goes to a stable distribution. Given the Law of motion of the stochastic process and solve for the policy function, we could calculate the stable distribution.
 
@@ -476,12 +505,12 @@ $$
 
 1. $R(0) = \frac{\beta}{1-\beta}E[w]$
 2. $R(B) = 0$
-3. $R’(x) = -\frac{\beta}{1-\beta}(1-F(x))<0$
-4. $R’'(x) = \frac{\beta}{1-\beta}F(x)>0$
+3. $R'(x) = -\frac{\beta}{1-\beta}(1-F(x))<0$
+4. $R''(x) = \frac{\beta}{1-\beta}F(x)>0$
 
 Proof: 
 
-Properties 1 and 2 are trivial. We apply Newton-Leibniz Formula to $R(x)$, and we will get $R’(x) = -\frac{\beta}{1-\beta}(1-F(x))$. And $R’'(x) = \frac{\beta}{1-\beta}F(x)$ is trivial to get once we get $R’(x)$. $\square$
+Properties 1 and 2 are trivial. We apply Newton-Leibniz Formula to $R(x)$, and we will get $R'(x) = -\frac{\beta}{1-\beta}(1-F(x))$. And $R''(x) = \frac{\beta}{1-\beta}F(x)$ is trivial to get once we get $R'(x)$. $\square$
 
 **Note:** By the properties of $R(x)$, it is a strictly decreasing and strictly convex function. Since $T(x) = x-b$ is an increasing linear function, We know that there must be a solution to the equation $x-b = R(x)$.
 
@@ -540,6 +569,22 @@ $$
 \bar w - b =\beta (E[w']-b)+  \beta \int_0^\bar w F(w')dw'
 $$
 Note that the right hand side of the equation is still $R(x)$, since the new distribution is risker, $R(x)$ moves upward, and $T(x)$ doesn’t move. Hence $\bar w$ increases. $\square$
+
+
+
+### Mutation of McCall’s Model
+
+#### Seaching with Probability of Being Fired
+
+
+
+#### Seaching with Wage Increasement
+
+
+
+#### Seaching with Changing Environment
+
+
 
 
 
