@@ -571,6 +571,8 @@ Proof:
 
 6. Since by equation 5 we have $Var(\hat e | X) = M_X \sigma^2 M_X' = \sigma^2M_X$. Now by definition $h_{ii}$ is the i-th element on the diagonal of $P_X$, so $1-h_{ii}$ is the i-th element on the diagonal of $M_X$, so we can write the i-th row of equation 5, which is $E[\hat e_i^2|X] = \sigma^2(1-h_{ii})$. $\square$ 
 
+
+
 ### Variance Estimation
 
 **Definition: (Heteroskedasticity variance estimator)** When Assumption 1-3 are true and Heteroskedasticity is true, define the estimator of the variance of $\hat\beta$ as:

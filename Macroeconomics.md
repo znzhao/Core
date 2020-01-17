@@ -339,9 +339,9 @@ By the Blackwell Condition, we conclude that the Bellman function is a contracti
 
 **Definition: (History)** The History of a process is defined as $S^t = \{S_0,S_1, ...,S_t\}$, where $S_\tau \in S$.
 
-**Definiton: (Markov Chain)** $\{S_t\}$ is a Markov Chain if $S_t\in S$ can take only $n$ possible values with $n \in \N$, and $P(S_{t+1}|S^t) = P(S_{t+1}|S_t)$
+**Definition: (Markov Chain)** $\{S_t\}$ is a Markov Chain if $S_t\in S$ can take only $n$ possible values with $n \in \N$, and $P(S_{t+1}|S^t) = P(S_{t+1}|S_t)$
 
-**Definiton: (Markov Process)** A Markov Process is defined as $(S,P,\psi_0)$, where
+**Definition: (Markov Process)** A Markov Process is defined as $(S,P,\psi_0)$, where
 
 1. A realization $S_t$ takes one of the $n$ values in $S$
 2.  $P_{ij} = P(S_{t+1} = S_j|S_t = S_i)$, $P_{ij} \in [0,1]$, and $\sum_jP_{ij} = 1$
@@ -351,7 +351,7 @@ By the Blackwell Condition, we conclude that the Bellman function is a contracti
 
 **Definition: (Unconditional Expectation)** The Unconditional Expectation of $S_t$ is defined as $E[S_t] =  ((P')^t\psi_0)'\tilde S$.
 
-**Definiton: (Stationary Distribution)** The Stationary Distribution is defined as $\psi^{\star} = P'\psi^{\star}$, i.e. the stationary distribution solves $(I-P')\psi^{\star} = 0$ and $\sum_i \psi^{\star}_i = 1$.
+**Definition: (Stationary Distribution)** The Stationary Distribution is defined as $\psi^{\star} = P'\psi^{\star}$, i.e. the stationary distribution solves $(I-P')\psi^{\star} = 0$ and $\sum_i \psi^{\star}_i = 1$.
 
 **Definition: (Conditional Expectation)** The Conditional Expectation of $S_t$ is defined as $E_t[S_{t+1}] = E[S_{t+1}|S_t] = \sum_jP_{ij}S_j$.
 
@@ -359,7 +359,7 @@ By the Blackwell Condition, we conclude that the Bellman function is a contracti
 
 **Definition: (Stochastic Bellman Equation)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. X can include a random variable. The Bellman equation is defined as $TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta E[V(y)|x]$.
 
-**Note:** The properties of the Bellman Equation is not changing when we include random variable in the state variable. Now a policy function $y = g(x)$ is the solution of a stochastic difference equation. There is no staeady state in the stochastic model, instead, the endogenous variables goes to a stable distribution. Given the Law of motion of the stochastic process and solve for the policy function, we could calculate the stable distribution.
+**Note:** The properties of the Bellman Equation is not changing when we include random variable in the state variable. Now a policy function $y = g(x)$ is the solution of a stochastic difference equation. There is no steady state in the stochastic model, instead, the endogenous variables goes to a stable distribution. Given the Law of motion of the stochastic process and solve for the policy function, we could calculate the stable distribution.
 
 
 
@@ -375,14 +375,14 @@ By the Blackwell Condition, we conclude that the Bellman function is a contracti
 - Normal assumptions about the utility function and production function
 - For simplicity, suppose there is no growth in the model
 
-#### Sequencial Problem
+#### Sequential Problem
 
-**Definition: (Sequencial Problem)** The Sequencial Problem of the Stochastic Growth Model is defined as:
+**Definition: (Sequential Problem)** The Sequential Problem of the Stochastic Growth Model is defined as:
 $$
 max \sum_{t = 0}^{+\infty} \sum_{z^t} \beta ^t U(c_t(z^t))\pi_t(z^t) \\
 s.t. \space k_{t+1}(z^t)+c_t(z^t) = z_t(z^t)f(k_t(z^{t-1})) + (1-\delta)k_t(z^{t-1})
 $$
-**Solution: (Sequencial Problem)**
+**Solution: (Sequential Problem)**
 
 1. Use the Lagrange method. The Lagrange function is:
    $$
@@ -399,11 +399,11 @@ $$
    U'(c_t(z^t)) = \beta \sum_{z'|z^t}U'(c_{t+1}(z^t,z'))[z'f'(k_{t+1}(z^t))+1-\delta]\pi_t(z^t,z')/\pi_t(z^t)
    $$
 
-2. Since $z_t$ is a Markov process, we have $\pi_t(z^t,z')/\pi_t(S^t) = \pi(z'|z_t)$, we can then rewrite the Euler Equarion as $U'(c_t) = \beta E_t[U'(c_{t+1})z_{t+1}(f'(k_{t+1})+1-\delta)]$. 
+2. Since $z_t$ is a Markov process, we have $\pi_t(z^t,z')/\pi_t(S^t) = \pi(z'|z_t)$, we can then rewrite the Euler Equation as $U'(c_t) = \beta E_t[U'(c_{t+1})z_{t+1}(f'(k_{t+1})+1-\delta)]$. 
 
 #### Recursive Problem
 
-**Definition: (Recursive Problem)** The Sequencial Problem of the Stochastic Growth Model is defined as:
+**Definition: (Recursive Problem)** The Sequential Problem of the Stochastic Growth Model is defined as:
 $$
 V(k,z) = max \space U(c) + \beta  \sum_{z'}V(k',z')\pi(z',z) \\
 s.t. \space k'+c = zf(k) + (1-\delta)k
@@ -418,7 +418,7 @@ $$
    $$
    V_k(k,z) = U'(zf(k)+(1-\delta)k-k')[zf'(k)+1-\delta]
    $$
-   Conbine These two equations, we can get a system of stochastic differential equations:
+   Combine These two equations, we can get a system of stochastic differential equations:
    $$
    U'(c) = \beta \sum_{z'} U'(c')[z'f'(k')+1-\delta]\pi(z',z)\\
    k'+c = zf(k) + (1-\delta)k
@@ -574,17 +574,116 @@ Note that the right hand side of the equation is still $R(x)$, since the new dis
 
 ### Mutation of McCall’s Model
 
-#### Seaching with Probability of Being Fired
+#### Searching with Probability of Being Fired
 
+**Assumption: (Setup)**
 
+1. Exogenous probability $\delta$ of losing their job every period
+2. People who lost their job stay unemployed for a period and start to search for job in the next period
 
-#### Seaching with Wage Increasement
+**Definition: (Searching with Probability of Being Fired)** The recursive problem of Searching with Probability of Being Fired is:
+$$
+V(w) = max_{y = \{accept, decline\}}\{\delta (b + \beta E[V(w')]) + (1-\delta)(w+\beta V(w)), b+\beta E[V(w')]\}
+$$
+**Solution: (Searching with Probability of Being Fired)**
 
+Define $U = b+\beta E[V(w')]$, we have $V(w) = max\{\delta U+(1-\delta)(w+\beta V(w)), U\}$ we want to solve for the reservation wage $\bar w$ such that $U = \delta U+(1-\delta)(\bar w+\beta V(\bar w))$, which implies that $(1-\delta)U = (1-\delta) (\bar w+\beta U)$, so $U = \frac{\bar w}{1-\beta}$. And we have $V(w) = \delta U+(1-\delta)(w+\beta V(w)) = \delta U+(1-\delta)w+\beta (1-\delta)V(w)$, so $V(w) = \frac{\delta U + (1-\delta)w}{1-\beta(1-\delta)}$. By definition, we have
+$$
+\begin{align}
+\begin{split}
+	U &= b+\beta E[V(w')] \\
+	&= b+\beta \int_0^\bar w V(w')dF(w')+\beta \int_\bar w^B V(w')dF(w') \\
+	&= b+\beta \int_0^B UdF(w')+\beta \int_\bar w^B (V-U)dF(w')\\
+	&= b+\beta U+\beta \int_\bar w^B \frac{\delta U + (1-\delta)w}{1-\beta(1-\delta)}-UdF(w')\\
+	&= b+\beta U+\beta \int_\bar w^B \frac{(\delta-1)(1-\beta) U + (1-\delta)w}{1-\beta(1-\delta)}dF(w') \\
+	&= b+\beta U+\beta \int_\bar w^B \frac{(1-\delta)(w-\bar w)}{1-\beta(1-\delta)}dF(w')
+\end{split}
+\end{align}
+$$
+Then move $\beta \bar V$ to the other side of the equation, we will get:
+$$
+\begin{align}    
+(1-\beta) \bar V &= b+\frac{(1-\delta)\beta}{1-\beta(1-\delta)} \int_\bar w^B (w-\bar w)dF(w')\\
+\bar w &=  b+\frac{(1-\delta)\beta}{1-\beta(1-\delta)} \int_\bar w^B (w-\bar w)dF(w')
+\end{align}
+$$
+This will give us a unique reservation wage.
 
+#### Searching with Wage Increase
 
-#### Seaching with Changing Environment
+**Assumption: (Setup)**
 
+1. The wage that that the worker will receive is increasing as time passes
+2. The increase rate of the wage is $g$
 
+**Definition: (Searching with Wage Increase)** The recursive problem of Searching with Wage Increase is:
+$$
+V(w) = max_{y = \{accept, decline\}}\{w+\beta V(w(1+g)), b+\beta E[V(w')]\}
+$$
+**Solution: (Searching with Wage Increase)**
+
+1. Notice that $\bar V = b+\beta E[V(w')]$ is a constant. Hence there is a Reservation Wage $\bar w$, such that $\bar w+\beta V(\bar w) =\bar V $ the optimal policy function of the worker is:
+   $$
+   y=\begin{equation}
+   \left \{
+                \begin{array}{lr}
+                accept, &  if \space w\geq\bar w \\
+                decline, & if  \space w< \bar w
+                \end{array}
+   \right.
+   \end{equation}
+   $$
+   i.e. the value function of the problem becomes:
+   $$
+   V(w)=\begin{equation}
+   \left \{
+                \begin{array}{lr}
+                w+\beta V(w(1+g)) = \frac{1}{1-\beta(1+g)} w, &  if \space w\geq\bar w \\
+                \bar V = \frac{1}{1-\beta(1+g)}\bar w, & if  \space w< \bar w
+                \end{array}
+   \right.
+   \end{equation}
+   $$
+
+2. Next we want to solve for the reservation wage. Note that by the definition of reservation wage, we have:
+   $$
+   \begin{align}
+   \begin{split}
+   	\bar V &= b+\beta E[V(w')] \\
+   	&= b+\beta \int_0^\bar w V(w')dF(w')+\beta \int_\bar w^B V(w')dF(w') \\
+   	&= b+\beta \int_0^B \bar VdF(w')+\beta \int_\bar w^B (V-\bar V)dF(w')\\
+   	&= b+\beta \bar V+\beta \int_\bar w^B \frac{w'-\bar w}{1-\beta(1+g)}dF(w')\\
+   \end{split}
+   \end{align}
+   $$
+   Then move $\beta \bar V$ to the other side of the equation, we will get:
+   $$
+   \begin{align}
+   (1-\beta) \bar V &= b+\beta \int_\bar w^B \frac{w'-\bar w}{1-\beta(1+g)}dF(w')\\
+   (1-\beta) \frac{1}{1-\beta(1+g)}\bar w &= b+\beta \int_\bar w^B \frac{w'-\bar w}{1-\beta(1+g)}dF(w')\\
+    \frac{1-\beta}{1-\beta(1+g)}\bar w &= b+ \frac{\beta }{1-\beta(1+g)} \int_\bar w^B(w'-\bar w)dF(w')\\
+   \end{align}
+   $$
+   This will give us a unique reservation wage.
+
+#### Searching with Changing Environment
+
+**Assumption: (Setup)**
+
+1. The worker can decide whether to keep working or quit the job and be unemployed
+2. If the worker quit at time t, he will work at time t and start being unemployed in the next period
+3. There are two states in the world: Good and Bad, and the probability of being in good state is $p$
+4. If the worker quit in good state, he will draw a new wage from a distribution $F_G(w)$
+5. If the worker quit in good state, he will draw a new wage from a distribution $F_B(w)\geq F_G(w)$ for all $w$
+
+**Definition: (Searching with Changing Environment)**  The recursive problem of Searching with Changing Environment is
+$$
+V(w, S) = max_{y = \{work, unemployed\}}\{w+\beta (pV(w,G)+(1-p)V(w,B)) \\
+, b+\beta (p\int_0^MV(w',G)dF_S(w') + (1-p)\int_0^MV(w',B)dF_S(w'))\}
+$$
+where $S\in \{G,B\}$ denotes the state of the economy.
+
+**Note:** Note that now there are two reservation wage $\bar w (G)$ and $\bar w (B)$.
 
 
 

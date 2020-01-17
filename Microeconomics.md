@@ -1217,7 +1217,9 @@ which is impossible if the feasible condition holds. Hence we get a contradictio
 
 
 
-### Core and Equilibria (P239 Jehle and Reny)
+### Core and Equilibria
+
+#### Core and Equilibria
 
 **Theorem: (Core and Equilibria)** Suppose the preference is locally non-satiated, then the Walrasian Equilibrium Allocation is in the core.
 
@@ -1229,9 +1231,72 @@ $$
 $$
 But this cannot hold when feasibility is satisfied. Contradiction. $\square$
 
+#### Replica Economy
+
+**Definition: (r-Ford Replica Economy)** Suppose there are $I$ types of consumers in the basic exchange economy. The r-Ford Replica Economy, denoted as $E_r$, is defined as an economy with $r$ consumers of each type for a total of $rI$ consumers. For any type $i$, all $r$ consumers of that type share the common preference $\succsim_i$ on $\R^n_+$ and have identical endowments $e^i\gg 0$. Assume each preference can be represented by a utility function.
+
+**Definition: (Compare Replica Economy)** If we have two economy and suppose $r>r'$, we say the first replica economy is larger.
+
+**Theorem: (Equal Treatment in the Core)**  If $x$ is an allocation in the core of a r-Ford Replica Economy, then every consumer of type $i$ must have the same bundle according to $x$, i.e. $x^{iq} = x^{iq'}$ for all $i = 1,2,...,I$ and for all $q,q' = 1,2,..., r$.
+
+Proof:
+
+1. We will prove this theorem with contradiction. Suppose an allocation $x$ does not have the equal treatment property, i.e. for all $i$, there are $q,q'= 1,2,...,r$ such that $x^{iq} \neq x^{iq'}$. We want to show this allocation is not in the core of the economy. Since there are only finitely many type of consumers and finitely many replication of each type, there would be a person for each type such that he is worst among his type. Without loss of generality, we assume the first person of each type is the worst one, i.e. $x^{i1}\precsim_i x^{iq}$ for all $q$. 
+
+2. Now define the bundle $\bar x$ as $\bar x^i = \sum_{q=1}^r x^{iq}/r$, the average consumption of each type. We want to show that the consumptions of  first consumer of each type are blocked by $\bar x$. Note that $x^{i1}\precsim_i x^{iq}$ and $x^{iq} \neq x^{iq'}$ implies that $x^{iq} \neq \bar x^{i}$ Because for each type $i$, the preferences are all strictly quasi-convex, we have $x^{i1}\prec_i \bar x^{i}$, i e. the original bundle is blocked by $\bar x$.
+
+3. Now we only need to show that $\bar x$ is attainable by the coalition of the first consumer for each type. Note that we have:
+   $$
+   \sum_{i=1}^I\bar x^i = \sum_{i=1}^I \sum_{q=1}^r x^{iq}/r =  \sum_{i=1}^I \sum_{q=1}^r e^{iq}/r  = \sum_{i=1}^I e^{iq}
+   $$
+   Hence bundle $x$ is not in the core. $\square$ 
+
+**Theorem: (Shirking Core Lemma)** Define $C_r = \{x = (x^1,...,X^I)\in F(e)|(X^{11},X^{12},...,X^{1r},...,X^{Ir}) \in Core(E_r) \}$. Then we have $C_r\subset C_{r'}$ if $r>r'$.
+
+Proof:
+
+It suffices to show that for $r>1$, $C_{r+1}\subset C_{r}$, i.e. suppose $x\in C_{r+1}$ we can derive $x\in C_{r}$. Suppose not, then there is another bundle $x'$ such that $x'$ blocks $x$ in r-fold, which means  $x'$ blocks $x$ in 1-fold. If we replicate that to (r+1)-fold, we will have $x'$ blocks $x$ in (r+1)-fold.  Contradiction to the fact that $x$ is in the core. $\square$ 
+
+**Theorem: (WEA Lemma)** An allocation $x$ is an equilibrium allocation for $E_r$ if and only if $x = (x^1,...,x^1,x^2,...,x^2,...,x^I,...,x^I)$, where $(x^1,x^2,...x^I)$ is an equilibrium allocation for $E_1$.
+
+Proof:
+
+1. Suppose $x$ is an equilibrium allocation for $E_r$. So there is a price $p$ to support this equilibrium. Then by previous theorem it is in the core of $E_r$. By previous lemma  $(x^1,x^2,...x^I)$ is in the core of $E_1$. We only need to show that under the same price $p$ it is an equilibrium for $E_1$. Just pick one of each type and combine them as a new set of consumers we will get this statement because $x$ is an equilibrium allocation for $E_r$.
+2. Now suppose $x$ is an equilibrium allocation for $E_1$. So there is a price $p$ to support this equilibrium. Then by previous theorem it is in the core of $E_1$. We only need to show that under the same price $p$ it is an equilibrium for $E_r$. Replicate this bundle for r times  we will get this statement because $x$ is an equilibrium allocation for $E_1$. $\square$
+
+**Note:** This lemma implies that the point in the core of $E_1$ which is not the equilibrium cannot be in the core of $E_r$ when $r>1$. 
+
+**Assumption: (Edgeworth Debreu Scarf Theorem)**
+
+- If $x\in C_1$ then $x\gg 0$
+- For each $i$, the utility function is differentiable on $R^n_+$ and $\nabla U^i(x)>0$
+
+**Theorem: (Edgeworth Debreu Scarf Theorem)** If $x\in C_r$ for all $r$, then $x$ is a Walrasian equilibrium allocation for $E_1$.
+
+Proof:
+
+Suppose $\tilde x \in C_r$ for every r. We want to show that $\tilde x$ is a Walrasian equilibrium allocation.
+
+1. First we want to show $U^i((1-t)\tilde x ^i + te^i)\leq U^i(\tilde x^i)$ for every $t\in [0,1]$ and every $i$. Suppose this inequality does not hold. Then there is a $\bar t\in [0,1]$ and an $i$, such that $U^i((1-\bar t)\tilde x ^i + \bar te^i) > U^i(\tilde x^i)$. By strictly quasi-concavity, this implies $U^i(\bar x^i) = U^i((1-t)\tilde x ^i + te^i) > U^i(\tilde x^i)$ for all $t\in [0,\bar t]$. By the continuity of the utility function, there is a positive integer $r$ such that $t = \frac{1}{r}$. 
+
+   Now consider a coalition that consists of $r$ type 1 consumers and $r-1$ number of other type consumers. Assign $\bar x^1$ to all of the type 1 consumers and assign $\tilde x^i$ to all the other type consumers. We can conclude that this new bundle is at least as good as the bundle $\tilde x$. We only need to show that this bundle is feasible to make sure it will block the bundle $\tilde x$. Note that we have:
+   $$
+   r\bar x^1 + (r-1) \sum_{i\neq 1} \tilde x^i  =r[\frac{1}{r}e^1+\frac{r-1}{r}e^1]+(r-1)\sum_{i\neq 1} \tilde x^i \\
+   =e^1+(r-1) \sum_{i=1}^I \tilde x^i = e^1+(r-1) \sum_{i=1}^I \tilde e^i = r\bar e^1 + (r-1) \sum_{i\neq 1} \tilde e^i
+   $$
+   
+   which means bundle $\tilde x$ is blocked in $E_r$, contradicting to the fact that $\tilde x \in C_r$. So $U^i((1-t)\tilde x ^i + te^i)\leq U^i(\tilde x^i)$ for every $t\in [0,1]$ and every $i$ is true.
+   
+2. Now define $F(t) = U^i((1-t)\tilde x ^i + te^i)$. The above statement implies that $F(t)$ attains its maximum at $t = 0$. By Kuhn Tucker Theorem we have $\nabla U^i(\tilde x)(e^i - \tilde x^i)\leq 0$ for all $i$. Now since $\tilde x\in E_1$, it is Pareto efficient. Moreover, by assumption we have $\nabla U^i(\tilde x)\gg 0$. We want to show that $\nabla U^i(\tilde x) = \alpha_{ij} \nabla U^j(\tilde x)$. Suppose not, then at $\tilde x$, $ U^i_n(\tilde x)/U^i_m(\tilde x) > U^j_n(\tilde x)/U^j_m(\tilde x)$, which implies that this bundle $\tilde x$ is not pareto efficient, Contradiction. Note that this is in fact a simple version of second welfare theorem.
+
+   Hence, there is a $p\gg 0$ such $\lambda^i p = \nabla U^i(\tilde x)$ for all $i$. Combine this with the fact that $\nabla U^i(\tilde x)(e^i - \tilde x^i)\leq 0$, we have $p\tilde x^i \geq p e^i$ for all $i$. 
+
+3. We now show that $p\tilde x^i = p e^i$ for all $i$. Suppose not, then there exists $i$ such that $p\tilde x^i > p e^i$. if we sum over $i$, we will get $\sum_{i=1}^I p\tilde x^i > \sum_{i=1}^I p e^i$ Since $\tilde x \in C_r$, it must be feasible in $E_1$, which implies that $\sum_{i=1}^I \tilde x^i \leq \sum_{i=1}^I e^i$. If we product it with $p\gg 0$, we have $\sum_{i=1}^I p\tilde x^i \leq \sum_{i=1}^I pe^i$, which is a contradiction. $\square$
 
 
-### Second Welfare Theorem
+
+
+###  Second Welfare Theorem
 
 **Definition: (Equilibrium with Transfers)** Given an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, an allocation $(x^\star, y^\star)$ and a price vector $p^\star$ constitute an equilibrium with transfers if there are some wealth levels $w = (w_1,...w_I)$ with $\sum_{i\in I }w_i = p^\star e+\sum_{j\in J} p^\star y^j$ where $y^{j\star}$ solves the profit maximization problem, and for each $i$, $x^\star$ solves the utility maximizing problem with the wealth level assigned to them, and the feasible condition holds, i.e. we have $\sum_{i\in I} x^{i\star} \leq \sum_{i \in I} e^{i\star} + \sum_{j \in J} y^{j\star}$.
 
@@ -1259,7 +1324,7 @@ Proof:
 
 2. Separation
 
-   Now want to show that $(Y+{e}) \cap V = \varnothing $. Because $(x^\star, y^\star)$ is Pareto Optimal, this must be true, otherwise there will exist a $x^{**}$ in the intersection area such that $x^{i\star\star} \succ_i x^{i\star}$, which is still feasible, contradicting to the fact that $(x^\star, y^\star)$ is Pareto Optimal.
+   Now want to show that $(Y+{e}) \cap V = \varnothing $. Because $(x^\star, y^\star)$ is Pareto Optimal, this must be true, otherwise there will exist a $x^{\star\star}$ in the intersection area such that $x^{i\star\star} \succ_i x^{i\star}$, which is still feasible, contradicting to the fact that $(x^\star, y^\star)$ is Pareto Optimal.
 
    Now $Y+{e}$ and $V$ are two convex and disjoint set, by the Separating Hyperplane Theorem, there exists a vector $p\neq 0$, such that $pz\geq r$ for all $z\in V$ and $pz\leq r$ for all $z\in Y+\{e\}$.
 
@@ -1287,7 +1352,111 @@ Proof:
 
    In conclusion, $(x^\star, y^\star), p^\star$ forms a Quasi-Equilibrium with transfers. $\square$
 
+
+
+
+### Application
+
+#### Labor
+
+**Definition: (Labor Market Equilibrium)** An allocation $(x^1,...,x^I, n^1, ...,n^I)$, where $x^i$ denotes the consumption of individual $i$ and $n^i$ denotes the labor input of individual $i$, and a price vector $(p,w)$, where $p$ is the price vector of the goods and $w$ is wage, constitute a Labor Market Equilibrium such that:
+
+1. The firm is maximizing it’s profit $\pi = py-\sum_i wn$ subject to $l^i\geq 0$ and $y\leq f(n)$
+2. For every $i$, $(x^i, n^i)$ maximizes the individual’s utility subject to the budget constraint $px^i \leq pe^i+ wn^i$
+3. Markets clear, i.e. $\sum_i x^i = e^i$ and $\sum_i n^i = $n for all $i$
+
+#### Public Goods
+
+**Definition: (Lindahl Equilibrium)** A Lindahl Equilibrium for the public goods economy is a price equilibrium with transfers for the artificial economy with personalized commodities. That is, an allocation $(x^1,...,x^I, q,z)$, where $x^i$ denotes the private good of individual $i$, $q$ denotes the amount of public good, and $z$ denotes the input vector of the private goods, and a price vector $(p,r)$, where $p$ is the price vector of the private goods and $r$ is the price vector of the public goods for the agents, constitute a Lindahl Equilibrium if there is a set of wealth levels $(w_1,...,w_I)$ satisfying $\sum_iw_i = \sum_ipx^i+ (\sum_i r_i)q-pz$, note that all the terms on the right hand side is the product of vectors, such that:
+
+1. $q\leq f(z)$ and the firm is maximizing it’s profit $\pi = (\sum_ir_i)q-pz$ subject to $z\geq 0$ and $q \leq f(z)$.
+2. For every $i$, $(x^i, q^d_i)$ maximizes the individual’s utility subject to the budget constraint $px^i+r_iq^d_i \leq w_i$
+3. Markets clear, i.e. $\sum_i x^i+z = e^i$ and $q^d_i = q$ for all $i$
+
+#### Non-convex Production Technology
+
+**Note:** When the production technology is not convex, the second welfare theorem might be violated.
+
+**Claim: (Marginal Cost Price Equilibrium)** Consider an economy $\{x^i,\succsim_i, e^i\},\{y^j\}$, we assume that $Y^j$ are non-convex, the preferences are convex and locally non-satiated. If $(x^\star, y^\star)$ is Pareto optimal, then there exists a price vector $p$ and wealth levels $w$ with $\sum_iw_i = \sum_ipe^i + \sum_j py^{\star j}$, such that:
+
+1. For any firm $j$ we have $p = \gamma_j \nabla F_j(y^{\star j})$ for some $\gamma_j>0$
+2. For any $i$, $x^{\star i}$ maximizes the utility function subject to the budget constraint $px^i\leq w_i$
+3. Market clears, i.e. $\sum_ix^{\star i} = \sum_ie ^i + \sum_j y^{\star j}$
+
+
+
+###  Time and Uncertainty
+
+#### Arrow Deberu Equilibrium
+
+**Assumption: (Setup)** 
+
+- There are $L$ commodities and $S$ states in the world
+- $x^i\in \R^{LS}$ denotes the consumption bundle of individual $i$, $y^j\in Y^j\subset \R^{LS}$ denotes the production plan of firm $j$
+- For each preference there exists an utility function satisfying the expected utility property and has a state independent representation, i.e. $U_i(x^i) = \sum_{s\in S} \pi_{si}U_i(x^i_s)$, where $\{\pi_{si}\}$ is the subjective probability of person $i$
+
+**Definition: (State Contingent Commodity)** A State Contingent Commodity is a title to deliver or receive some amount of the good if a particular state occurs.
+
+**Definition: (Budget Set)** The Budget Set is defined as $B_i(p,e_i) = \{ x_i|\sum_{s\in S} p_sx^i_s \leq  \sum_{s\in S} p_se^i_s + \sum_{j\in J} \theta^{ij}\sum_{s\in S} p_s y^j_s  \}$.
+
+**Definition: (Arrow Deberu Equilibrium)** An Arrow Deberu Equilibrium is defined as an allocation $(x^\star, y^\star)\in \R^{ILS} \times \R^{JLS}$ and a price vector $p^\star\in \R^{LS}_+$ which satisfies the following:
+
+1. For each $i\in I$, $y^\star$ maximizes profit, i.e. $U_i(x^{\star i}) \geq U_i(x^{i})$ for all $x^i\in B_i(p^\star,e^i)$
+2. For each $j\in J$, $x^\star$ maximizes utility, i.e. $p^\star y^{\star j} \geq p^\star y^j$ for all $y^j\in Y^j$ 
+3. All markets clear, i.e. $\sum_{i=1}^I x^{\star i}_s = \sum_{i=1}^I e^i_s + \sum_{j=1}^Jy^{\star j}_s$ for all $s\in S$ 
+
+**Theorem: (Pareto Allocations in ADE)** Suppose $\pi_{si}/\pi_{s'i} = \pi_{si'}/\pi_{s'i'}$ for all $s,s'\in S$ and for al $i,i'\in I$. then the Pareto optimal allocation satisfies $\frac{\partial U_i(x^i)/ \partial x^i_{sn}}{ \partial U_i(x^i)/ \partial x^i_{s'm}}= \frac{ \partial U_{i'}(x^{i'})/ \partial x^{i'}_{sn}}{\partial U_{i'}(x^{i'})/ \partial x^{i'}_{s'm}}$.
+
+Proof:
+
+The Pareto optimal allocations requires that $MRS^i_{nm} = MRS^{i'}_{nm}$. Since $U_i(x^i) = \sum_{s\in S} \pi_{si}U_i(x^i_s)$, we can plug it in and get $\frac{\pi_{si} \partial U_i(x^i)/ \partial x^i_{sn}}{\pi_{s'i} \partial U_i(x^i)/ \partial x^i_{s'm}}= \frac{\pi_{si'} \partial U_{i'}(x^{i'})/ \partial x^{i'}_{sn}}{\pi_{s'i'}\partial U_{i'}(x^{i'})/ \partial x^{i'}_{s'm}}$. However, since $\pi_{si}/\pi_{s'i} = \pi_{si'}/\pi_{s'i'}$, we have $\frac{\partial U_i(x^i)/ \partial x^i_{sn}}{ \partial U_i(x^i)/ \partial x^i_{s'm}}= \frac{ \partial U_{i'}(x^{i'})/ \partial x^{i'}_{sn}}{\partial U_{i'}(x^{i'})/ \partial x^{i'}_{s'm}}$. $\square$
+
+**Theorem: (Price Relationship in ADE)** Suppose $\pi_{si}/\pi_{s'i} = \pi_{si'}/\pi_{s'i'}$ for all $s,s'\in S$ and for all $i,i'\in I$. Suppose given $s,s'\in S$, we have  $\sum_{i=1}^I e^i_s + \sum_{j=1}^Jy^{\star j}_s > \sum_{i=1}^I e^i_{s'} + \sum_{j=1}^Jy^{\star j}_{s'}$, then the ADE price satisfies $p_{sn}/p_{s'n} < \pi_{s}/  \pi_{s'}$.
+
+Proof:
+
+At ADE we have $p_{sn}/p_{s'n} = \frac{\pi_{si} \partial U_i(x^i)/ \partial x^i_{sn}}{\pi_{s'i} \partial U_i(x^i)/ \partial x^i_{s'n}}$. It suffices to show that $\phi = \frac{\partial U_i(x^i)/ \partial x^i_{sn}}{\partial U_i(x^i)/ \partial x^i_{s'n}}< 1$. Suppose $\phi \geq 1$, we have  $\partial U_i(x^i)/ \partial x^i_{sn}\geq \partial U_i(x^i)/ \partial x^i_{s'n}$. By assumption we have $U_i(.)$ is an increasing and strictly concave function. This implies $x^i_{sn}\leq x^i_{s'n}$, for all $n$, and for all $i,i'\in I$.
+
+Now sum over $i,i'\in I$, we have $\sum_{i\in I} x^i_{sn}\leq \sum_{i'\in I} x^i_{s'n}$. By market clearing this implies $\sum_{i=1}^I e^i_s + \sum_{j=1}^Jy^{\star j}_s \leq \sum_{i=1}^I e^i_{s'} + \sum_{j=1}^Jy^{\star j}_{s'}$, contradicting to the condition we have. $\square$ 
+
+#### Radner Sequential Equilibrium
+
+**Theorem: (No Spot Market)** Given an ADE, there is no incentive to trade in spot markets.
+
+Proof:
+
+Suppose the inverse is true. Then after the trading in the spot markets, there is a state $t$ and a feasible bundle $(x_{t1},..., x_{tL})$ where $x_{tl}\in \R^I$ that consumers prefer weakly to $x_{tl}^\star$ with one consumer’s preference being strict, i.e. for all $i$, we have $(x_{11}^\star,..., x_{1L}^\star, ..., x_{t1},..., x_{tL}, ..., x_{S1}^\star,..., x_{SL}^\star)\succsim (x_{11}^\star,...x_{SL}^\star)$, with strictly preference for at least one $i$.
+
+However, this is impossible because of the first welfare theorem. So that means given an ADE solution, there is no incentive to trade in spot markets. $\square$
+
+**Definition: (Arrow Securities)** Suppose there is only one good that us traded at both date 0 and date 1, and the rest of the goods are traded at only date 1. Then the good that is traded in both periods is called the Arrow Securities.
+
+**Definition: (Radner Sequential Equilibrium)** A collection formed by a price vector $q = (q_1,...,q_S)\in \R^S$ for contingent first good commodities at $t = 0$, a spot price vector $p_s = (p_1,...,p_L)_s \in \R^L$ for each state $s$ and for every consumer $i$, consumption plans $z_i^\star = (z_{1i}^\star，..., z_{Si}^\star)\in \R^S$ at $t = 0$, and $x_i^\star = (x_{1i}^\star，..., x_{Si}^\star)\in \R^L\times \R^S$ at $t = 1$ constitutes a Radner Equilibrium if:
+
+1. for every individual, the consumption plans $(z_i^\star, z_i^\star)$ solve the following problem:
+   $$
+   max\space U_i(x_{1i},...,x_{Si}) \\
+   s.t. \space \sum_s q_sz_{si}\leq 0 \\
+   p_sx_{si}\leq p_s e^i_s+p_{1s}z_{si} \space \forall s
+   $$
+
+2. Markets clear, i.e. $\sum_iz_{si}^\star \leq 0$ and $\sum_i x_{si}^\star \leq \sum_i e_{s}^i$ for all $s$.
+
+**Theorem: (Duality)** An Arrow Deberu Equilibrium is equivalent to a Radner Sequential Equilibrium.
+
+Proof:
+
+1. Suppose an ADE allocation is given, then $p_s$ is known. Let $q_s = p_{1s}$ for all $s$. With this we claim that for every consumer $i$, the budget set of the Arrow-Debreu problem is identical to the budget set of the Radner problem, i.e.
+   $$
+   B^{AD}_i = \{x\in \R^{LS}_+| \sum_s p_s(x_{si}-e_s^i)\leq 0  \} \\
+   = B^{RS}_i = \{x\in \R^{LS}_+| \sum_s q_sz_{si}\leq 0, \space p_sx_{si}\leq p_s e^i_s+p_{1s}z_{si} \space \forall s\}
+   $$
+   For any point $x\in B_i^{AD}$, denote $z = (1/p_{1s})p_s(x_{si}-e^i_s)$. Then obviously we have $\sum_s q_sz_{si}\leq 0$ and $p_sx_{si}= p_s e^i_s+p_{1s}z_{si}$. So $x\in B_i^{RS}$. Hence $B_i^{AD}\subset B_i^{RS}$. Conversely, for any point $x\in B_i^{RS}$, we have $\sum_s p_s(x_{si}-e_s^i) \leq \sum_s q_sz_{si}\leq 0$. So $x\in B_i^{RS}$. Hence $B_i^{AD}\subset B_i^{RS}$. Hence we conclude that $B^{AD}_i = B^{RS}_i$. Then if an allocation is an ADE it is also a RSE. Note that the market clearing condition holds automatically.
+
+2. Suppose an RSE allocation is given, then $(p_s, q_s)$ is known. We can choose $\mu_s$ so that $\mu_sp_{1s} = q_s$. So we can rewrite the budget set of the Radner problem as:
+   $$
+   B^{RS}_i = \{x\in \R^{LS}_+| \sum_s q_sz_{si}\leq 0, \space \mu_sp_s(x_{si}-e^i_s)\leq q_sz_{si}z_{si} \space \forall s\}
+   $$
+   By similar arguments we have $B^{AD}_i = B^{RS}_i$, again. Then if an allocation is an RSE it is also a ADE. Note that the market clearing condition holds automatically, again. $\square$ 
+
    
-
-### Some Applications (P567 MWG)
-
