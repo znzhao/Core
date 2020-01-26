@@ -1352,6 +1352,14 @@ Proof:
 
    In conclusion, $(x^\star, y^\star), p^\star$ forms a Quasi-Equilibrium with transfers. $\square$
 
+**Theorem: (Quasi-Equilibrium and Competitive Equilibrium)** Suppose $X^i$ is convex and the preference is continuous, and  $(x^\star, y^\star)$  along with the price $p^*$ forms a Quasi-Equilibrium with transfers. If there is a consumption vector $x^i$ such that $p^\star x^i<w^i$, then it forms a competitive equilibrium.
+
+Proof:
+
+By the definition of a competitive equilibrium, it equivalent to show that if $x^i\succ x^{i\star}$ implies $p^\star x^i \geq w^i$, then $x^i\succ x^{i\star}$ implies $p^\star x^i > w^i$. Suppose this is not true, i.e. there is an allocation such that $\bar x^i\succ x^{i\star}$ with $p^\star \bar x^i = w^i$. By the cheaper consumption assumption, there is a consumption vector $\tilde x^i$ such that $p^\star \tilde x^i<w^i$. Since the preference is continuous, there is a $\alpha\in (0,1)$, such that $\alpha \bar x^i+(1-\alpha)\tilde x^i \succ x^{i\star}$ and $p^\star (\alpha\bar x^i+(1-\alpha)\tilde x^i)< w^i$, which is impossible since we found a bundle that is preferred to $x^{i\star}$ and cost less than $w^i$, contradicting to the fact that $x^{i\star}$ is the maximized solution. $\square$ 
+
+**Corollary: (Quasi-Equilibrium and Competitive Equilibrium)** Suppose $X^i$ is convex and the preference is continuous, and  $(x^\star, y^\star)$  along with the price $p^*$ forms a Quasi-Equilibrium with transfers. If $w^i>0$ for all $i$, then it forms a competitive equilibrium.
+
 
 
 
