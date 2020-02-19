@@ -90,7 +90,7 @@ $$
 
 **Lemma: (Log-Linearization)** Suppose $y_t = f(x_t)$, then $\hat y_t = (f(x_t) - f(\bar x_t))/f(\bar x) = \frac{f'(\bar x)\bar x}{f(\bar x)} \hat x_t $.
 
-Example: (Neoclassical Model) The first order conditions can be log-linearized as:
+**Solution: (Neoclassical Model)** The first order conditions can be log-linearized as:
 $$
 \frac{U''(\bar c)\bar c}{U'(\bar c)}\hat c_t = \frac{U''(\bar c)\bar c}{U'(\bar c)}\hat c_{t+1}+\frac{f''(\bar k)\bar k}{f'(\bar k)+(1-\delta)} \hat k_t\\
 
@@ -579,32 +579,34 @@ Note that the right hand side of the equation is still $R(x)$, since the new dis
 **Assumption: (Setup)**
 
 1. Exogenous probability $\delta$ of losing their job every period
-2. People who lost their job stay unemployed for a period and start to search for job in the next period
+2. People who lost their job stay unemployed for a period for the next period and start to search for job in the next period after that
 
 **Definition: (Searching with Probability of Being Fired)** The recursive problem of Searching with Probability of Being Fired is:
 $$
-V(w) = max_{y = \{accept, decline\}}\{\delta (b + \beta E[V(w')]) + (1-\delta)(w+\beta V(w)), b+\beta E[V(w')]\}
+V(w) = max_{y = \{accept, decline\}}\{w+\beta(\delta (b + \beta E[V(w')]) + (1-\delta)V(w)), b+\beta E[V(w')]\}
 $$
 **Solution: (Searching with Probability of Being Fired)**
 
-Define $U = b+\beta E[V(w')]$, we have $V(w) = max\{\delta U+(1-\delta)(w+\beta V(w)), U\}$ we want to solve for the reservation wage $\bar w$ such that $U = \delta U+(1-\delta)(\bar w+\beta V(\bar w))$, which implies that $(1-\delta)U = (1-\delta) (\bar w+\beta U)$, so $U = \frac{\bar w}{1-\beta}$. And we have $V(w) = \delta U+(1-\delta)(w+\beta V(w)) = \delta U+(1-\delta)w+\beta (1-\delta)V(w)$, so $V(w) = \frac{\delta U + (1-\delta)w}{1-\beta(1-\delta)}$. By definition, we have
+Define $U = b+\beta E[V(w')]$, we have $V(w) = max\{w+\beta (\delta U+(1-\delta)V(w)), U\}$ we want to solve for the reservation wage $\bar w$ such that $U = \bar w+\beta (\delta U+(1-\delta)V(\bar w))$, which implies that $U = \frac{\bar w}{1-\beta}$.
+
+And we have $V(w) = w+\beta(\delta U+(1-\delta)V(w)) = \beta\delta U+w+\beta (1-\delta)V(w)$, so $V(w) = \frac{\beta\delta U + w}{1-\beta(1-\delta)}$. By definition, we have
 $$
 \begin{align}
 \begin{split}
 	U &= b+\beta E[V(w')] \\
 	&= b+\beta \int_0^\bar w V(w')dF(w')+\beta \int_\bar w^B V(w')dF(w') \\
 	&= b+\beta \int_0^B UdF(w')+\beta \int_\bar w^B (V-U)dF(w')\\
-	&= b+\beta U+\beta \int_\bar w^B \frac{\delta U + (1-\delta)w}{1-\beta(1-\delta)}-UdF(w')\\
-	&= b+\beta U+\beta \int_\bar w^B \frac{(\delta-1)(1-\beta) U + (1-\delta)w}{1-\beta(1-\delta)}dF(w') \\
-	&= b+\beta U+\beta \int_\bar w^B \frac{(1-\delta)(w-\bar w)}{1-\beta(1-\delta)}dF(w')
+	&= b+\beta U+\beta \int_\bar w^B \frac{\beta\delta U + w}{1-\beta(1-\delta)}-UdF(w')\\
+	&= b+\beta U+\beta \int_\bar w^B \frac{(\beta-1) U + w}{1-\beta(1-\delta)}dF(w') \\
+	&= b+\beta U+\beta \int_\bar w^B \frac{(w-\bar w)}{1-\beta(1-\delta)}dF(w')
 \end{split}
 \end{align}
 $$
 Then move $\beta \bar V$ to the other side of the equation, we will get:
 $$
 \begin{align}    
-(1-\beta) \bar V &= b+\frac{(1-\delta)\beta}{1-\beta(1-\delta)} \int_\bar w^B (w-\bar w)dF(w')\\
-\bar w &=  b+\frac{(1-\delta)\beta}{1-\beta(1-\delta)} \int_\bar w^B (w-\bar w)dF(w')
+(1-\beta) \bar V &= b+\frac{\beta}{1-\beta(1-\delta)} \int_\bar w^B (w-\bar w)dF(w')\\
+\bar w &=  b+\frac{\beta}{1-\beta(1-\delta)} \int_\bar w^B (w-\bar w)dF(w')
 \end{align}
 $$
 This will give us a unique reservation wage.
@@ -695,7 +697,7 @@ where $S\in \{G,B\}$ denotes the state of the economy.
 
 - Unemployed workers find a job with probability $1-F(\bar w)$
 - Exogenous probability $\delta$ of losing their job every period
-- People who lost their job stay unemployed for a period and start to search for job in the next period
+- People who lost their job stay unemployed for a period for the next period and start to search for job in the next period after that
 - Each Firm employs one worker
 - Firms find new workers by a matching mechanism
 - When matched with worker, each firm will produce $z$ amount of output
