@@ -20,7 +20,7 @@
 - $ F_K(0,L) = F_{L}(K,0) = +\infty $
 - $F_K(+\infty,L) = F_{L}(K,+\infty) = 0$
 
-**Definition: (Steady State)** For a dynamic system model, the Steady State is when all the endogenous variables are stable, i.e. $x_{t+1} = x_t$.
+**Definition: (Steady State)** Steady State is when all the endogenous variables are stable, i.e. $x_{t+1} = x_t$.
 
 **Definition: (Golden Rule)** The Golden Rule of saving is the optimal saving rate such that the steady state consumption is maximized.
 
@@ -69,14 +69,14 @@ $$
    $$
    Suppose $U'(A_tL_tc_t)  = h(A_tL_t)U'(c_t)$, and define $\tilde \beta  = \beta  h(A_{t+1}L_{t+1})/ h(A_{t}L_{t})$ we have 
    $$
-   U'(c_t) = \tilde \beta U'(c_{t+1})(f'(k_{t+1})+(1-\delta))\\
+   (1+g)(1+n)U'(c_t) = \tilde \beta U'(c_{t+1})(f'(k_{t+1})+(1-\delta))\\
    (1+g)(1+n)k_{t+1}+c_t = f(k_t) + (1-\delta)k_t
    $$
    The first equation is called the Euler’s Equation, and the second is the period feasible condition. From these two equations we can solve for the law of motion of the endogenous variables.
    
 3. Solve for the Transversality Condition. it is written as $\lim_{t\to +\infty} \lambda_tk_{t+1}  =0$. Plug in $\lambda_t$ and $k_{t+1}$, we have the Transversality condition can be rewrite as: $\lim_{t\to +\infty} \beta^{t+1}h(A_{t+1}L_{t+1})A_{t+1}L_{t+1}U'(c_{t+1})(f'(k_{t+1})+(1-\delta)) k_{t+1}  =0$.
 
-4. Solve for the Steady State. let $c_t = c_{t+1} = \bar c$ and $k_t = k_{t+1} = \bar k$. From the first order conditions we can get the steady state: $f'(\bar k) = 1/\tilde \beta- 1+\delta$ and $\bar c = f(\bar k) + (1-\delta)\bar k - (1+g)(1+n)\bar k$.
+4. Solve for the Steady State. let $c_t = c_{t+1} = \bar c$ and $k_t = k_{t+1} = \bar k$. From the first order conditions we can get the steady state: $f'(\bar k) = (1+g)(1+n)/\tilde \beta- 1+\delta$ and $\bar c = f(\bar k) + (1-\delta)\bar k - (1+g)(1+n)\bar k$.
 
 5. Draw the Phase Diagram. From the Euler’s Equation, we can see that when $k_t<\bar k$, $c_{t+1} >c_t$ because $f’$ is higher, leading to a lower $U'$ in the next period, i.e. $c_t$ is increasing. From the feasible condition, we can see that when $c_t <\bar c$, $k_{t+1}>k_t$, which is easy to show with the second equation. From the Phase Diagram, we can find the stable arm of the system, which is the unique path given the initial point.
 
@@ -183,7 +183,7 @@ $$
 1. If $S' \subset S$ is a closed subset of $S$, and $T(S')\subset  S'$, then $v^{\star} \in S'$
 2. If $T(S') \subset S'' \subset S$, then $v^{\star} \in S''$
 
-**Claim: (Theorem of Maximum)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. There exists a value function satisfying the Bellman equation $V(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$, which is continuous. Furthermore, the policy correspondence $G:X\to X$ is non-empty and upper hemi-continuous.
+**Claim: (Theorem of Maximum)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. There exists a value function satisfying the Bellman equation $V(x) = sup_{y\in \Gamma(X)} F(x,y)$, which is continuous. Furthermore, the policy correspondence $G:X\to X$ is non-empty and upper hemi-continuous.
 
 
 
@@ -191,7 +191,7 @@ $$
 
 #### Bellman Equation
 
-**Definition: (Bellman Equation)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. The Bellman equation is defined as $TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$.
+**Definition: (Bellman Equation)** Let $F:X\times X \to \mathbb{R}$ to be a continuous function, $\Gamma : X\to X$ to be a compact and continuous correspondence. The Bellman equation is defined as $V(x)=TV(x) = sup_{y\in \Gamma(X)} F(x,y)+\beta V(y)$.
 
 **Definition: (Graph)** The graph of the correspondence $\Gamma : X\to X$ is $A = graph (\Gamma ) = \{(x,y)\in X\times X|y\in \Gamma(X)\}$.
 
@@ -209,7 +209,7 @@ $$
 
 **Claim: (Monotonicity)** Under Assumption 1-4, if we start from a increasing function, the fixed point $v^{\star}$ will also be increasing.
 
-**Assumption: (Assumption 5)** Given $y$, $F(x,.)$ is strictly concave, i.e. $F(\theta (x,y)+(1-\theta)(x',y'))>\theta F(x,y)+(1-\theta )F(x',y')$.
+**Assumption: (Assumption 5)** $F(x,y)$ is strictly concave, i.e. $F(\theta (x,y)+(1-\theta)(x',y'))>\theta F(x,y)+(1-\theta )F(x',y')$.
 
 **Assumption: (Assumption 6)** $\Gamma (x)$ is convex. i.e.  $\theta y+(1-\theta ) y'\in \Gamma (\theta x+(1-\theta)x')$ for any $\theta \in (0,1)$ and $y\in \Gamma(x)$ and $y' \in\Gamma(x')$ for any $x$ and $x'$.
 
@@ -311,14 +311,14 @@ $$
 
 **Definition: (Neoclassical Growth Model with Asset)** The recursive problem of the Neoclassical Growth Model with asset is
 $$
-V(k,a)  =max\space ln(k^\alpha+ ra - k'-a')+\beta V(k',a'), \space k'\in [\epsilon,K], \space a'\in [-A,A]
+V(k,a)  =max\space ln(k^\alpha+ ra - k'-a')+\beta V(k',a'), \space k'\in [\epsilon,K], \space a'\in [0,A]
 $$
 
 **Solution: (Check CMT)**
 
-The main aim of this problem is to check the contraction mapping theorem works. Similarly define $\bar K = max\{k_0,K\}$, the Bellman function is a mapping $T:B([\epsilon,\bar K]\times[-A,A])\to B([\epsilon,\bar K]\times[-A,A])$ where $B([\epsilon,\bar K]\times[-A,A])$ is the set of all bounded real-value functions on $[\epsilon,\bar K]\times[-A,A]$. 
+The main aim of this problem is to check the contraction mapping theorem works. Similarly define $\bar K = max\{k_0,K\}$, the Bellman function is a mapping $T:B([\epsilon,\bar K]\times[0,A])\to B([\epsilon,\bar K]\times[0,A])$ where $B([\epsilon,\bar K]\times[0,A])$ is the set of all bounded real-value functions on $[\epsilon,\bar K]\times[0,A]$. 
 
-Now check the monotonicity and discounting condition. Suppose $f \in B([\epsilon,\bar K]\times[-A,A])$ and $h \in B([\epsilon,\bar K]\times[-A,A])$, and $f\geq h$. Suppose $k' = g_1(k,a)$ and $a' = g_2(k,a)$ are the solutions to $T(h)$. Then We have:
+Now check the monotonicity and discounting condition. Suppose $f \in B([\epsilon,\bar K]\times[-A,A])$ and $h \in B([\epsilon,\bar K]\times[-A,A])$, and $f\geq h$. Suppose $k' = g_1(k,a)$ and $a' = g_2(k,a)$ are the solutions to $T(h)$. Then we have:
 $$
 T(h) = max\space ln(k^\alpha+ ra - k'-a')+\beta h(k',a') = max\space ln(k^\alpha+ ra - g_1(k,a)-g_2(k,a))+\beta h(g_1(k,a),g_2(k,a)) \\
 \leq ln(k^\alpha+ ra - g_1(k,a)-g_2(k,a))+\beta f(g_1(k,a),g_2(k,a)) \leq max\space ln(k^\alpha+ ra - k'-a')+\beta f(k',a') = T(f)
@@ -506,17 +506,17 @@ $$
 1. $R(0) = \frac{\beta}{1-\beta}E[w]$
 2. $R(B) = 0$
 3. $R'(x) = -\frac{\beta}{1-\beta}(1-F(x))<0$
-4. $R''(x) = \frac{\beta}{1-\beta}F(x)>0$
+4. $R''(x) = \frac{\beta}{1-\beta}f(x)>0$
 
 Proof: 
 
-Properties 1 and 2 are trivial. We apply Newton-Leibniz Formula to $R(x)$, and we will get $R'(x) = -\frac{\beta}{1-\beta}(1-F(x))$. And $R''(x) = \frac{\beta}{1-\beta}F(x)$ is trivial to get once we get $R'(x)$. $\square$
+Properties 1 and 2 are trivial. We apply Newton-Leibniz Formula to $R(x)$, and we will get $R'(x) = -\frac{\beta}{1-\beta}(1-F(x))$. And $R''(x) = \frac{\beta}{1-\beta}f(x)$ is trivial to get once we get $R'(x)$. $\square$
 
 **Note:** By the properties of $R(x)$, it is a strictly decreasing and strictly convex function. Since $T(x) = x-b$ is an increasing linear function, We know that there must be a solution to the equation $x-b = R(x)$.
 
 #### Comparative Statics
 
-Theorem: (Comparative Statics) The reservation wage have the following properties:
+**Theorem: (Comparative Statics)** The reservation wage have the following properties:
 
 1. When $b$ increases $\bar w$ increases
 2. When $\beta$ increases $\bar w$ increases
@@ -559,11 +559,11 @@ $$
 	\bar w &= b+ \frac{\beta }{1-\beta} \int_\bar w^B(w'-\bar w)dF(w')\\
 	&= b+ \frac{\beta }{1-\beta} \int_0^B(w'-\bar w)dF(w') -  \frac{\beta }{1-\beta} \int_0^\bar w(w'-\bar w)dF(w') \\
 	&= b+ \frac{\beta }{1-\beta} (E[w']-\bar w) -  \frac{\beta }{1-\beta} \int_0^\bar w(w'-\bar w)dF(w') \\
-	&= b+ \frac{\beta }{1-\beta} (E[w']-\bar w) -  \frac{\beta }{1-\beta} ( (w'-\bar w)|_0^\bar w - \int_0^\bar w F(w')dw' )
+	&= b+ \frac{\beta }{1-\beta} (E[w']-\bar w) -  \frac{\beta }{1-\beta} ( (w'-\bar w)F(w')|_0^\bar w - \int_0^\bar w F(w')dw' )
 \end{split}
 \end{align}
 $$
-Since $(w'-\bar w)|_0^\bar w   =0$, we have:
+Since $(w'-\bar w)F(w')|_0^\bar w   =0$, we have:
 $$
 \bar w =(1-\beta) b+ \beta E[w']+  \beta \int_0^\bar w F(w')dw' \\
 \bar w - b =\beta (E[w']-b)+  \beta \int_0^\bar w F(w')dw'
@@ -681,7 +681,7 @@ $$
 **Definition: (Searching with Changing Environment)**  The recursive problem of Searching with Changing Environment is
 $$
 V(w, S) = max_{y = \{work, unemployed\}}\{w+\beta (pV(w,G)+(1-p)V(w,B)) \\
-, b+\beta (p\int_0^MV(w',G)dF_S(w') + (1-p)\int_0^MV(w',B)dF_S(w'))\}
+, b+\beta (p\int_0^MV(w',)dF_S(w') + (1-p)\int_0^MV(w',B)dF_S(w'))\}
 $$
 where $S\in \{G,B\}$ denotes the state of the economy.
 
@@ -758,7 +758,7 @@ $$
    $$
    max\{(W(w)-U)^\phi(J(w)-V)^{(1-\phi)}\}
    $$
-   Take the first order conditions we will get $\phi \frac{W'(w)}{W(w)-U} = -(1-\phi) \frac{J'(w)}{J(w)-V}$, where the first order differentiation comes from step 1. We have ${W'(w)} = -V'(w) = 1/(1-\beta(1-\delta))$. Hence we have $\phi (J-V)  =(1-\phi)(W-U)$. Use the fact that $V = 0$, and plug in W and J from step 1, we have:
+   Take the first order conditions we will get $\phi \frac{W'(w)}{W(w)-U} = -(1-\phi) \frac{J'(w)}{J(w)-V}$, where the first order differentiation comes from step 1. We have ${W'(w)} = -J'(w) = 1/(1-\beta(1-\delta))$. Hence we have $\phi (J-V)  =(1-\phi)(W-U)$. Use the fact that $V = 0$, and plug in W and J from step 1, we have:
    $$
    \phi \frac{z-w}{1-\beta (1-\delta)} = (1-\phi)(\frac{w+\beta \delta U}{1-\beta (1-\delta)}-U) \\
       \phi (z-w) = (1-\phi)(w+\beta \delta U-U+U\beta (1-\delta))\\
@@ -893,11 +893,12 @@ $$
    $$
    \sum_{i\in I}C_t^i(S^t) = \sum_{i\in I}e_t^i(S^t) \space for \space each \space t \space and \space S^t
    $$
+
 **Definition: (Recursive Market Equilibrium)** The Recursive Market Equilibrium is defined as a set of price $\{\tilde q(S'|S)\}$ of consumption, a set of individual decisions $\{C, a\}$, such that:
 
 1. Given the set of price, the individual decision variables solves the following consumer’s problem:
    $$
-   v^i(a^i(S),S) = max\{U(C^i)+\beta \sum_{S'}v^i({a^i}'(S'|S),S')\pi(S'|S) \\
+   v^i(a^i(S),S) = max\{U(C^i)+\beta \sum_{S'}v^i({a^i}'(S'|S),S')\pi(S'|S)\} \\
    s.t. \space C^i +\sum_{S'}\tilde q(S'|S) {a^i}'(S'|S) \leq e^i+a^i(S)\\
    {a^i}'(S'|S) \geq -\bar A
    $$
@@ -989,7 +990,7 @@ Solve the Social Planner’s problem with Lagrange method:
 $$
 L =\sum_{t=0}^{+\infty}\sum_{S^t}\sum_{i\in I}\{\beta^t \lambda^i U(C_t^i(S^t))\pi(S^t) + \phi_t(S^t)(e_t^i(S^t)-C_t^i(S^t))\}
 $$
-The First Order Conditions are:
+The first order conditions are:
 $$
 \beta^t \lambda^i U'(C_t^i(S^t))\pi(S^t) = \phi_t(S^t)
 $$
@@ -1013,9 +1014,9 @@ where $\sum_i\tilde\lambda^i = 1$, and $\tilde\lambda^i$ is determined already.
 
 Proof:
 
-Assume an alternative allocation $\{\tilde c_t^i\}$ which pareto dominates the competitive allocation $\{c_t^i\}$, then we have $u(\tilde c_t^i) \geq u(c_t^i) $ for all $i$, and there is a $j$ such that $u(\tilde c_t^j) > u(c_t^j) $. But this new allocation will cost at least the same amount of money as the competitive market solution , otherwise the consumer would get higher utilities. Hence we get $\sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)\tilde c_t^i(S^t) \geq \sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)c_t^i(S^t)$. similarly, we have $\sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)\tilde c_t^j(S^t) > \sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t) c_t^j(S^t)$. Add them up and use the feasible condition for the whole economy, we end up with $\sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)e_t^i(S^t) > \sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)e_t^i(S^t)$, which is impossible. $\square$
+Assume an alternative allocation $\{\tilde c_t^i\}$ which pareto dominates the competitive allocation $\{c_t^i\}$, then we have $u(\tilde c_t^i) \geq u(c_t^i) $ for all $i$, and there is a $j$ such that $u(\tilde c_t^j) > u(c_t^j) $. But this new allocation will cost at least the same amount of money as the competitive market solution, otherwise the consumer would get higher utilities. Hence we get $\sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)\tilde c_t^i(S^t) \geq \sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)c_t^i(S^t)$. similarly, we have $\sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)\tilde c_t^j(S^t) > \sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t) c_t^j(S^t)$. Add them up and use the feasible condition for the whole economy, we end up with $\sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)e_t^i(S^t) > \sum_{t = 0}^\infty\sum_{S^t}p_t^0(S^t)e_t^i(S^t)$, which is impossible. $\square$
 
-Corollary: The Sequential Market Equilibrium allocation is Pareto Efficient.
+**Corollary:** The Sequential Market Equilibrium allocation is Pareto Efficient.
 
 #### Duality
 
@@ -1029,14 +1030,14 @@ Define Total Tax of consumer $i$ as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S
 
 
 
-### Asset Pricing and Lucas Tree
+### Asset Pricing
 
 #### Arrow-Debreu Asset Pricing
 
 **Assumption: (Arrow-Deberu)**
 
 - Basic Arrow-Debreu Equilibrium Setup
-- Complete market, with one asset to be priced, which is also called the Lucas Tree
+- Complete market, with one asset to be priced
 
 **Definition: (Arrow-Deberu Equilibrium)** The Arrow-Deberu Equilibrium is defined as a set of price $\{\tilde q_t, P_t\}$ of consumption, a set of individual decisions $\{C^i_t(S^t), b_{t}^i(S^t)\}$, such that:
 
@@ -1056,6 +1057,7 @@ Define Total Tax of consumer $i$ as $T_i = \sum_t \sum_{S^t} (e^i_t(S^t)-C^i_t(S
    $$
    \sum_{i\in I}b_{t+1}^i(S^t) = B
    $$
+
 **Solution: (Asset Pricing)**
 
 Solving this problem will give us the same First Order Conditions for the contingent claims. However, it will also give us the following Asset Pricing Equation:
@@ -1097,6 +1099,7 @@ Because of no arbitrage condition, we have $lim_{T\to+\infty}E_t[\beta^T\frac{U'
    $$
    \sum_{i\in I}b_{t+1}^i(S^t) = B
    $$
+
 **Solution: (Asset Pricing)**
 
 Solving this problem will give us the same Asset Pricing Equation, which can be rewrite as:
@@ -1105,38 +1108,6 @@ P_t(S^t) = \sum_{S'} \tilde q_t(S^t,S')(P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1})\\
 P_t(S^t) = \sum_{\tau =t+1}^{+\infty}E_t[\beta^{\tau-t}\frac{U'(Y_{\tau}(S^\tau))}{U'(Y_{t}(S^t))}d_\tau(S^\tau)] + lim_{T\to+\infty}E_t[\beta^T\frac{U'(Y_{T+1}(S^T,S'))}{U'(Y_{t}(S^t))}P_{T+1}(S^{T+1})]
 $$
 Because of no arbitrage condition, we have $lim_{T\to+\infty}E_t[\beta^T\frac{U'(Y_{T+1}(S^T,S'))}{U'(Y_{t}(S^t))}P_{T+1}(S^{T+1})] = 0$.
-
-
-
-### Consumption Asset Pricing Model (CAPM)
-
-**Definition: (Returns)** Define the return of the asset to be $R_{t+1}(S^t,S_{t+1}) = (P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1}))/P_t(S^t)$.
-
-**Definition: (Pricing Kernel)** Define the Pricing Kernel to be $M_{t+1}(S^{t+1}) = \beta\frac{U'(C_{t+1}(S^t,S'))}{U'(C_{t}(S^t))}$.
-
-**Definition: (Risk Neutral Probabilities)** Define the risk neutral probabilities as $\pi^r(S^{t+1}|S^t) = \pi(S^{t+1}|S^t)M_{t+1}(S^{t+1}) / \sum_{S'}M_{t+1}(S')$.
-
-**Theorem: (Risk Neutral Expectations)** We have $P(S^{t+1}|S^t) = E_t[M_{t+1}(S^{t+1})] E_t^r[P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1})]$.
-
-Proof:
-
-We can rewrite $P_t(S^t) = \sum_{S'}M_{t+1}(S') \sum_{S'}\beta \frac{U'(Y_{t+1}(S^t,S'))}{U'(Y_{t}(S^t))\sum_{S'}M_{t+1}(S')}\pi(S'|S^t)(P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1}))$, i.e.  $P(S^{t+1}|S^t) = E_t[M_{t+1}(S^{t+1})] E_t^r[P_{t+1}(S^{t+1})+d_{t+1}(S^{t+1})]$. $\square$
-
-**Definition: (Risk Free Interest Rate)** Define the Risk Free Interest Rate to be $\bar R_{t+1} = 1/E_t[M_{t+1}(S^{t+1})]$.
-
-**Theorem: (CAPM)** The expected return of an asset can be decomposed as:
-$$
-E_t[R_{t+1}(S^{t+1})] -\bar R_{t+1} = -\bar R_{t+1}cov(M_{t+1}(S^{t+1}),R_{t+1}(S^{t+1}) )
-$$
-Proof:
-
-From the asset pricing equation, we get $E_t[M_{t+1}(S^{t+1}) R_{t+1}(S^{t+1})] =1$, which can be rewrite as
-$$
-cov(M_{t+1}(S^{t+1}),R_{t+1}(S^{t+1}) ) + E_t[M_{t+1}(S^{t+1})] E_t[R_{t+1}(S^{t+1})] = 1
-$$
-Time both side with risk free rate, and then we get the formula. $\square$
-
-**Note:** Suppose the asset would deliver higher return in the next period when the consumption in the next period is low, then the agent must see this asset as a more valuable one. Hence the price today of this asset should be higher than the risk neutral bond, leading to a lower average return. 
 
 
 
@@ -1190,7 +1161,7 @@ s.t. \space C_t(S^t) + K_{t+1}(S^{t}) \leq z_t F(K_t(S^{t-1}),N_t) +(1-\delta)K_
 $$
 Or to write in the recursive way:
 $$
-V(K,z) = max \{U(C)+\beta \sum_{z'}V(K',z')\pi(z'|z) \\s.t. \space C +K' \leq  zF(K,1) +(1-\delta)k \\\\C \geq 0 , \space K' \geq0
+V(K,z) = max \{U(C)+\beta \sum_{z'}V(K',z')\pi(z'|z) \\s.t. \space C +K' \leq  zF(K,1) +(1-\delta)K \\C \geq 0 , \space K' \geq0
 $$
 which is just the Social Planner’s problem. Hence we can just solve it by solving the social planner’s problem.
 

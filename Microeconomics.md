@@ -32,7 +32,7 @@
 
 **Definition: (Strict Preference)** A Strict Preference relation is a binary relation on the set of alternatives $X$, denoted as $"\succ"$, if $x\succsim y$ but $y\nsucceq x$.
 
-**Definition: (Indifferent Preference)** An Indifferent Preference relation is a binary relation on the set of alternatives $X$, denoted as $"\succ"$, if $x\succsim y$ but $y\nsucceq x$.
+**Definition: (Indifferent Preference)** An Indifferent Preference relation is a binary relation on the set of alternatives $X$, denoted as $"\sim"$, if $x\succsim y$ and $y\succeq x$.
 
 **Definition: (At Least As Good Set)** At Least As Good Set is defined as $\succsim(x^0) = \{x\in X, x\succsim x^0\}$.
 
@@ -178,7 +178,7 @@ Suppose not, then the solution to the problem satisfies $px<I$, which cannot be 
 
 Define the Lagrange Function as $L = U(x)+\lambda (I-px)+\mu x$. The Kuhn-Tucker condition to solve the problem is the first order conditions, i.e.
 $$
-\frac{\partial L}{\partial x_i} = \lambda p_i+\mu_i \\
+\frac{\partial L}{\partial x_i} = U_i(x_i)+\lambda p_i+\mu_i =0\\
 \lambda (I-px) = 0\\
 \mu_i x_i = 0
 $$
@@ -200,7 +200,7 @@ Now prove the statement. Suppose not, the there is another solution $(x^1,\lambd
 
 **Definition: (Indirect Utility Function)** The Indirect Utility Function, also known as the Value Function, is defined as $V(p,I) = U(x^\star(p,I))$.
 
-**Theorem: (Properties of the Indirect Utility Function)** If $U(.)$ is strictly increasing on $\mathbb{R}^n_+$, then $V(p,I)$ is:
+**Theorem: (Properties of the Indirect Utility Function)** If $U(.)$ is continuous and strictly increasing on $\mathbb{R}^n_+$, then $V(p,I)$ is:
 
 1. Continuous on its domain
 2. Homogenous of degree 0 in $(p,I)$
@@ -256,7 +256,7 @@ Next we prove the uniqueness. Suppose there are two solutions to the problem, we
 
 Define the Lagrange function as $L = px+\lambda(U_0-U(x))$. Take the first order conditions we will get $p_i = \lambda\partial U/\partial x_i$ and $U(x) = U_0$.
 
-**Definition: (Hicks Demand)** The solution the the expenditure minimizing problem is called the Hicks Demand, denoted by $x^H(p,U)$.
+**Definition: (Hicks Demand)** The solution to the expenditure minimizing problem is called the Hicks Demand, denoted by $x^H(p,U)$.
 
 ####  Expenditure Function
 
@@ -358,6 +358,12 @@ Proof:
 
 Note that by Slutsky Equation, $S(p,I) = [\frac{\partial x_i(p,I)}{\partial p_j} +x_j(p,I)\frac{\partial x_i(p,I)}{\partial I}] = [\frac{\partial x_i^H(p,V(p,I))}{\partial p_j}]$. By Shephard’s lemma, we have $\partial e(p,U)/\partial p_i = x_i^H(p,U)$, hence $\frac{\partial x_i^H(p,V(p,I))}{\partial p_j} = \frac{\partial^2 e(p,U)}{\partial p_i\partial p_j}$, by Young’s theorem this is symmetric. Since $e(p,U)$ is concave, $[\frac{\partial x_i^H(p,V(p,I))}{\partial p_j}]$ is negative semi-definite. $\square$
 
+**Theorem: (Slutsky Property)** Suppose that $x(p, I)\in \mathbb{R}^n_+$ satisfies budget balance and homogeneity. Then for all $(p, y)$, $S(p, y)p= 0$.
+
+Proof:
+
+Note that $S(p, y)p= \sum_{j=1}^n(\frac{\partial x_i}{\partial p_j}+x_j\frac{\partial x_i}{\partial I})p_j = \sum_{j=1}^n(p_j\frac{\partial x_i}{\partial p_j}+p_jx_j\frac{\partial x_i}{\partial I}) = \sum_{j=1}^n(p_j\frac{\partial x_i}{\partial p_j})+I\frac{\partial x_i}{\partial I} = 0$. $\square$
+
 
 
 ### Integrability
@@ -400,31 +406,26 @@ $$
 
 Proof:
 
-By budget balance, . $px(p,I) = I = \sum_{i = 1}^n p_ix_i(p,I)$. Differentiate with respect to $p_i$, we will get $\sum_{i = j}^n p_j \frac{\partial x_j}{\partial p_i}+x_i(p,I) = 0$, or $\sum_{i = j}^n p_j \frac{\partial x_j}{\partial p_i} = -x_i(p,I)$. Now differentiate with respect to $I$, we will get $\sum_{i=1}^n p_j \frac{\partial x_j}{\partial I} = 1$. Now define $f_i(t) = x_i(tp,tI)$. We want to show that $f_i(t) = f_(1)$, i.e. $\frac{\partial f_i}{\partial t}  =0$. We have:
+By budget balance, . $px(p,I) = I = \sum_{i = 1}^n p_ix_i(p,I)$. Differentiate with respect to $p_i$, we will get $\sum_{i = j}^n p_j \frac{\partial x_j}{\partial p_i}+x_i(p,I) = 0$, or $\sum_{i = j}^n p_j \frac{\partial x_j}{\partial p_i} = -x_i(p,I)$. Now differentiate with respect to $I$, we will get $\sum_{i=1}^n p_j \frac{\partial x_j}{\partial I} = 1$. Now define $f_i(t) = x_i(tp,tI)$. We want to show that $f_i(t) = f(1)$, i.e. $\frac{\partial f_i}{\partial t}  =0$. We have:
 
 
 $$
 f_i'(t) = [\sum_{j = 1}^n \frac{\partial x_i}{ \partial p_j}p_j +\frac{\partial x_i}{\partial I}I] |_{(tp,tI)} \\
-= \sum_{j = 1}^n \frac{\partial x_i(tp,tI)}{ \partial p_j}tp_j +\frac{\partial x_i(tp,tI)}{\partial I}tI 
+= \sum_{j = 1}^n (\frac{\partial x_i(tp,tI)}{ \partial p_j}tp_j )+\frac{\partial x_i(tp,tI)}{\partial I}tI \\
+= \sum_{j = 1}^n (\frac{\partial x_i(tp,tI)}{ \partial p_j}tp_j +\frac{\partial x_i(tp,tI)}{\partial I}tx_jp_j)
 $$
 Using symmetry, we have
 $$
 f_i'(t)= \sum_{j = 1}^n \frac{\partial x_j(tp,tI)}{ \partial p_i}tp_j + \sum_{j = 1}^n \frac{\partial x_j(tp,tI)}{\partial I}tp_jx_i(t)\\
- =  \sum_{j = 1}^n( -x_i(t)p_j + p_jx_i(t)) = 0
+ =   -x_i(t) + x_i(t) = 0
 $$
 This finishes the proof. $\square$ 
-
-**Theorem: (Slutsky Property)** Suppose that $x(p, I)\in \mathbb{R}^n_+$ satisfies budget balance and homogeneity. Then for all $(p, y)$, $S(p, y)p= 0$.
-
-Proof:
-
-Note that $S(p, y)p= \sum_{j=1}^n(\frac{\partial x_i}{\partial p_j}+x_j\frac{\partial x_i}{\partial I})p_j = \sum_{j=1}^n(p_j\frac{\partial x_i}{\partial p_j}+p_jx_j\frac{\partial x_i}{\partial I}) = \sum_{j=1}^n(p_j\frac{\partial x_i}{\partial p_j}+I\frac{\partial x_i}{\partial I}) = 0$. $\square$
 
 **Theorem: (Integrability Theorem)** If a differentiable function $x:\mathbb{R}^n_+ \times \mathbb{R}_+\to \mathbb{R}^n_+$ satisfies budget balance, symmetry and negative semi-definite of Slutsky matrix, then it is the demand function generated by some increasing, quasi-concave function.
 
 Proof:
 
-1. First we want to show that suppose $e(p,U)$ is an expenditure function that is generated by some utility function, that is not related to the given function $x(.)$. However, when we have $\frac{\partial e(p,U)}{\partial p_i} = x_i(p,e(p,U))$ for all $i$, the Marshallian demand generated by the same utility function satisfies $x^\star(p,I) = x(p,I)$. This follows from duality and Shepherd’s lemma. We have $x^\star(p,e(p,U)) = x^H(p,U) = x(p,e(p,U))$. For each fixed $p$, as $U$ varies $e(p,U)$ assumes all numbers on $[0,+\infty)$, so we could change $e(p,U)$ to $I$ and have the aimed equation.
+1. First we want to show that suppose $e(p,U)$ is an expenditure function that is generated by some utility function, i.e. that is not related to the given function $x(.)$, the solutions would coincide. However, when we have $\frac{\partial e(p,U)}{\partial p_i} = x_i(p,e(p,U))$ for all $i$, the Marshallian demand generated by the same utility function satisfies $x^\star(p,I) = x(p,I)$. This follows from duality and Shepherd’s lemma. We have $x^\star(p,e(p,U)) = x^H(p,U) = x(p,e(p,U))$. For each fixed $p$, as $U$ varies $e(p,U)$ assumes all numbers on $[0,+\infty)$, so we could change $e(p,U)$ to $I$ and have the aimed equation.
 
 2. Second we want to show that the solution to $\frac{\partial e(p,U)}{\partial p_i} = x_i(p,e(p,U))$ for all $i$ always exists. By Fubini theorem, if $[\frac{\partial^2 e(p,U)}{\partial p_i\partial p_j}]$ is symmetric, the solution exists, which is guaranteed by the assumption of $x(p,I)$.
 
@@ -463,7 +464,7 @@ f'(t)|_{t= 0} = \sum _{i=1}^n z_i(\sum_{j=1}^n\frac{\partial x_i(p^0+tz,(p^0+tz)
 $$
 So the Slutsky matrix is negative semi-definite. $\square$
 
-**Theorem: (Recover WARP)** Suppose that a choice function x(p,y) satisfies homogeneity and budget balance. Suppose  further that whenever $p^1$ is not proportional to $p^0$, we have $(p^1)^TS(p^0,I)p^1<0$. Then $x(p,I)$ satisfies WARP.
+**Theorem: (Recover WARP)** Suppose that a choice function $x(p,y)$ satisfies homogeneity and budget balance. Suppose further that whenever $p^1$ is not proportional to $p^0$, we have $(p^1)^TS(p^0,I)p^1<0$. Then $x(p,I)$ satisfies WARP.
 
 Proof:
 
@@ -528,7 +529,7 @@ Proof:
 
 Proof: 
 
-By substitution axiom we have $(\alpha\circ\pi+(1-\alpha)\circ\sigma) \sim (\alpha\circ(p_1\circ a_1,...,p_n \circ a_n),(1-\alpha)\circ(r_1\circ a_1,...,r_n \circ a_n))$ and $(\alpha\circ\rho+(1-\alpha)\circ\sigma) \sim (\alpha\circ(q_1\circ a_1,...,q_n \circ a_n),(1-\alpha)\circ(r_1\circ a_1,...,r_n \circ a_n))$. By the ability to reduce to simple gamble , we have $(\alpha\circ(q_1\circ a_1,...,q_n \circ a_n),(1-\alpha)\circ(r_1\circ a_1,...,r_n \circ a_n))\sim (\alpha\circ(p_1\circ a_1,...,p_n \circ a_n),(1-\alpha)\circ(r_1\circ a_1,...,r_n \circ a_n))$. Hence by transitivity and $\pi\sim \rho$, we have $(\alpha\circ\pi+(1-\alpha)\circ\sigma) \sim (\alpha\circ\rho+(1-\alpha)\circ\sigma)$. $\square$
+By substitution axiom we have $(\alpha\circ\pi+(1-\alpha)\circ\sigma) \sim (\alpha\circ\rho+(1-\alpha)\circ\sigma)$ if $\pi\sim\rho$. Now if we have $(\alpha\circ\pi+(1-\alpha)\circ\sigma) \sim (\alpha\circ\rho+(1-\alpha)\circ\sigma)$ let $\alpha =1$ we have $\pi\sim\rho$. $\square$ 
 
 
 
@@ -612,7 +613,7 @@ Proof:
 
 Proof:
 
-If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing function $U:\mathbb{R}\to \mathbb{R}$. Now by integration by parts, we have $\int_a^b U(x)dF(x) = U(x)F(x)|_a^b-\int_a^bU'(x)F(x)dx = U(b)-\int_a^bU'(x)F(x)dx$. So $\int_a^b U(x)(dF(x)-dG(x)) = \int_a^bU'(x)(G(x)-F(x))dx$. Since $U'(x)\geq 0$, we have $F(x)\leq G(x)$. Suppose for some $x'$ we have $F(x')> G(x')$,  since all the probability distributions are right continuous, we can define $U(x) = 1$ for $x\geq x'$ and for $x< x'$. This will lead to a contradiction that  $\int UdF< \int UdG$. It is trivial to show the inverse of this is also true. $\square$ 
+If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing function $U:\mathbb{R}\to \mathbb{R}$. Now by integration by parts, we have $\int_a^b U(x)dF(x) = U(x)F(x)|_a^b-\int_a^bU'(x)F(x)dx = U(b)-\int_a^bU'(x)F(x)dx$. So $\int_a^b U(x)(dF(x)-dG(x)) = \int_a^bU'(x)(G(x)-F(x))dx$. Since $U'(x)\geq 0$, we have $F(x)\leq G(x)$. Suppose for some $x'$ we have $F(x')> G(x')$,  since all the probability distributions are right continuous, we can define $U(x) = 1$ for $x\geq x'$ and 0 for $x< x'$. This will lead to a contradiction that  $\int UdF< \int UdG$. It is trivial to show the inverse of this is also true. $\square$ 
 
 **Definition: (Second Order Stochastically Domination)** $F$ Second Order Stochastically Dominate $G$, denoted by $F\succsim _{SOSD} G$, if $\int UdF\geq \int UdG$ for all non-decreasing and concave function $U:\mathbb{R}\to \mathbb{R}$.
 
@@ -650,7 +651,7 @@ If $F\succsim _{FOSD} G$, then $\int UdF\geq \int UdG$  for all non-decreasing f
 
 **Definition: (State Independence)** a preference is state independent if for all non-null states $s,t\in \Omega$, for all acts $h,g\in \Delta X^\Omega$, any lottery $\pi,\rho \in \Delta X$, $(h-s,\pi)\succsim (h-s,\rho)$ implies $(g-t,\pi)\succsim (g-t,\rho)$.
 
-**Definition: (Monotonicity)** a preference is state independent if for all acts $h,g\in \Delta X^\Omega$, the constant act $h_s\succ g_s \forall s\in \Omega$ implies $h\succ g$.
+**Definition: (Monotonicity)** a preference is monotonic if for all acts $h,g\in \Delta X^\Omega$, the constant act $h_s\succ g_s \forall s\in \Omega$ implies $h\succ g$.
 
 **Theorem: (State Independence and Monotonicity)** if a preference is state independent, then it is monotonic.
 
@@ -681,8 +682,8 @@ Proof:
 5. (Non Increasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in [0,1]$
 6. (Non Decreasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in [1, +\infty)$
 7. (Constant Return to Scale)  If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in [0, +\infty)$
-8. (Increasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (1, +\infty)$ and If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (0, 1)$
-9. (Decreasing Return to Scale)  If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (0,1)$ and If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (1,+\infty)$
+8. (Increasing Return to Scale) If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (1, +\infty)$ and If $y\in Y$ then $\alpha y\notin Y$ for all $\alpha \in (0, 1)$
+9. (Decreasing Return to Scale)  If $y\in Y$ then $\alpha y\in Y$ for all $\alpha \in (0,1)$ and If $y\in Y$ then $\alpha y\notin Y$ for all $\alpha \in (1,+\infty)$
 10. (Additivity) If $y,y'\in Y$, then $y+y'\in Y$
 11. (Convexity) $Y$ is convex
 12. (Convex Cone) For any $y,y' \in Y$ and $\alpha,\beta \geq 0$, we have $\alpha y+ \beta y' \in Y$
@@ -696,7 +697,7 @@ Proof:
 
 Proof:
 
-1. If $Y$ is a convex cone, then by definition it is additive and non-increasing return to scale. If $Y$ is additive and non-increasing return to scale, for any $y,y' \in Y$ and $\alpha,\beta \geq 0$, by additivity $ky\in Y$. Then by non-increasing return to scale $\frac\alpha k ky\in Y$. Then by additivity $\alpha y+ \beta y' \in Y$.
+1. If $Y$ is a convex cone, then by definition it is additive and non-increasing return to scale. If $Y$ is additive and non-increasing return to scale, for any $y,y' \in Y$ and $\alpha,\beta \geq 0$, by additivity $ky\in Y$. Then by non-increasing return to scale $\alpha ky\in Y\space \forall \alpha\in (0,1)$. Then by additivity $\alpha y+ \beta y' \in Y$.
 2. Let $Y' = \{\alpha(y,-1)|y\in Y, \forall \alpha>0\}$. By definition $Y'$ is constant return to scale. $\square$
 
 #### Production Function
@@ -710,15 +711,15 @@ Proof:
 **Theorem: (Properties of Production Function)** The following are true:
 
 1. $Y$ is constant return to scale if and only if $f(t x) = t f(x)$ for all $t>0$
-2. $Y$ is increasing return to scale if and only if $f(t x) > t f(x)$ for all $t>$1
-3. $Y$ is decreasing return to scale if and only if $f(t x) < t f(x)$ for all $t>$1
+2. $Y$ is increasing return to scale if and only if $f(t x) > t f(x)$ for all $t>1$
+3. $Y$ is decreasing return to scale if and only if $f(t x) < t f(x)$ for all $t>1$
 4. $Y$ is convex if and only if $f(x)$ is concave
 
 Proof:
 
 1. If $f(t x) = t f(x)$ for all $t>0$, then it is trivial to show that $Y$ is constant return to scale. Now suppose the reverse is true. By definition we have if $y = f(x)$ then $tf(x)\leq f(tx)$ for all $t\geq 0$ and if $y = f(z)$, then $sf(z)\leq f(sz)$ for all $s>0$. Now set $s = 1/t$ and set $z = tx$ we have $tf(x)\geq f(tx)$, hence $tf(x)= f(tx)$.
-2. If $f(t x) > t f(x)$ for all $t>0$, then it is trivial to show that $Y$ is increasing return to scale. Now suppose the reverse is true. By definition we have if $y = f(x)$ then $ty < f(tx)$ for all $t>1$ and $(x,y)$. So $f(tx) > tf(x)$.
-3. If $f(t x) < t f(x)$ for all $t>0$, then it is trivial to show that $Y$ is decreasing return to scale. Now suppose the reverse is true. By definition we have if $y = f(x)$ then $ty > f(tx)$ for all $t>1$ and $(x,y)$. So $f(tx) < tf(x)$.
+2. If $f(t x) > t f(x)$ for all $t>1$, then it is trivial to show that $Y$ is increasing return to scale. Now suppose increasing return to scale is true. By definition we have if $y = f(x)$ then $ty < f(tx)$ for all $t>1$ and $(x,y)$. So $f(tx) > tf(x)$.
+3. If $f(t x) < t f(x)$ for all $t>1$, then it is trivial to show that $Y$ is decreasing return to scale. Now suppose decreasing return to scale is true. By definition we have if $y = f(x)$ then $ty > f(tx)$ for all $t>1$ and $(x,y)$. So $f(tx) < tf(x)$.
 4. This is automatically true by definition. $\square$ 
 
 **Definition: (Separable Production Function)** Let $K$ be the number of inputs. Suppose we can take partition of $K$, i.e. $K_1,...,K_s$, $s\in S$ then the production function is weakly separable if:
@@ -776,11 +777,12 @@ $$
 
 **Claim: (Properties of Profit Function)** If $f$ satisfies the assumption, and suppose the profit function exists, then for $(p,w)\gg 0$, we have
 
-1. $\pi(p,w)$ is increasing in $p$
-2. $\pi(p,w)$ is decreasing in $w$
-3. $\pi(p,w)$ is homogenous of degree 1 in $(p,w)$
-4. $\pi(p,w)$ is convex in $(p,w)$
-5. $\pi(p,w)$ is differentiable in $(p,w)\gg 0$, and Hoteling's Lemma is true, i.e. $\partial \pi(p^0,w^0)/\partial p = y(p^0,w^0)$ and  $-\partial \pi(p^0,w^0)/\partial w_i = x_i(p^0,w^0)$.
+1. $\pi(p,w)$ is continuous
+2. $\pi(p,w)$ is increasing in $p$
+3. $\pi(p,w)$ is decreasing in $w$
+4. $\pi(p,w)$ is homogenous of degree 1 in $(p,w)$
+5. $\pi(p,w)$ is convex in $(p,w)$
+6. $\pi(p,w)$ is differentiable in $(p,w)\gg 0$, and Hoteling's Lemma is true, i.e. $\partial \pi(p^0,w^0)/\partial p = y(p^0,w^0)$ and  $-\partial \pi(p^0,w^0)/\partial w_i = x_i(p^0,w^0)$.
 
 **Definition: (Input Demand and Output Supply)** The solution to the profit maximization problem are the Input Demand and Output Supply functions, i.e. $x(p,w)$ and $y(p,w)$.
 
@@ -789,6 +791,10 @@ $$
 1. $x(p,w)$ and $y(p,w)$ are homogeneous of degree 0 in $(p,w)$
 2. No inferior goods and no inferior inputs, i.e. $\partial y /\partial p \geq 0 $ and $\partial x_i/\partial w_i \leq 0$
 3. The substitution matrix $\sigma(p,w)$ is symmetric and positive semi-definite.
+
+**Claim: (Recovering Production Function from Profit Function)** For a given function $\pi:\mathbb{R}^{n+1}_+\times \mathbb{R}_+ \to \mathbb{R}_+$, satisfying properties 1-7 for a profit function, the function $f(x) = max\{y\geq 0|py-wx\leq \pi(w,y)\space  \forall (p,w)\gg0\}$ is an increasing, unbounded above, quasi-concave function. Moreover, the profit function generated by $f(x)$ is $\pi(.)$.
+
+**Claim: (Integrability)** If a differentiable function $x:\mathbb{R}^k_+ \times \mathbb{R}_+\to \mathbb{R}^k_+$ is homogenous of degree 0, and satisfies symmetry and positive semi-definite of Slutsky matrix, if and only if it is the conditional input demand function generated by some strictly increasing, quasi-concave production function.
 
 
 
@@ -806,7 +812,7 @@ And $wx(w,\bar w, y; \bar x)$ is called total variable cost, and $wx(w,\bar w, y
 
 Proof:
 
-By definition $AVC = VC(y)/y$, take differentiation we have $\frac{d}{dy}AVC = \frac{y\frac{d}{dy}VC-VC}{y} = \frac{MC-AVC}{y}$. Hence it has the same sign as $MC-AVC$. $\square$ 
+By definition $AVC = VC(y)/y$, take differentiation we have $\frac{d}{dy}AVC = \frac{y\frac{d}{dy}VC-VC}{y} = MC-AVC$. Hence it has the same sign as $MC-AVC$. $\square$ 
 
 **Corollary: (MC and AVC)** The MC curve will pass through the minimization point of AVC. 
 
@@ -892,7 +898,7 @@ $$
 
 #### Properties of Excess Demand
 
-**Assumption: (Excess Demand)** The utility functions are continuous, strictly increasing and strictly quasi-concave on $\mathbb{R}^n_+$.
+**Assumption: (Excess Demand)** The utility functions are continuous, strongly increasing and strictly quasi-concave on $\mathbb{R}^n_+$.
 
 **Theorem: (Properties of Excess Demand)** Under the above assumption about consumer behavior, we have:
 
@@ -930,7 +936,7 @@ Proof:
 
 Continuity follows from the continuity of individual demands. Walras Law follows from the individual budget constraint. We only need to show the third property.
 
-Suppose $\bar p$ is a price vector such that $p_k = 0$, we need to find a $k'$ such that property 3 is true. We are going to argue with contradiction. Take a sequence of price vectors $p^m \to \bar p$, suppose that the aggregate excess demand $\{z_{k’}(p^m)\}$ is bounded, then demand $x^{i,m} (p^m, e^i p^m)$ for individual $i$ is bounded. Then there is a converging subsequence $x^{i,m_j} \to x^{i\star}$.
+Suppose $\bar p$ is a price vector such that $p_k = 0$, we need to find a $k'$ such that property 3 is true. We are going to argue with contradiction. Take a sequence of price vectors $p^m \to \bar p$, suppose that the aggregate excess demand $\{z_{k’}(p^m)\}$ is bounded,  then demand $x^{i,m} (p^m, e^i p^m)$ for individual $i$ is bounded. Then there is a converging subsequence $x^{i,m_j} \to x^{i\star}$.
 
 Now construct another allocation $\hat x^i$ such that $\hat x^i_r = x^{i\star}_r$ for $r \neq k$ and  $\hat x^i_k = x^{i\star}_k+1$. Then $\bar p \hat x^{i} =\bar p x^{i\star} = \bar p e^{i}>0$. But since the utility is strongly increasing, we have $u^i(\hat x^i)>u^i(x^{i\star})$.
 
@@ -1016,6 +1022,10 @@ Proof:
 - Profit must be distributed
 - $\sum_i\theta_{ij} =1$ denote the private ownership of the firm 
 
+
+
+#### Aggregate Supply
+
 **Assumption: (Firm)** The firms in the model satisfy the following assumptions:
 
 1. (Nonnegative Profits) $0\in Y^j \subset\mathbb{R}^n$
@@ -1027,8 +1037,6 @@ $$
 \pi^j(p) = max_{y^j\in Y^j}p y^j
 $$
 **Note:** Under the assumption above, for any given price vector $p\gg0$ the solution of the problem is unique, denoted by $y^j(p)$, which is continuous on $\mathbb{R}^n_+$ and the profit function $\pi^j(p) = py^j(p)$ is well defined.
-
-#### Aggregate Supply
 
 **Definition: (Aggregate Production Possibility)** Define the Aggregate Production Possibility Set as $Y = \{y|y = \sum_{j\in J}y^j\}$.
 
@@ -1057,7 +1065,7 @@ $$
 $$
 z(p^\star) = \sum_{i\in I}(x^i(p^\star)-e^i) - \sum_{j\in J} y^j(p^\star)= 0
 $$
-**Theorem: (Existence of The Equilibrium)** Consider the economy $(u^i,e^i,\theta^{ij},y^j)$ with $i\in I$ and $j\in J$. If All the assumptions are satisfied, and $y+\sum_{i\in I }ei \gg 0$ for some production vector $y \in \sum_{j\in J}y^j$, then there exists at least one price vector $p^\star\gg 0$ such that $z(p^\star) =0$.
+**Theorem: (Existence of The Equilibrium)** Consider the economy $(u^i,e^i,\theta^{ij},y^j)$ with $i\in I$ and $j\in J$. If All the assumptions are satisfied, and $y+\sum_{i\in I }e_i \gg 0$ for some production vector $y \in \sum_{j\in J}y^j$, then there exists at least one price vector $p^\star\gg 0$ such that $z(p^\star) =0$.
 
 Proof:
 
@@ -1073,7 +1081,7 @@ We will verify that $z(p)$ satisfies the three properties of the Equilibrium Exi
 
    Hence it suffices to show that there is some consumers with strictly positive income at the limit price $\bar p$. 
    
-   Because $y+\sum_{i\in I }ei \gg 0$, for some $y$ we have $\bar p(y+\sum_{i\in I }ei) > 0$. Consider the sum of consumer’s budget constraint:
+   Because $y+\sum_{i\in I }e_i \gg 0$, for some $y$ we have $\bar p(y+\sum_{i\in I }e_i) > 0$. Consider the sum of consumer’s budget constraint:
    $$
    \sum_{i\in I }m^i(\bar p) =\bar p \sum_{i\in I } e^i +\sum_{i\in I } \sum_{j =1}^J \theta_{ij}\pi_j(p) = \bar p \sum_{i\in I } e^i + \sum_{j =1}^J (\sum_{i\in I }\theta_{ij})\pi_j(p)\\
    = \bar p \sum_{i\in I } e^i + \sum_{j =1}^J \pi_j(p) = \bar p (\sum_{i\in I } e^i +y) >0
@@ -1115,11 +1123,11 @@ Suppose not. Then the allocation is not Pareto Optimal, so there is is another f
 
 **Definition: (Blocking Coalition in Production Economy)** Let $S\subset I$ be a coalition of consumers, We say $S$ blocks allocation $(x,y)$ if there is another allocation $(x',y')$ such that
 
-1. $y\in Y$
-2. $\sum_{i\in S}x'^i=\sum_{i\in S} e^i$
+1. $y'\in Y$
+2. $\sum_{i\in S}x'^i=\sum_{i\in S} e^i+\sum_{j\in J}y'^j$
 3. $x'^i \succsim_i x^i\space \forall i\in S$ and $\exist j\in S$ such that $x'^j \succ_j x^j$
 
-**Definition: (Utility Possibility Set)** The Utility Possibility Set is defined as $U(x) = \{u_i\}_{i\in I }$ and $x$ is feasible, i.e.
+**Definition: (Utility Possibility Set)** The Utility Possibility Set is defined as $U = \{u_i\}_{i\in I }$ such that
 $$
 U = \{(\bar u_1,..., \bar u_I)\in \R^I|u_i(x^i)\geq \bar u_i \space \forall i\in I \space \& \space x \space feasible \}
 $$
@@ -1150,7 +1158,7 @@ Proof:
 
    Case 1: when  $u_1(\tilde x^1) > u_1(x^{1\star})$, then automatically $x^\star $ is not the solution, contradiction.
 
-   Case 2: when $u_k(\tilde x^k) > u_1(x^{k\star})$ for some $k\neq1$, and suppose $\tilde x^k>0$. Without loss of generosity, we could assume the consumption of the first good of consumer $k$ is greater than zero, i.e. $\tilde x_1^k >0$. Now let $w\in \mathbb{R}^n$ be a vector with $w_1 = 1$ and $w_m = 0$ for $m = 2,...,n$, i.e. $w = (1,0,0,...0)$. by continuity of $u_k$, there is a $\epsilon >0$ such that $u_k(\tilde x^k -\epsilon w) > u_k(x^{k\star})$. 
+   Case 2: when $u_k(\tilde x^k) > u_1(x^{k\star})$, for some $k\neq1$, and suppose $\tilde x^k>0$. Without loss of generosity, we could assume that the consumption of the first good of consumer $k$ is greater than zero, i.e. $\tilde x_1^k >0$. Now let $w\in \mathbb{R}^n$ be a vector with $w_1 = 1$ and $w_m = 0$ for $m = 2,...,n$, i.e. $w = (1,0,0,...0)$. by continuity of $u_k$, there is a $\epsilon >0$ such that $u_k(\tilde x^k -\epsilon w) > u_k(x^{k\star})$. 
 
    Now consider another bundle $\hat x$, where $\hat x^1 = \tilde x^1 +\epsilon w$, $\hat x^i = \tilde x^i$ for $i\neq {1,k}$ and $\hat x^k = \tilde x^k -\epsilon w$. By strongly monotonicity, $u_1(\hat x_1) >u_1(x^\star)$ and $\hat x$ is still feasible and everyone else is getting at least as good as $x^\star$. So $x^\star$ is not the solution, contradiction.
 
@@ -1160,7 +1168,7 @@ Proof:
 
 **Definition: (Social Planner’s Problem)** Let $\lambda \gg 0$, consider the following social planner’s problem:
 $$
-max \space \{U(x) = \sum_{i\in I } \lambda_i U_i(x^i)\} \space s.t.\space \sum_{i\in I }x^i \leq \sum_{i\in I }e^i +\sum_{j\in J }y^i \space x^i \gg 0
+max \space \{U(x) = \sum_{i\in I } \lambda_i U_i(x^i)\} \space s.t.\space \sum_{i\in I }x^i \leq \sum_{i\in I }e^i +\sum_{j\in J }y^i, \space x^i \gg 0
 $$
 
 **Theorem: (Sufficient Condition for Pareto Optimality)** If $x^\star$ is a solution to the social planner’s problem, then $x^\star$ is Pareto Optimal.
@@ -1185,11 +1193,20 @@ $$
 $$
 But this is impossible to hold since $u^{k}$ can goes to negative infinity. When it does so, and $\lambda_k <0$, the right hand side of the equation will goes to positive infinity, but the left hand side stays finite, so we get a contradiction. $\square $
 
+**Note:** The social planner problem coincide the competitive equilibrium in the following sense:
+$$
+\frac{u_1^A}{u_2^A} =\frac{u_1^B}{u_2^B} = \frac{p_1}{p_2} = \frac{\theta_1}{\theta_2}
+$$
+
+Notice that the Lagrange multiplier for the market clearing condition coincide with the price of that good.
+
+**Note:** An algorithm to solve for a competitive equilibrium with a given set of $\lambda$ is to set tax $T = \theta(x-e) = \lambda U'(x)(x-e)=0$ and solve for the $\lambda$.
+
 
 
 ### First Welfare Theorem
 
-**Theorem: (Local Non-satiation)** Suppose the preference is locally non-satiated, $x^{i\star}$ is defined as the solution to the maximizing problem of the consumer given a budget constraint $px^i \leq m_i(p)$. Then we have:
+**Theorem: (Local Non-satiation)** Suppose the preference is locally non-satiated, $p\gg0$, and $x^{i\star}$ is defined as the solution to the maximizing problem of the consumer given a budget constraint $px^i \leq m_i(p)$. Then we have:
 $$
 (x^i \succsim_i x^{i\star})\Rightarrow (px^i \geq m_i(p)) \\
 (x^i \succ_i x^{i\star})\Rightarrow (px^i > m_i(p))
@@ -1409,8 +1426,8 @@ By the definition of a competitive equilibrium, it equivalent to show that if $x
 
 **Definition: (Arrow Deberu Equilibrium)** An Arrow Deberu Equilibrium is defined as an allocation $(x^\star, y^\star)\in \R^{ILS} \times \R^{JLS}$ and a price vector $p^\star\in \R^{LS}_+$ which satisfies the following:
 
-1. For each $i\in I$, $y^\star$ maximizes profit, i.e. $U_i(x^{\star i}) \geq U_i(x^{i})$ for all $x^i\in B_i(p^\star,e^i)$
-2. For each $j\in J$, $x^\star$ maximizes utility, i.e. $p^\star y^{\star j} \geq p^\star y^j$ for all $y^j\in Y^j$ 
+1. For each $i\in I$, $x^\star$ maximizes utility, i.e. $U_i(x^{\star i}) \geq U_i(x^{i})$ for all $x^i\in B_i(p^\star,e^i)$
+2. For each $j\in J$, $y^\star$ maximizes profit, i.e. $p^\star y^{\star j} \geq p^\star y^j$ for all $y^j\in Y^j$ 
 3. All markets clear, i.e. $\sum_{i=1}^I x^{\star i}_s = \sum_{i=1}^I e^i_s + \sum_{j=1}^Jy^{\star j}_s$ for all $s\in S$ 
 
 **Theorem: (Pareto Allocations in ADE)** Suppose $\pi_{si}/\pi_{s'i} = \pi_{si'}/\pi_{s'i'}$ for all $s,s'\in S$ and for al $i,i'\in I$. then the Pareto optimal allocation satisfies $\frac{\partial U_i(x^i)/ \partial x^i_{sn}}{ \partial U_i(x^i)/ \partial x^i_{s'm}}= \frac{ \partial U_{i'}(x^{i'})/ \partial x^{i'}_{sn}}{\partial U_{i'}(x^{i'})/ \partial x^{i'}_{s'm}}$.
@@ -1433,11 +1450,11 @@ Now sum over $i,i'\in I$, we have $\sum_{i\in I} x^i_{sn}\leq \sum_{i'\in I} x^i
 
 Proof:
 
-Suppose the inverse is true. Then after the trading in the spot markets, there is a state $t$ and a feasible bundle $(x_{t1},..., x_{tL})$ where $x_{tl}\in \R^I$ that consumers prefer weakly to $x_{tl}^\star$ with one consumer’s preference being strict, i.e. for all $i$, we have $(x_{11}^\star,..., x_{1L}^\star, ..., x_{t1},..., x_{tL}, ..., x_{S1}^\star,..., x_{SL}^\star)\succsim (x_{11}^\star,...x_{SL}^\star)$, with strictly preference for at least one $i$.
+Suppose there are trades in the spot market. Then after the trading in the spot markets, there is a state $t$ and a feasible bundle $(x_{t1},..., x_{tL})$ where $x_{tl}\in \R^I$ that consumers prefer weakly to $x_{tl}^\star$ with one consumer’s preference being strict, i.e. for all $i$, we have $(x_{11}^\star,..., x_{1L}^\star, ..., x_{t1},..., x_{tL}, ..., x_{S1}^\star,..., x_{SL}^\star)\succsim (x_{11}^\star,...x_{SL}^\star)$, with strictly preference for at least one $i$.
 
 However, this is impossible because of the first welfare theorem. So that means given an ADE solution, there is no incentive to trade in spot markets. $\square$
 
-**Definition: (Arrow Securities)** Suppose there is only one good that us traded at both date 0 and date 1, and the rest of the goods are traded at only date 1. Then the good that is traded in both periods is called the Arrow Securities.
+**Definition: (Arrow Securities)** Suppose there is only one good that is traded at both date 0 and date 1, and the rest of the goods are traded at only date 1. Then the good that is traded in both periods is called the Arrow Securities.
 
 **Definition: (Radner Sequential Equilibrium)** A collection formed by a price vector $q = (q_1,...,q_S)\in \R^S$ for contingent first good commodities at $t = 0$, a spot price vector $p_s = (p_1,...,p_L)_s \in \R^L$ for each state $s$ and for every consumer $i$, consumption plans $z_i^\star = (z_{1i}^\star，..., z_{Si}^\star)\in \R^S$ at $t = 0$, and $x_i^\star = (x_{1i}^\star，..., x_{Si}^\star)\in \R^L\times \R^S$ at $t = 1$ constitutes a Radner Equilibrium if:
 
@@ -1459,11 +1476,11 @@ Proof:
    B^{AD}_i = \{x\in \R^{LS}_+| \sum_s p_s(x_{si}-e_s^i)\leq 0  \} \\
    = B^{RS}_i = \{x\in \R^{LS}_+| \sum_s q_sz_{si}\leq 0, \space p_sx_{si}\leq p_s e^i_s+p_{1s}z_{si} \space \forall s\}
    $$
-   For any point $x\in B_i^{AD}$, denote $z = (1/p_{1s})p_s(x_{si}-e^i_s)$. Then obviously we have $\sum_s q_sz_{si}\leq 0$ and $p_sx_{si}= p_s e^i_s+p_{1s}z_{si}$. So $x\in B_i^{RS}$. Hence $B_i^{AD}\subset B_i^{RS}$. Conversely, for any point $x\in B_i^{RS}$, we have $\sum_s p_s(x_{si}-e_s^i) \leq \sum_s q_sz_{si}\leq 0$. So $x\in B_i^{RS}$. Hence $B_i^{AD}\subset B_i^{RS}$. Hence we conclude that $B^{AD}_i = B^{RS}_i$. Then if an allocation is an ADE it is also a RSE. Note that the market clearing condition holds automatically.
+   For any point $x\in B_i^{AD}$, denote $z = (1/p_{1s})p_s(x_{si}-e^i_s)$. Then obviously we have $\sum_s q_sz_{si}\leq 0$ and $p_sx_{si}= p_s e^i_s+p_{1s}z_{si}$. So $x\in B_i^{RS}$. Hence $B_i^{AD}\subset B_i^{RS}$. Conversely, for any point $x\in B_i^{RS}$, we have $\sum_s p_s(x_{si}-e_s^i) \leq \sum_s q_sz_{si}\leq 0$. So $x\in B_i^{AD}$. Hence $B_i^{RS}\subset B_i^{AD}$. Hence we conclude that $B^{AD}_i = B^{RS}_i$. Then if an allocation is an ADE it is also a RSE. Note that the market clearing condition holds automatically.
 
 2. Suppose an RSE allocation is given, then $(p_s, q_s)$ is known. We can choose $\mu_s$ so that $\mu_sp_{1s} = q_s$. So we can rewrite the budget set of the Radner problem as:
    $$
-   B^{RS}_i = \{x\in \R^{LS}_+| \sum_s q_sz_{si}\leq 0, \space \mu_sp_s(x_{si}-e^i_s)\leq q_sz_{si}z_{si} \space \forall s\}
+   B^{RS}_i = \{x\in \R^{LS}_+| \sum_s q_sz_{si}\leq 0, \space \mu_sp_s(x_{si}-e^i_s)\leq q_sz_{si} \space \forall s\}
    $$
    By similar arguments we have $B^{AD}_i = B^{RS}_i$, again. Then if an allocation is an RSE it is also a ADE. Note that the market clearing condition holds automatically, again. $\square$ 
 

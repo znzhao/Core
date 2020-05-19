@@ -52,7 +52,7 @@
 
 #### Inequalities
 
-**Claim: (Chebeshev’s Inequality)** $P(g(X)\geq r)\leq E[g(x)]/r$.
+**Claim: (Chebyshev's Inequality)** $P(g(X)\geq r)\leq E[g(x)]/r$.
 
 **Claim: (Jensen’s Inequality)** If $g(.)$ is convex, then $E[g(X)]\geq g(E[X])$.
 
@@ -272,7 +272,7 @@ $$
 
 #### Assumption
 
-**Assumption 1: (Random sampling)** Each Sample is drawn with i.i.d.
+**Assumption 1: (Random sampling)** Each sample is drawn with i.i.d.
 
 **Assumption 2: (No Perfectly Collinearity)** $X’X$ is invertible.
 
@@ -575,7 +575,7 @@ Proof:
 
 ### Variance Estimation
 
-**Definition: (Heteroskedasticity variance estimator)** When Assumption 1-3 are true and Heteroskedasticity is true, define the estimator of the variance of $\hat\beta$ as:
+**Definition: (Heteroskedasticity Variance Estimator)** When Assumption 1-3 are true and Heteroskedasticity is true, define the estimator of the variance of $\hat\beta$ as:
 $$
 \hat V(\hat\beta|X) = (X'X)^{-1}X'S X(X'X)^{-1}
 $$
@@ -1070,20 +1070,6 @@ where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestr
 
 
 
-### Bootstrapping
-
-**Method: (Bootstrapping)**
-
-1. From the original sample $\{X_1,...,X_n\}$ generate an estimator $\hat \theta  = h(X_1,...X_n)$
-2. Take a random sample of the same size n from the original sample with replacement, and form a new sample $\{X_1^1,...,X_n^1\}$, get an estimator $\hat \theta^1  = h(X_1^1,...X_n^1)$
-3. Repeat step 2 and form a new sample $\{X_1^k,...,X_n^k\}$, get estimators $\hat \theta^k  = h(X_1^k,...X_n^k)$
-4. Compute the distribution with the estimators $\theta^k$
-5. Use the distribution calculated above to do Hypothesis Test or give the Confidence Interval
-
-**Claim: (Bootstrapping Theory)** When the time bootstrapping repeats increases, the bootstrapping distribution converges to the distribution of the real estimator.
-
-
-
 ### Efficient Estimator with Heteroskedasticity
 
 **Method: (Testing for Heteroskedasticity)** Consider a model $y = x\beta+\epsilon$, first do the OLS regression as usual. Then get the predicted residual $\hat e_i$. Now regress $\hat e^2 = \gamma_0+x\gamma_1+\mu$. Now test for heteroskedasticity, with $H_0: E[e^2|X] = \sigma^2$, by doing a F test on $\gamma_1 = 0$.
@@ -1105,12 +1091,6 @@ where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestr
 
 1. $AVar (\hat y_i-y_i|X) = x_iAVar(\hat \beta)x_i' + Var(e_i|x_i)$
 2. Under homoscedasticity, we have $AVar (\hat y_i-y_i|X) = x_iAVar(\hat \beta)x_i' + \sigma^2$
-
-#### Clustering
-
-**Definition: (Clustering Issue)** When the i.i.d. assumption is violated it is called to have a Clustering Issue.
-
-**Note:** Heteroskedasticity is a special case for clustering issue. The correlation between two observations can be not zero.
 
 #### Multicollinearity
 
