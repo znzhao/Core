@@ -223,7 +223,7 @@ $$
 
 **Definition: (P-Value)** Suppose $H_0$ is true and a given rejection region $ C $, P-Value is defined as $P(C) = P(S_n\in C|\theta_0)$
 
-**Definition: (Power)** The size of a Hypothesis Test is the probability of not making type II error, also known as the probability of rejecting a given alternative hypothesis $\theta \in \Theta \backslash\Theta_0$, i.e. $power(\theta) = P(S_n\in C|\theta \in \Theta \backslash\Theta_0)$.
+**Definition: (Power)** The Power of a Hypothesis Test is the probability of not making type II error, also known as the probability of rejecting a given alternative hypothesis $\theta \in \Theta \backslash\Theta_0$, i.e. $power(\theta) = P(S_n\in C|\theta \in \Theta \backslash\Theta_0)$.
 
 **Note:** We would want the power to be high and the size to be low.
 
@@ -269,6 +269,8 @@ with $E[e|X] = 0$ and $E[e^2|X] =  \sigma^2(X)$.
 $$
 \hat \beta = argmin(\frac{1}{n}\sum_{i=1}^n (y_i-x_i'b)^2) = argmin(\frac{1}{n}(y-Xb)'(y-Xb))
 $$
+
+
 
 #### Assumption
 
@@ -630,7 +632,7 @@ Proof:
 
 Proof:
 
-We want to show that there is no linear unbiased estimator that have a lower conditional variance. The conditional variance of any given estimator is $Var(\tilde \beta|X) = E[(\tilde\beta -\beta)'(\tilde\beta -\beta)|X] $, where $\tilde \beta = C'y$ is a linear estimator. It is also unbiased so $E[\tilde \beta] = E[C'(X\beta+e)]=C'X\beta$ implies that $C'X = I$. So $E[(\tilde\beta -\beta)'(\tilde\beta -\beta)|X] = C'E[ee'|X]C = \sigma^2C'C$.
+We want to show that there is no linear unbiased estimator that have a lower conditional variance. The conditional variance of any given estimator is $Var(\tilde \beta|X) = E[(\tilde\beta -\beta)'(\tilde\beta -\beta)|X] $, where $\tilde \beta = C'y$ is a linear estimator. It is also unbiased so $E[\tilde \beta] = E[C'(X\beta+e)]=C'X\beta$ implies that $C'X = I$. So $E[(\tilde\beta -\beta)(\tilde\beta -\beta)'|X] = C'E[ee'|X]C = \sigma^2C'C$.
 
 Now we have $C'C = (C-X(X'X)^{-1}+X(X'X)^{-1})'(C-X(X'X)^{-1}+X(X'X)^{-1})$, which can be written as $ (C-X(X'X)^{-1})'(C-X(X'X)^{-1})+ (X'X)^{-1}$. Because $(C-X(X'X)^{-1})'X(X'X)^{-1} = (CX-I)(X'X)^{-1} = 0$. Then since the first part of $C'C$ is a positive semi-definite matrix, we have $C'C\geq (X'X)^{-1}$, which shows that there is no linear unbiased estimator that have a lower conditional variance. $\square$ 
 
@@ -731,26 +733,39 @@ We want to show that $\hat \beta\to^p \beta$. We have $\hat\beta = (X'X)^{-1}X'y
 
 **Theorem: (Asymptotic Result)** Under Assumption 1-5, suppose we have large sample, then the following results are true:
 
-1. $\sqrt n (\hat \beta - \beta)|X \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$
+1. $\sqrt n (\hat \beta - \beta) \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$
 2. $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$
-3. $lim_p n\hat V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$
-4. $\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}}|X \to^d N(0,1)$
-5. When $C$ is a $1\times k$ vector, we have $\hat T'|X=\frac{C\hat \beta -C\beta}{\sqrt{C\hat V(\hat\beta|X)C'}}|X \to^d N(0,1)$
-6. When $R$ is a $J \times k$ matrix, we have $F|X=(R(\hat \beta-\beta ))'(R V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$
-7. When $R$ is a $J \times k$ matrix, we have $\hat F|X=(R(\hat \beta-\beta ))'(R \hat V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$
-8. Generally, suppose $g(.)$ is a function system with $J$ equations, $\sqrt n (g(\hat \beta)-g(\beta)) \to^d N(0,G'Q_{xx}^{-1}\Omega Q_{xx}^{-1}G)$, where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
+3. $lim_p n\hat V(\hat\beta) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$
+4. $\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}} \to^d N(0,1)$
+5. When $C$ is a $1\times k$ vector, we have $\hat T'=\frac{C\hat \beta -C\beta}{\sqrt{C\hat V(\hat\beta|X)C'}} \to^d N(0,1)$
+6. When $R$ is a $J \times k$ matrix, we have $F=(R(\hat \beta-\beta ))'(R V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J \to^d \chi^2(J)/J$
+7. When $R$ is a $J \times k$ matrix, we have $\hat F=(R(\hat \beta-\beta ))'(R \hat V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J \to^d \chi^2(J)/J$
+8. Generally, suppose $g(.)$ is a function system with $J$ equations, $\sqrt n (g(\hat \beta)-g(\beta)) \to^d N(0,G'Q_{xx}^{-1}\Omega Q_{xx}^{-1}G)$, where $G = \partial g(\beta)/\partial \beta|_\beta$
 9. Generally, suppose $g(.)$ is a function system with $J$ equations, $\hat W = (g(\hat \beta)-g(\beta))'(G'\hat V(\hat\beta|X)G)^{-1}(g(\hat \beta)-g(\beta))/J \to^d \chi^2(J)/J$, where $G = \partial g(\beta)/\partial \beta|_\hat\beta$
 
 Proof:
 
-1. $\sqrt n (\hat \beta-\beta) = \sqrt n ((X'X/n)^{-1}(X'e/n))$ where $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$ by the law of large number and $\sqrt n(X'e/n) \to^d N(0,\Omega)$ by the central limit theorem. Combine them we get $\sqrt n (\hat \beta - \beta)|X \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$.
-2. Note that $V(\hat\beta|X) = V((X'X)^{-1}X'e|X)$, so $n V(\hat\beta|X) = (X'X/n)^{-1}E[X'ee'X/n|X](X'X/n)^{-1}$ Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and $E[X'ee'X/n|X]\to^p \Omega$. Combine them we have $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$.
-3. Note that $n\hat V(\hat\beta|X) = (X'X/n)^{-1}(X'S X/n)(X'X/n)^{-1}$. Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and $X'S X/n= \frac{1}{n}\sum_{i=1}^n x_ix_i'\hat e_i^2 \to ^p \Omega$ by the law of large number. Combine them we have $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$.
+1. $\sqrt n (\hat \beta-\beta) = \sqrt n ((X'X/n)^{-1}(X'e/n))$ where $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$ by the law of large number and $\sqrt n(X'e/n) \to^d N(0,\Omega)$ by the central limit theorem. Combine them we get $\sqrt n (\hat \beta - \beta) \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$.
+
+2. Note that $V(\hat\beta|X) = (X'X)^{-1}X'\Sigma X(X'X)^{-1}$, so $n V(\hat\beta|X) = (X'X/n)^{-1}E[X'ee'X/n|X](X'X/n)^{-1}$ Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and $E[X'ee'X/n|X]\to^p \Omega$. Combine them we have $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$.
+
+3. Note that $n\hat V(\hat\beta) = (X'X/n)^{-1}(X'S X/n)(X'X/n)^{-1}$. Then $(X'X/n)^{-1}\to^p Q_{XX}^{-1}$, and we want to show $X'S X/n= \frac{1}{n}\sum_{i=1}^n x_ix_i'\hat e_i^2 \to ^p \Omega$. This is because
+   $$
+   \frac{1}{n}\sum_{i=1}^n x_ix_i'\hat e_i^2=\frac{1}{n}\sum_{i=1}^n x_ix_i'(x_i'\beta-x_i \hat\beta+e_i)^2 \\
+   = \frac{1}{n}\sum_{i=1}^n x_ix_i'e_i^2+\frac{1}{n}\sum_{i=1}^n x_ix_i'(x_i'\beta-x_i \hat\beta)^2+\frac{1}{n}\sum_{i=1}^n x_ix_i'(x_i'\beta-x_i \hat\beta)e_i
+   $$
+   And the second and the third term goes to zero as $\hat \beta\to^p \beta$. Combine them we have $lim_p n V(\hat\beta|X) = Q_{xx}^{-1}\Omega Q_{xx}^{-1}$.
+
 4. $\hat T_j=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}}$, and since equation 1 and 3 are true, we can combine them and conclude that $\hat T_j|X=\frac{\hat \beta_j -\beta_j}{\sqrt{\hat V(\hat\beta|X)_{jj}}}|X \to^d N(0,1)$.
+
 5. $\sqrt n (C\hat \beta-C\beta) = \sqrt n C((X'X/n)^{-1}(X'e/n))\to^d N(0,CQ_{xx}^{-1}\Omega Q_{xx}^{-1}C')$, and $nC\hat V(\hat\beta|X)C'\to^p CQ_{xx}^{-1}\Omega Q_{xx}^{-1}C'$. Combine them we will get $\hat T'|X=\frac{C\hat \beta -C\beta}{\sqrt{C\hat V(\hat\beta|X)C'}}|X \to^d N(0,1)$.
+
 6. We have $F=(\sqrt n R(\hat \beta-\beta))'(n R V(\hat\beta|X)R')^{-1}(\sqrt n R(\hat\beta - \beta))/J$. Now $\sqrt n R(\hat \beta-\beta)\to^dN(0,RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R')$, and $nRV(\hat\beta|X)R'\to^p RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R'$. Combine them we have $F|X=(R(\hat \beta-\beta ))'(R V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$.
+
 7. We have $\hat F=(\sqrt n R(\hat \beta-\beta))'(n R \hat V(\hat\beta|X)R')^{-1}(\sqrt n R(\hat\beta - \beta))/J$. Now $\sqrt n R(\hat \beta-\beta)\to^dN(0,RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R')$, and $nR\hat V(\hat\beta|X)R'\to^p RQ_{xx}^{-1}\Omega Q_{xx}^{-1}R'$. Combine them we have $\hat F|X=(R(\hat \beta-\beta ))'(R \hat V(\hat\beta|X)R')^{-1}(R(\hat\beta - \beta))/J|X \to^d \chi^2(J)/J$.
+
 8. By equation 1 we have already shown that $\sqrt n (\hat \beta - \beta)|X \to^d N(0,Q_{xx}^{-1}\Omega Q_{xx}^{-1})$. Use delta method and we get what we want to show.
+
 9. We only need to show that $nG'\hat V(\hat\beta|X)G \to^p G'Q_{xx}^{-1}\Omega Q_{xx}^{-1}G$, which is true from what we have already shown before. $\square$
 
 #### Theory Under Homoscedasticity
@@ -855,7 +870,7 @@ $$
 
 Proof:
 
-1. Under small sample assumptions, we want to show that T-test is unbiased. Suppose the true value is $\beta$, instead of $\beta_0$. Then the T statistic is $T = \frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}+\frac{\beta_j -\beta_{0j}}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}$, where the first part of the equation is defined as $T_0 = \frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}\sim T(n-k)$. Under $H_0: \beta_j = \beta_{0j}$, the second term is negative so we have $T=T_0$, and $P(|T|>t_{\alpha/2})<\alpha$. Under $H_1:\beta_j \neq \beta_{0j}$, we have $T\neq T_0$, and $P(|T|>t_{\alpha/2})>\alpha$. So This test is unbiased.
+1. Under small sample assumptions, we want to show that T-test is unbiased. Suppose the true value is $\beta$, instead of $\beta_0$. Then the T statistic is $T = \frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}+\frac{\beta_j -\beta_{0j}}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}$, where the first part of the equation is defined as $T_0 = \frac{\hat \beta_j -\beta_j}{\sqrt{s^2[(X'X)^{-1}]_{jj}}}\sim T(n-k)$. Under $H_0: \beta_j = \beta_{0j}$, the second term is 0 so we have $T=T_0$, and $P(|T|>t_{\alpha/2})<\alpha$. Under $H_1:\beta_j \neq \beta_{0j}$, we have $T\neq T_0$, and $P(|T|>t_{\alpha/2})>\alpha$. So This test is unbiased.
 
 2. Under large sample assumptions, and under $H_1:\beta_j \neq \beta_{0j}$, we have :
    $$
@@ -959,7 +974,7 @@ Now plug it back into the first FOC, we have $\tilde \beta = \hat \beta - (X'X)^
 Proof:
 
 1. $\tilde \beta = \hat \beta - (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)$ when the restriction $R\beta = r$ is true and $\hat \beta\to^p \beta$, we have $\tilde \beta\to^p \beta$.
-2. Note that $r$ does not contribute to the variance of $\tilde beta$, so $\sqrt n (\tilde \beta -\beta) =\sqrt n A\hat \beta+ \sqrt n (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}r$. So $\sqrt n (\tilde \beta -\beta) \to^d N(0,AQ_{XX}^{-1}\Omega Q_{XX}^{-1}A')$.
+2. Note that $r$ does not contribute to the variance of $\tilde \beta$, so $\sqrt n (\tilde \beta -\beta) =\sqrt n A\hat \beta+ \sqrt n (X'X)^{-1}R'(R(X'X)^{-1}R')^{-1}r$. So $\sqrt n (\tilde \beta -\beta) \to^d N(0,AQ_{XX}^{-1}\Omega Q_{XX}^{-1}A')$.
 3. the statement 3 is proved by statement 4. $\square$ 
 
 **Note:** When the restriction is incorrect the restricted estimator is inconsistent.
@@ -1030,7 +1045,7 @@ By Taylor expansion of a log function, we have $LR \approx n/(n-k)F$. $\square$
 
 **Method: (Likelihood Ratio Test with Homoscedasticity and Gaussian Error)** Under the Assumption about large sample and homoscedasticity and Gaussian Error, we use the LR statistic to do Hypothesis Test for $H_0: R\beta -r =0$, and $H_1:R\beta -r\neq 0$, where $R$ is a $J\times k$ vector, i.e. reject if $\hat {LR} \in [\chi^2_{\alpha},+\infty]$, where $\hat {LM}$ is defined as:
 $$
-\hat {LR} = \frac{(R\hat \beta-r)'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)/J}{\hat \sigma^2}\to^d \chi^2(J)/J
+\hat {LR} = nlog(1+\frac{J}{n-K}F) = \frac{(R\hat \beta-r)'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)/J}{\hat \sigma^2}\to^d \chi^2(J)/J
 $$
 where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestricted estimation.
 
@@ -1157,7 +1172,7 @@ We say the endogenous variable $X_2$ is identified.
 
 #### GMM Estimator
 
-**Definition: (General Method of Moments)** Suppose we have $\frac{1}{n}\sum_{i=1}^nz_i(y_i-x_i'\beta) = 0$. Let $W_n$ be a symmetric positive definite matrix,  General Method of Moments estimator is defined as:
+**Definition: (General Method of Moments)** Suppose we have $\frac{1}{n}\sum_{i=1}^nz_i(y_i-x_i'\beta) = 0$, where we define $z_i = (x_{1i}',z_{2i}')'$. Let $W_n$ be a symmetric positive definite matrix,  General Method of Moments estimator is defined as:
 $$
 \bar \beta = argmin_\beta \{(y-X\beta)'ZW_nZ'(y-X\beta)\}
 $$
@@ -1274,15 +1289,14 @@ For simplicity we prove it  with the special case when $J = K$ and $X = X_2$. We
 
 **Definition: (Over Identification)** When we have more IVs than the endogenous variables, i.e. $J>k$, we say that the endogenous variables are over identified.
 
-**Definition: (Hansen’s J)** Define Hansen’s J statistic as $J = n(y-X\bar \beta)'Z\hat\Omega^{-1}Z'X \hat \Omega^{-1} X'Z \hat\Omega^{-1} Z'(y-X\beta)$.
+**Definition: (Hansen’s J)** Define Hansen’s J statistic as $J = n(y-X\bar \beta)'Z\hat\Omega^{-1}Z'X \hat \Omega^{-1} X'Z \hat\Omega^{-1} Z'(y-X\bar \beta)$.
 
 **Theorem: (Hansen’s J Property)** Under the large sample assumption of General Method of Moments, we have $J \to^d \chi^2(J-k)$.
 
 Proof:
 
-For simplicity we add homoscedasticity and try to prove this with the 2SLS estimator.
+For simplicity we add homoscedasticity and try to prove this with the 2SLS estimator. Under homoscedasticity the statement Hansen’s J statistic is defined as $J = (e- \bar e)' P_Z (e- \bar e)$, where $\bar e = X(X'P_ZX)^{-1}X'P_Ze$. So we have $J = e'Z(Z'Z)^{-\frac{1}{2}}(I - (Z'Z)^\frac{1}{2}Z'X(X'Z(Z'Z)^{-\frac{1}{2}}(Z'Z)^{-\frac{1}{2}}Z'X)^{-1}X'Z(Z'Z)^{-\frac{1}{2}})(Z'Z)^{-\frac{1}{2}}Z'e = e'B_n'(I-B_n(B_n'B_n)^{-1}B_n)B_ne$. Note that we have $B_n\to^p B = Q_{ZZ}^{-\frac{1}{2}}Q_{ZX}$. Note that this implies $(I-B_n(B_n'B_n)^{-1}B_n)\to ^p M_B$. Since $M_B$ is symmetric and idempotent, we can write $M_B = H\Lambda H'$ where $H'H = I$ and 
 
-Under homoscedasticity the statement Hansen’s J statistic is defined as $J = (e- \bar e)' P_Z (e- \bar e)$, where $\bar e = X(X'P_ZX)^{-1}X'P_Ze$. So we have $J = e'Z(Z'Z)^{-\frac{1}{2}}(I - (Z'Z)^\frac{1}{2}Z'X(X'Z(Z'Z)^{-\frac{1}{2}}(Z'Z)^{-\frac{1}{2}}Z'X)^{-1}X'Z(Z'Z)^{-\frac{1}{2}})(Z'Z)^{-\frac{1}{2}}Z'e = e'B_n'(I-B_n(B_n'B_n)^{-1}B_n)B_ne$. Note that we have $B_n\to^p B = Q_{ZZ}^{-\frac{1}{2}}Q_{ZX}$. Note that this implies $(I-B_n(B_n'B_n)^{-1}B_n)\to ^p M_B$. Since $M_B$ is symmetric and idempotent, we can write $M_B = H\Lambda H'$ where $H'H = I$ and 
 $$
 \Lambda  = \left( \begin{array}{ccc} I_{n-k} & 0 \\ 0 & 0 \end{array}\right )
 $$

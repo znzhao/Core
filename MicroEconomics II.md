@@ -820,6 +820,8 @@ This function holds for all $\theta$, so take FOC with respect to q, we have $S'
 
 **Definition: (Virtual Type)** Define the Virtual Type as $\theta +\frac{F(\theta)}{f(\theta)}$.
 
+
+
 ## Moral Hazard
 
 ### Moral Hazard
@@ -1025,11 +1027,11 @@ Proof:
 
 Proof:
 
-By the lemma above we know that when the other player is playing according to $b_i = v_i$, it is a Nash equilibrium. By costruction it is the only BNE in weakly dominated strategies. $\square$ 
+By the lemma above we know that when the other player is playing according to $b_i = v_i$, it is a Nash equilibrium. By construction it is the only BNE in weakly dominated strategies. $\square$ 
 
 #### First Price Auction
 
-**Assumption: (Second Price Auction Setup)**
+**Assumption: (First Price Auction Setup)**
 
 - $n$ players in total
 - $v_i$ denotes player’s valuation, each follows the same CDF $F(.)$ over $[0,1]$
@@ -1096,9 +1098,9 @@ Consider $(S_i, P_i,C_i)_{i = 1}^N$ and a BNE $\sigma^\star$ for it. Construct t
 
 Now we need to verify that there is a truthful BNE. By definition of $\sigma^\star$ being a BNE, we have 
 $$
-\int_{\Theta_{-i}}P_i(\sigma_i^\star(v_i),\sigma_i^\star(v_{-i}))v_i - C_i(\sigma_i^\star(v_i),\sigma_i^\star(v_{-i})) dv_{-i}\geq \int_{\Theta_{-i}}P_i(\sigma_i^\star(v'_i),\sigma_i^\star(v_{-i}))v_i - C_i(\sigma_i^\star(v'_i),\sigma_i^\star(v_{-i})) dv_{-i} \\
+\int_{\Theta_{-i}}P_i(\sigma_i^\star(v_i),\sigma_i^\star(v_{-i}))v_i - C_i(\sigma_i^\star(v_i),\sigma_i^\star(v_{-i})) dFv_{-i}\geq \int_{\Theta_{-i}}P_i(\sigma_i^\star(v'_i),\sigma_i^\star(v_{-i}))v_i - C_i(\sigma_i^\star(v'_i),\sigma_i^\star(v_{-i})) dFv_{-i} \\
 
-\int_{\Theta_{-i}}\hat P_i(v_i,v_{-i})v_i - \hat C_i(v_i,v_{-i}) dv_{-i}\geq \int_{\Theta_{-i}}\hat P_i(v'_i,v_{-i})v_i - \hat C_i(v'_i,v_{-i}) dv_{-i}
+\int_{\Theta_{-i}}\hat P_i(v_i,v_{-i})v_i - \hat C_i(v_i,v_{-i}) dFv_{-i}\geq \int_{\Theta_{-i}}\hat P_i(v'_i,v_{-i})v_i - \hat C_i(v'_i,v_{-i}) dFv_{-i}
 $$
 Thus we verified that it is truthful. $\square$ 
 

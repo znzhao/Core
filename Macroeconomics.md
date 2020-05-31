@@ -1303,7 +1303,7 @@ V(a^i, y^i, q ) = max\{U(c^i)+\beta\sum_{{y^{i}}'} V(a', {y^{i}}', q' ) \pi({y^{
    Derive the Euler Equation:
    $$
    (ENV)\space V'(a,y,q^0) = U'(c) \\
-   (FOC)\space -q^jU'(c)+\beta \sum_{y'}V'(a',y',q)\pi(y'|y)+\lambda
+   (FOC)\space -q^jU'(c)+\beta \sum_{y'}V'(a',y',q)\pi(y'|y)+\lambda=0
    $$
 
    and it will give the solution as:
@@ -1460,7 +1460,7 @@ Since we are solving the steady state equilibrium, the interest rate of capital 
    $$
 
    $$
-   ln \tilde K_{t+1} = a_z^j+b_z^jlog\tilde K_t
+   ln \tilde K_{t+1} = a_z^j+b_z^jln\tilde K_t
    $$
    This is equivalent to solve the consumer’s problem. Solving this recursive problem, and combining the solution to the firm’s First Order Condition, $w(r)$, will give back the policy functions $k_{t+1}^i = g(k_t^i, n_t^i, z_t, \tilde K_t )$
 

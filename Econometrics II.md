@@ -525,7 +525,7 @@ $$
 suppose the treatment $z\in \{0,1\}$, then we have:
 $$
 E[y(0)|z = 1] \leq E[y(1)|z = 1] \\
-E[y(1)|z = 0] \leq E[y(0)|z = 0] \\
+E[y(1)|z = 0] \leq E[y(0)|z = 0] \\
 $$
 **Assumption: (Monotone Treatment Response)** Assume that if the treatments can be ordered, then for $t\geq s$, we have $y_j(t)\geq_{FOSD} y_j(s)$ for all j.
 
@@ -625,7 +625,7 @@ So the IV estimator is $E[y(1)-y(0)|C]$.
 Under the assumption that Monotonicity is true, we have that $E[y|x = 0, z = 1] = E[y(0)|N]$, and $E[y|x = 1, z = 0] = E[y(1)|A]$. Now note that by the law of iterated expectation, we have 
 $$
 E[y|x = 1, z = 1] = \frac{\pi_A}{\pi_A+\pi_C}E[y(1)|A]+\frac{\pi_C}{\pi_A+\pi_C}E[y(1)|C] \\
-E[y|x = 0, z = 0] = \frac{\pi_N}{\pi_N+\pi_C}E[y(0)|N]+\frac{\pi_C}{\pi_N+\pi_C}E[y(0)|C]
+E[y|x = 0, z = 0] = \frac{\pi_N}{\pi_N+\pi_C}E[y(0)|N]+\frac{\pi_C}{\pi_N+\pi_C}E[y(0)|C]
 $$
 From this we can calculate the local average treatment effect: 
 $$
