@@ -1045,7 +1045,7 @@ By Taylor expansion of a log function, we have $LR \approx n/(n-k)F$. $\square$
 
 **Method: (Likelihood Ratio Test with Homoscedasticity and Gaussian Error)** Under the Assumption about large sample and homoscedasticity and Gaussian Error, we use the LR statistic to do Hypothesis Test for $H_0: R\beta -r =0$, and $H_1:R\beta -r\neq 0$, where $R$ is a $J\times k$ vector, i.e. reject if $\hat {LR} \in [\chi^2_{\alpha},+\infty]$, where $\hat {LM}$ is defined as:
 $$
-\hat {LR} = nlog(1+\frac{J}{n-K}F) = \frac{(R\hat \beta-r)'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)/J}{\hat \sigma^2}\to^d \chi^2(J)/J
+\hat {LR} = nlog(1+\frac{J}{n-K}F) = \frac{(R\hat \beta-r)'(R(X'X)^{-1}R')^{-1}(R\hat \beta-r)}{\hat \sigma^2}\to^d \chi^2(J)
 $$
 where $\hat \sigma^2$ is the variance of the MLE of $\sigma^2$ under the unrestricted estimation.
 

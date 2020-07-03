@@ -836,6 +836,8 @@ So we have $i_t^\star = 0$ as the optimal monetary policy rule.
 
 **Corollary: (Friedman’s Rule)** The Friedman’s Rule implies that the optimal monetary rule should set the nominal interest rate to be 0 and let the inflation rate be negative. Remember that $\hat i_t =\hat r_t +  E_t[\hat \pi_{t+1}] = 0$ implies that $E_t[\hat \pi_{t+1}]=-\hat r_t<0$. 
 
+
+
 ## New Keynesian Model
 
 ### Monopolistic Competition
@@ -1018,7 +1020,7 @@ According to the DIS and the NKPC, $\pi_t = \chi \sum_{i = 0}^\infty \beta^i E_t
 
 **Definition: (Wicksellian Interest Rate)** The Wicksellian Interest Rate is defined as $i_t = r_t^f$.
 
-#### Optimal Monetary Policy with No Cost Push Shock
+#### Optimal Monetary Policy with Cost Push Shock
 
 **Definition: (Markov Perfect Equilibrium)** The government decide the optimal monetary policy with the following mechanism:
 $$
