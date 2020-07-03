@@ -756,12 +756,10 @@ Similarly we can prove the second part. $\square$
 
 **Definition: (Propensity Score Estimator)** Under the assumption of Exogenously Assigned Treatment, Propensity Score Estimators are defined as $\hat y(1) = \frac{1}{N}\sum_{i=1}^N\frac{Z_iy_i}{e(x_i)}$ and $\hat y(1) = \frac{1}{N}\sum_{i=1}^N\frac{(1-Z)y}{1-e(x)}$.
 
-
-
 ## Bayesian Statistics
 
 **Definition: (Bayesian Estimation)** Suppose a parameter $\theta$ is a random variable with a prior belief of $P(\theta)$. $y$ is the dataset that we observe. The Bayesian Estimation gives the likelihood function: $P(\theta| y) = P(y|\theta) P(\theta) / P(y)$.
 
 **Example: (Bernoulli Random Variable Estimation)** Suppose $y_i \sim B(\theta)$. The probability of observing $y$ given $\theta$ is $P(y|\theta) = \theta^M(1-\theta)^{N-M}$. Suppose the prior of $\theta$ is $P(\theta) = \beta ^{-1}(\alpha,\delta)\theta^{\alpha-1}(1-\theta)^{\delta-1}$. By Bayes rule, we have $P(\theta|y)  = \beta ^{-1}(\alpha+M,\delta+N-M)\theta^{M+\alpha-1}(1-\theta)^{N-M+ \delta-1}$. Hence $\theta|y\sim \beta(\alpha+M, \delta+N-M)$.
 
-**Claim: (Bernstein Theorem)** Under certain circumstances, the Bayesian estimation and the classical estimation collapse when the sample size is large enough. 
+**Claim: (Bernstein Theorem)** Under certain circumstances, the Bayesian estimation and the classical estimation collapse when the sample size is large enough.
