@@ -161,7 +161,7 @@ $$
    \end{array} 
    \right ]
    $$
-   Now define $z_t = V_{21}\hat c_t + V_{22}\hat k_t $, which corresponds to the eigenvalue that is greater than 1. we have $z_{t+1} = \lambda_2 z_t$, suppose $z_t\neq0$, then either the feasibility or the transversality condition is violated. As a result $z_t$ have to be 0, which will give us the policy function $\hat c_t =- V_{21}^{-1}V_{22}\hat k_t$, and $\hat k_{t+1} = (-M_{21}V_{21}^{-1}V_{22} + M_{22})\hat k_t$.
+   Now define $z_t = V_{21}\hat c_t + V_{22}\hat k_t$, which corresponds to the eigenvalue that is greater than 1. we have $z_{t+1} = \lambda_2 z_t$, suppose $z_t\neq0$, then either the feasibility or the transversality condition is violated. As a result $z_t$ have to be 0, which will give us the policy function $\hat c_t =- V_{21}^{-1}V_{22}\hat k_t$, and $\hat k_{t+1} = (-M_{21}V_{21}^{-1}V_{22} + M_{22})\hat k_t$.
 
 
 
